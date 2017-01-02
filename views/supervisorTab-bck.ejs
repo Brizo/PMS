@@ -1,0 +1,871 @@
+<div class="tab-pane fade in" id="supervisorTab" ng-controller="newSupRoleController" ng-click="consoleLogSomething()">
+  
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">Supervisor Quick Actions</h4>
+      </div>
+    <div class="panel-body">
+      <br>
+        <div id="supView">
+          <br/>
+          <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+              <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                View
+                <span class="caret"></span>
+              </a> 
+                <ul class="dropdown-menu">
+                  <li><a href="#showObjEmp" data-toggle="tab" ng-click="retrieveEmployees();clickedObjectives()">Objectives</a></li>
+                  <li><a href="#empScoreCards" data-toggle="tab" ng-click="retrieveEmployees();clickedScorecards()">Performance Contracts</a></li>
+                </ul>
+            </div>
+            <div class="btn-group" role="group">
+              <a href="#showEvalEmp" data-toggle="tab" type="button" class="btn btn-default" ng-click="clickedEvaluate();retrieveEmployees()">Evaluate</a>
+            </div>
+            <div class="btn-group" role="group">
+              <a href="#showEmp" data-toggle="tab" type="button" class="btn btn-default" ng-click="retrieveEmployees()">Create Employee Objectives</a>
+            </div>
+          </div>
+          <br>
+          <div class="tab-content">
+            <!-- Tab pane for View then Objectives-->
+            <div id="showObjEmp" class="tab-pane fade">
+              <!-- Begin Employees with Objectives Table Div-->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div class="panel-title">
+                    <img class="img-responsive" style="float:left;"  src="images/sebentile.png" width="40" height="40"  alt="Logo">&nbsp;
+                    <h5 class="panel-title">List of Employees</h5>
+                  </div>
+                </div>&nbsp;
+                <div class="panel-body">
+                <div class="alert alert-info col-sm-12">
+                  <button type="button" class="close" data-dismiss="alert">X</button>
+                  <p>Select an employee from the list to create objectives for ...</p>
+                </div>
+
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <table class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Employee Name</th>
+                          <th>PF Number</th>
+                          <th>Position</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="emp in emps">
+                          <td>
+                            <a href="#empObjToAppr" data-toggle="tab" role="button"
+                            ng-click="getToApproveObjs()" >
+                            {{emp.empName}}
+                            </a>
+                            </td>
+                          <td>{{emp.PFNum}}</td>
+                          <td>{{emp.position}}</td>
+                        </tr>
+                      </tbody>
+                    </table> <!--end Employee Objectives Table-->
+                  </div> <!--end panel-body-->
+                </div> <!--end panel-->
+                </div>
+              </div> 
+              <!-- End Employees with Objectives Table Div -->
+            </div>
+
+            <div id="showEmp" class="tab-pane fade">
+              <!-- Begin Employees with Objectives Table Div-->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div class="panel-title">
+                    <img class="img-responsive" style="float:left;"  src="images/sebentile.png" width="40" height="40"  alt="Logo">&nbsp;
+                    <h5 class="panel-title">List of Employees</h5>
+                  </div>
+                </div>&nbsp;
+                <div class="panel-body">
+                <div class="alert alert-info col-sm-12">
+                  <button type="button" class="close" data-dismiss="alert">X</button>
+                  <p>Select an employee from the list to create objectives for ...</p>
+                </div>
+
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <table class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Employee Name</th>
+                          <th>PF Number</th>
+                          <th>Position</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="emp in emps">
+                          <td>
+                            <a href="#createSubObjective" data-toggle="tab" role="button"
+                            ng-click="captureEmp(emp.PFNum)" >
+                            {{emp.empName}}
+                            </a>
+                            </td>
+                          <td>{{emp.PFNum}}</td>
+                          <td>{{emp.position}}</td>
+                        </tr>
+                      </tbody>
+                    </table> <!--end Employee Objectives Table-->
+                  </div> <!--end panel-body-->
+                </div> <!--end panel-->
+                </div>
+              </div> 
+              <!-- End Employees with Objectives Table Div -->
+            </div>
+            <!-- end Objectives div-->
+            <!-- Tab pane for Evaluate-->
+            <div id="showEvalEmp" class="tab-pane fade">
+              <!-- Begin Employees with Objectives Table Div-->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div class="panel-title">
+                    <img class="img-responsive" style="float:left;"  src="images/sebentile.png" width="40" height="40"  alt="Logo">&nbsp;
+                    <h5 class="panel-title">List Of Employees To Evaluate</h5>
+                  </div>
+                </div>&nbsp;
+                <div class="panel-body">
+                <div class="alert alert-info">
+                  <button type="button" class="close" data-dismiss="alert">X</button>
+                  <p>Select an employee from below...</p>
+                </div>
+
+                <div class="panel panel-default">
+            
+                  <div class="panel-body">
+                    <table class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Employee Name</th>
+                          <th>PF Number</th>
+                          <th>Position</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="emp in emps">
+                          <td>
+                            <a href="#empObjToEval" data-toggle="tab" role="button"
+                            ng-click="retrieveEmpEvald(emp.PFNum, emp.empName)" >
+                            {{emp.empName}}
+                            </a>
+                            </td>
+                          <td>{{emp.PFNum}}</td>
+                          <td>{{emp.position}}</td>
+                        </tr>
+                      </tbody>
+                    </table> <!--end Employee Objectives Table-->
+
+                  </div> <!--end panel-body-->
+                </div> <!--end panel-->
+                </div>
+              </div> 
+              <!-- End Employees with Objectives Table Div -->
+            </div>
+            <!-- end Objectives div-->
+            <!-- Tab pane for Emp objectives after selecting emp on objectives -->
+            <div id="empObjToAppr" class="tab-pane fade">
+              <div style="width:100%;">
+                <div class="panel panel-default"> 
+
+                  <div class="panel-heading">
+                    <div class="panel-title">
+                      <img class="img-responsive" style="float:left;"  src="images/sebentile.png" width="40" height="40"  alt="Logo">&nbsp;
+                      <h4 class="panel-title" ng-model="empAlias">View {{empAlias.Name}}'s Objectives!</h4>
+                    </div>
+                  </div>
+
+                  <!--div>
+                    <img class="img-responsive" style="float:left;"  src="images/sebentile.png" width="40" height="40"  alt="Logo">&nbsp;
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                      <h4 class="modal-title" ng-model="empAlias">View {{empAlias.Name}}'s Objectives!</h4>
+                  </div--> 
+
+                  <div>
+                    <div class="panel">
+                      <div class="container">
+                        <div class="alert alert-info">
+                          <button type="button" class="close" data-dismiss="alert">X</button>
+                          <p>Enter Rating per Perfomance indicator under each Perspective and Comment or Attach files (Maximum 10 e.g PDF,Spreadsheet,Word Document) to support Rating</p>
+                        </div>
+                      </div>
+                      <nav>
+                        <ul class="pager">
+                          <!--li><a href="#" ng-click="prevPerspective()">Previous Perspective</a></li-->
+                          <li><a href="#" ng-click="nextPerspective()">Next Perspective</a></li>
+                        </ul>
+                      </nav>
+
+                      <div class="alert alert-info alert-dismissable" ng-show="finGetsApproved">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button><strong>Success:</strong>
+                        <br>
+                        <span ng-model='finAppMsg'>
+                            {{selfEvalrrorMsg}}
+                            <br>
+                        </span>
+                      </div> <!--end info alert -->
+                    
+                      <!-- begin Finance Approved-Objectives Table -->
+                      <table ng-show="table1" class="table table-hover table-striped" style="width:100%">
+                        <caption><h4>{{currentPersp.pers}}</h4></caption>
+                        <thead>
+                          <tr>
+                              <th>Key Performance Area</th>
+                              <th>Key Performance Indicator</th>
+                              <th>Poor Performance Rating of 1</th>
+                              <th>Unsatisfactory Performance Rating of 2</th>
+                              <th>Target Met Performance Rating of 3</th>
+                              <th>Exceptional Performance Rating of 4</th>
+                              <th>Outstanding Performance Rating of 5</th>
+                              <th style="width:15%;">Action</th>                          
+                          </tr>
+                        </thead>
+                        <form>                      
+                          <tbody >
+                            <tr ng-repeat="objective in currentPersp.objs | orderBy: 'description' | filter: search | limitTo:10">
+                                <td ng-model="objective.kpa">{{objective.kpa}}</td>
+                                <td ng-model="objective.kpi">{{objective.kpi}}</td>
+
+                                <td ng-model="objective.metricOneDef.label">{{objective.metricOneDef.label}}</td>
+
+                                <td ng-model="objective.metricTwoDef.label">{{objective.metricTwoDef.label}}</td>
+
+                                <td ng-model="objective.metricThreeDef.label">{{objective.metricThreeDef.label}}</td>
+
+                                <td ng-model="objective.metricFourDef.label">{{objective.metricFourDef.label}}</td>
+
+                                <td ng-model="objective.metricFiveDef.label">{{objective.metricFiveDef.label}}</td>
+                              <td style="width:15%;">  
+                                  <a class="btn btn-sm btn-success"  href="#confirmAppModal" data-toggle="modal" ng-click="clickApprove()">
+                                    <span class="glyphicon glyphicon-ok">&nbsp;Approve</span>
+                                  </a>
+
+                                  <div class="modal fade" id="confirmAppModal" tabindex="-1" 
+                                    role="dialog" aria-labelledby="panelLabel" aria-hidden="true" >
+                                    <div  class="modal-dialog" style="width:30%;">
+                                      <div  class="modal-content"> 
+                                        <div  class="modal-header">
+                                          <img class="img-responsive" style="float:left;"  src="images/sebentile.png" width="40" height="40" alt="Logo">&nbsp;
+                                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                          <h4 class="modal-title">Approve Objective</h4>
+                                        </div>
+                                        <div class="modal-body container-fluid">
+                                          <div class="alert alert-warning" ><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to approve this Objective?</div>
+                                            
+                                        </div>
+                                        <div id="" class="modal-footer">
+                                          <button class="btn btn-sm  btn-success" data-backdrop="false" data-dismiss="modal"  ng-click="approveCurrObj(objective._id)" onclick="$('.modal-backdrop').css({'position': 'relative'});"><span class="glyphicon glyphicon-ok-circle"> </span>&nbsp;Yes </button>
+                                          <button data-backdrop="false" class="btn btn-small btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>&nbsp;No</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <a class="btn btn-sm btn-danger" href="#rejectCurrComment" data-toggle="modal" ng-click="rejectCurrObj()">
+                                    <span class="glyphicon glyphicon-remove">Disapprove</span>
+                                  </a>
+
+                                  <div ng-show="clickFinRejectComment" class="modal fade in" 
+                                  id="rejectCurrComment" tabindex="-1" role="dialog" 
+                                    aria-labelledby="panelLabel" aria-hidden="true" >
+                                    <div  class="modal-dialog" style="width:30%;">
+                                      <div  class="modal-content"> 
+                                        <div  class="modal-header">
+                                          <img class="img-responsive" style="float:left;"  src="images/sebentile.png" width="40" height="40"  alt="Logo">&nbsp;
+                                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                          <h4 class="modal-title">Reason for Disapproval</h4>
+                                        </div>
+                                        <div class="modal-body container-fluid">
+                                          <div class="alert alert-info"><strong>Heads Up!:</strong> Enter your reason for disapproving the Employee Objective</div>
+                                            <div class="panel col-sm-12">
+                                              <form>
+                                                <textarea class="col-sm-12" rows="4" name="rejectObj" 
+                                                ng-model="rejCurrComment">
+                                                  {{rejCurrComment}}
+                                                </textarea>
+                                                
+                                              </form>
+                                              <br>
+                                          </div>
+                                        </div>
+                                        <div id="" class="modal-footer">
+                                          <button class="btn btn-small btn-success" data-backdrop="false" data-dismiss="modal" ng-disabled="disabledReject" ng-click="rejCurrObj(objective._id, rejCurrComment)" onclick="$('.modal-backdrop').css({'position': 'relative'});"><span class="glyphicon glyphicon-ok-circle"> </span>&nbsp;Finish </button>
+                                          <button data-backdrop="false" class="btn btn-small btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>&nbsp;Close</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div> 
+
+                              </td>
+                            </tr>
+                          </tbody>
+                        </form> 
+                      </table> 
+                      <!-- end Finance Approved-Objectives Table-->
+
+                    </div>
+                  </div><!-- end modal body -->
+                    <nav>
+                    <ul class="pager">
+                      <!--li><a href="#" ng-click="prevPerspective()">Previous Perspective</a></li-->
+                      <li><a href="#" ng-click="nextPerspective()">Next Perspective</a></li>
+                    </ul>
+                  </nav>
+                </div>
+
+              </div> 
+            </div>
+
+            <!-- Tab pane for score cards -->
+            <div id="empScoreCards" class="tab-pane fade"> 
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div class="panel-title">
+                    <img class="img-responsive" style="float:left;"  src="images/sebentile.png" width="40" height="40"  alt="Logo">&nbsp;
+                    <h5>List Of Employees</h5>
+                  </div>
+                </div>
+                <div class="panel-body">
+                  <div id="4" ng-show="clickScorecards" class="col-sm-10 col-sm-offset-1">
+                <div class="panel panel-inverse" >
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Employees with Performance Contracts</h3>
+                  </div>
+                  
+                  <div class="panel-body">
+                    <table class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Employee Name</th>
+                          <th>PF Number</th>
+                          <th>Position</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="emp in emps">
+                          <td>
+                            <a data-toggle="modal" data-keyboard="false" data-backdrop="static" href="#employeeSCModal" 
+                            role="button" ng-click="retrieveApproved(emp.PFNum, emp.empName)">
+                              {{emp.empName}}
+                              </a>  
+                          </td> 
+                          <td>{{emp.PFNum}}</td>
+                          <td>{{emp.position}}</td>
+                        </tr>
+                      </tbody>
+                    </table> <!--end Employee Objectives Table-->
+
+                    <!-- VIEW EMP OBJECTIVE MODAL-->
+                  </div> <!--end panel-body-->
+                  
+
+                </div> <!--end panel-->
+              </div> <!--end viewEmpObjModalBody-->
+                </div>
+              </div>
+              
+
+              <!-- begin scorecardModal-->
+              <div class="modal fade in" id="employeeSCModal" >
+                <div id="empSCModalDialog" class="modal-dialog" style="width:90%">
+                  <div id="empSCModalContent" class="modal-content"> 
+                    <div id="empSCModalHeader" class="modal-header">
+                      <img class="img-responsive" style="float:left;" src="images/sebentile.png" 
+                      width="40" height="40"  alt="Logo">&nbsp;
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                        <h4 class="modal-title" ng-model="empAlias">View {{empAlias.Name}}'s Objectives!</h4>
+                    </div> <!-- end compileSCModal-header-->
+
+                    <div id="scorecardModalBody" class="modal-body" >
+                      <div class="panel">
+                        <table id="perfContr" class="hlk" style="width:100%;">
+                          <tr>
+                            <th class="hlk-wrek2"> </th>
+                            <th class="hlk-drop" colspan="10">Perfomance Contract  : Key Perfomance Areas &amp; Key Perfomance Indicators</th>
+                          </tr>
+
+                          <tr>
+                            <!--td class="hlk-drop" ng-model="scorecardHeight" rowspan={{scorecardHeight}} >BALANCED SCORE CARD FOR SWAZILAND ELECTRICITY COMPANY</td-->
+                            <td class="hlk-drop" ng-model="scorecardHeight" rowspan="20" >BALANCED SCORE CARD FOR SWAZILAND ELECTRICITY COMPANY</td>
+                            <td class="hlk-suit">Perspective</td>
+                            <td class="hlk-kurasaki">Key Performance Area       (KPA)</td>
+                            <td class="hlk-kurasaki">Key Performance Indicator (KPI)</td>
+                            <!--td class="hlk-kurasaki">Broad Category Weightings</td>
+                            <td class="hlk-kurasaki">Detailed Weightings</td-->
+                            <td class="hlk-kurasaki">Poor performance - Rating of 1</td>
+                            <td class="hlk-kurasaki">Unsatisfactory - Rating of 2</td>
+                            <td class="hlk-kurasaki">Target met- rating of 3</td>
+                            <td class="hlk-kurasaki">Exceeding : rating of 4</td>
+                            <td class="hlk-kurasaki">Outstanding- Rating of 5</td>
+                          </tr>
+
+                          <tr> </tr>
+
+                          <tr ng-repeat="appFin in appFinObj">
+                            <td class="hlk-nl5m" ng-model="sc_persp">{{appFin.perspective}}</td>
+                            <td class="hlk-me" >{{appFin.description}} </td>
+                            <td class="hlk-me" >{{appFin.DSO}} </td>
+                            <!--td class="hlk-suit" ng-model="finRowSpan" rowspan={{finRowSpan}}>10%</td>
+                            <td class="hlk-suit">5%</td>
+                            <td class="hlk-suit">5%</td-->
+                            <td class="hlk-truk" > {{appFin.metricOneDef}} </td>
+                            <td class="hlk-me" >   {{appFin.metricTwoDef}}</td>
+                            <td class="hlk-nl5m" > {{appFin.metricThreeDef}}</td>
+                            <td class="hlk-me" >   {{appFin.metricFourDef}}</td>
+                            <td class="hlk-me" >   {{appFin.metricFiveDef}}</td>
+                          </tr>
+
+                          <tr> </tr>
+
+                          <tr ng-repeat="appCust in appCustObj">
+                            <td class="hlk-nl5m">{{appCust.perspective}}</td>
+                            <td class="hlk-me" >{{appCust.description}} </td>
+                            <td class="hlk-me" >{{appCust.DSO}} </td>
+                            <!--td class="hlk-suit" ng-model="finRowSpan" rowspan={{finRowSpan}}>10%</td>
+                            <td class="hlk-suit">5%</td>
+                            <td class="hlk-suit">5%</td-->
+                            <td class="hlk-truk" > {{appCust.metricOneDef}} </td>
+                            <td class="hlk-me" >   {{appCust.metricTwoDef}}</td>
+                            <td class="hlk-nl5m" > {{appCust.metricThreeDef}}</td>
+                            <td class="hlk-me" >   {{appCust.metricFourDef}}</td>
+                            <td class="hlk-me" >   {{appCust.metricFiveDef}}</td>
+                          </tr>
+
+                          <tr> </tr>
+
+                          <tr ng-repeat="appInt in appIntObj">
+                            <td class="hlk-nl5m">{{appInt.perspective}}</td>
+                            <td class="hlk-me" >{{appInt.description}} </td>
+                            <td class="hlk-me" >{{appInt.DSO}} </td>
+                            <!--td class="hlk-suit" ng-model="finRowSpan" rowspan={{finRowSpan}}>10%</td>
+                            <td class="hlk-suit">5%</td>
+                            <td class="hlk-suit">5%</td-->
+                            <td class="hlk-truk" > {{appInt.metricOneDef}} </td>
+                            <td class="hlk-me" >   {{appInt.metricTwoDef}}</td>
+                            <td class="hlk-nl5m" > {{appInt.metricThreeDef}}</td>
+                            <td class="hlk-me" >   {{appInt.metricFourDef}}</td>
+                            <td class="hlk-me" >   {{appInt.metricFiveDef}}</td>
+                          </tr>
+
+                          <tr> </tr>
+
+                          <tr ng-repeat="appLearn in appLearnObj">
+                            <td class="hlk-nl5m">{{appLearn.perspective}}</td>
+                            <td class="hlk-me" >{{appLearn.decription}} </td>
+                            <td class="hlk-me" >{{appLearn.DSO}} </td>
+                            <!--td class="hlk-suit" ng-model="finRowSpan" rowspan={{finRowSpan}}>10%</td>
+                            <td class="hlk-suit">5%</td>
+                            <td class="hlk-suit">5%</td-->
+                            <td class="hlk-truk" > {{appLearn.metricOneDef}} </td>
+                            <td class="hlk-me" >   {{appLearn.metricTwoDef}}</td>
+                            <td class="hlk-nl5m" > {{appLearn.metricThreeDef}}</td>
+                            <td class="hlk-me" >   {{appLearn.metricFourDef}}</td>
+                            <td class="hlk-me" >   {{appLearn.metricFiveDef}}</td>
+                          </tr>
+                        </table>
+                      </div>                
+                    </div> <!--end scorecardModalBody-->
+
+                    <div id="scorecardModalFooter" class="modal-footer">
+
+                      <button onclick="$('#exportSCModal').modal({'backdrop': 'static'});" class="btn btn-success" type="button">
+                          <span class="glyphicon glyphicon-circle-arrow-right"> </span> 
+                            Export Scorecard
+                      </button>
+
+                      <button onclick="$('#scorecardodal').modal({'backdrop': 'static'});" class="btn btn-warning" type="button"> 
+                          <span class="glyphicon glyphicon-print"> </span> 
+                            Print Scorecard
+                      </button>
+                                                                  
+                      <button class="btn btn-danger" type="button" data-dismiss="modal"> 
+                          <span class="glyphicon glyphicon-remove"> </span> 
+                          Close
+                      </button>   
+                    </div> <!-- end scorecardModal-footer-->
+                  </div> <!-- end scorecardModal-content-->
+                </div>  
+              </div> 
+              <!-- end scorecardModal-->
+            </div>
+            <div class="modal fade" id="exportSCModal" tabindex="-1" 
+              role="dialog" aria-labelledby="panelLabel" aria-hidden="true" >
+              <div  class="modal-dialog" style="width:30%;">
+                <div  class="modal-content"> 
+                  <div  class="modal-header">
+                    <img class="img-responsive" style="float:left;"  src="images/sebentile.png" width="40" height="40" alt="Logo">&nbsp;
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h4 class="modal-title">Export Scorecard</h4>
+                  </div>
+                  <div class="modal-body container-fluid">
+                    <div class="alert alert-warning">Select export format ...</div>
+                    <a href="#" id="excelID" onClick="javascript:fnExcelSC();">Excel</a>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    <a href="#" id="excelID" onClick="javascript:fnExcelSC();">PDF</a>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    <a href="#" id="excelID" onClick="javascript:fnExcelSC();">MS-PowerPoint</a>
+                      
+                  </div>
+                  <div id="" class="modal-footer">
+                    <button class="btn btn-small btn-success" 
+                    data-dismiss="modal" ng-click="approveCurrObj(objective._id)"><span class="glyphicon glyphicon-ok-circle"> </span>&nbsp;Complete </button>
+                    <button class="btn btn-small btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>&nbsp;Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--div id="3" ng-show="clickEvaluate" class="col-sm-10 col-sm-offset-1"-->
+            <div class="tab-pane fade" id="empObjToEval" ng-show="clickEvaluate">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <div class="panel-title">
+                          <img class="img-responsive" style="float:left;"  src="images/sebentile.png" width="20" height="20"  alt="Logo">&nbsp;
+                          <h5 class="panel-title">Supervisor Evaluation</h5>
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                      <!--div ng-show="!showEvalErr" class="alert alert-danger alert-dismissable" >
+                          <button type="button" class="close" data-dismiss="alert">X</button>
+                          <strong>Oops!:</strong>
+                        &nbsp;
+                        <span ng-model='showEvalMsg' ng-show="!showEvalErr">
+                            {{showEvalMsg}}
+                            <br>
+                            <br>
+                            OR
+                            <p>
+                            <button class="btn btn-primary" ng-click="getAllKPAs();">
+                              <span class="glyphicon glyphicon-refresh"></span>
+                              Refresh
+                            </button>
+                            </p>
+                        </span>
+                      </div--> 
+                      <div class="alert alert-danger alert-dismissable" ng-show="evalMsgNot">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Error:</strong>
+                        &nbsp;
+                        <span ng-model='evalMsg'>
+                          {{evalMsg}}
+                          <br>
+                        </span>
+                      </div> 
+                      <div ng-show="!evalMsgNot" class="panel">
+                        <div class="alert alert-info">
+                          <button type="button" class="close" data-dismiss="alert">X</button>
+                          <p>Enter Rating per Perfomance indicator under each objective and Comment or Attach files (Maximum 10 e.g PDF,Spreadsheet,Word Document) to support your Rating
+                          </p>
+                        </div>
+                        <div class="alert alert-danger alert-dismissable" ng-if="hasSelfEvalErrors">
+                          <button type="button" class="close" data-dismiss="alert">&times;</button>
+                          <strong>Error:</strong>
+                          &nbsp;
+                          <span ng-model='finSCErrorMsg'>
+                              {{selfEvalrrorMsg}}
+                              <br>
+                          </span>
+                        </div> 
+                        <div>
+                          <table class="table table-hover table-striped" style="width:100%">
+                            <thead>
+                              <tr>
+                                <th style="width:10%"><h6 style="color: #003366;">Key Performance Area</h6></th>
+                                <th style="width:15%"><h6 style="color: #003366;">Key Performance Indicator</h6></th>
+                                <th style="width:7%"><h6 style="color: #003366;">Employee Rating</h6></th>
+                                <th style="width:20%"><h6 style="color: #003366;">Employee Comment</h6></th>
+                                <th style="width:20%"><h6 style="color: #003366;">Rating</h6></th>
+                                <th style="width:20%"><h6 style="color: #003366;">Supervisor Comment</h6></th>
+                                          
+                              </tr>
+                            </thead>
+                            <form>                      
+                              <tbody>
+                                <tr ng-repeat="objective in submittedForEval | orderBy: 'kpa' | filter: search | limitTo:10">
+                                    <td>{{objective.kpa | uppercase}}</td>
+                                    <td>{{objective.kpi}}</td>
+                                    <td>{{objective.empRating}}
+                                    </td>
+                                    <td>{{objective.empComment}}
+                                    </td>
+                                    
+                                    <td width="100%">                 
+                                      <select class="form-control" ng-model="objective.supRating" ng-change="captureSupRating(objective)">
+                                        <option selected="selected" value="selected">{{objective.defaults}}</option>
+                                        <option value="{{objective.metricOneDef.value}}">{{objective.metricOneDef.value+" |"+objective.metricOneDef.label}}</option>
+                                        <option value="{{objective.metricTwoDef.value}}">{{objective.metricTwoDef.value+" |"+objective.metricTwoDef.label}}</option>
+                                        <option value="{{objective.metricThreeDef.value}}">{{objective.metricThreeDef.value+" |"+objective.metricThreeDef.label}}</option>
+                                        <option value="{{objective.metricFourDef.value}}">{{objective.metricFourDef.value+" |"+objective.metricFourDef.label}}</option>
+                                        <option value="{{objective.metricFiveDef.value}}">{{objective.metricFiveDef.value+" |"+objective.metricFiveDef.label||objective.metricFiveDef.from+ to +objective.metricFiveDef.to}}</option>
+                                      </select>
+                                    </td>
+                                    <td>
+                                      <textarea class="form-control" type="text" rows="3" ng-model="objective.supComment" id="supComment" placeholder="(Optional)" ng-keyup="captureSupRating(objective);">
+                                      </textarea>
+                                    </td>
+                                </tr>
+                              </tbody>
+                              <!--
+                              <tfooter>
+                                <tr>
+                                    <th style="width:10%"><h6 style="color: #003366;">Key Performance Area</h6></th>
+                                    <th style="width:15%"><h6 style="color: #003366;">Key Performance Indicator</h6></th>
+                                    <th style="width:20%"><h6 style="color: #003366;">Attachment(s)(Optional)</h6></th>
+                                    <th style="width:20%"><h6 style="color: #003366;">Comment(s)</h6></th>
+                                    <th style="width:20%"><h6 style="color: #003366;">Rating</h6></th>          
+                                </tr>
+                              </tfooter>-->
+                            </form> 
+                          </table> 
+                        </div>
+                        <div class="alert alert-danger alert-dismissable" ng-show="hasFinSCErrors">
+                          <button type="button" class="close" data-dismiss="alert">&times;</button>
+                          <strong>Error:</strong>
+                          &nbsp;
+                          <span ng-model='finSCErrorMsg'>
+                              {{finSCErrorMsg}}
+                          </span>
+                        </div> 
+                      </div>
+                    </div>
+                     <div class="panel-footer">
+                          <button class="btn btn-sm btn-success text-right" ng-click="supervisorEvaluation()"><span class="glyphicon glyphicon-ok"></span>&nbsp;Finish Evaluation</button>
+                      </div>
+                  </div>
+                </div>               
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="createSubObjective">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <div class="panel-title">
+                          <img class="img-responsive" style="float:left;"  src="images/sebentile.png" width="40" height="40"  alt="Logo">&nbsp;
+                          <h5 class="panel-title">Create Key Performance Area(s) for {{empToCreateObj}}</h5>
+                        </div>
+                      </div>
+                      <div class="panel-body container-fluid">
+                        <div class="alert alert-info">
+                          <button type="button" class="close" data-dismiss="alert">X</button>
+                          <p>Select a perspective to create your KPA(s)!</p>
+                        </div><br>
+
+                        <div class="alert alert-danger alert-dismissable" ng-if="hasCreateObjErrors">
+                          <button type="button" class="close" data-dismiss="alert">&times;</button>
+                          <strong>Error:</strong>
+                          <br>
+                          <span>
+                            {{createObjError}}
+                            <br>
+                          </span>
+                        </div>
+
+                        <div class="alert alert-success alert-dismissable" ng-if="createObjSuccess">
+                          <button type="button" class="close" data-dismiss="alert">&times;</button>
+                          <strong>Success:</strong>
+                          <br>
+                          <span>
+                            {{createObjSuccessMsg}}
+                            <br>
+                          </span>
+                        </div>
+
+                        <form class="form-horizontal">
+                          <div class="form-group">
+                            <label class="col-sm-3 control-label" for="perspective">Perspective</label>
+                            <div class="col-sm-8">
+                              <select id="objPerspDropdownMenu" class="form-control" role="menu" ng-model="empObjective.perspective" ng-change="changeShowBCT()">
+                                <option ng-selected="[Select]">--Select--</option>
+                                <option ng-repeat="persp in allPerspectives">{{persp.perspName}}</option>
+
+                              </select>
+                            </div>
+                          </div>
+                        </form>
+
+                        <div ng-if="showBCT">
+                          <form class="form-horizontal">
+                            <div class="form-group">
+                              <label class="col-sm-3 control-label" for="detailedWeighting">Detailed Weighting</label>
+                              <div class="col-sm-8">
+                                <input type="text" placeholder="Enter the Detailed Weighting for objective..." ng-model="empObjective.detailedWeighting" class="form-control">
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="col-sm-3 control-label" for="kpa">Key Performance Area</label>
+                              <div class="col-sm-8">
+                                <input class="form-control" placeholder="Enter the description of the objective..." ng-model="empObjective.kpa">
+                              </div>
+                            </div>
+                            
+                            <div class="form-group">
+                              <label class="col-sm-3 control-label" for="kpi">Key Performance Indicator</label>&nbsp;
+                              <div class="col-sm-8">
+                                <textarea class="form-control" placeholder="Enter the Desired Standard Output..." type="text" rows="3" ng-model="empObjective.kpi"></textarea>
+                              </div>
+                            </div>
+
+                              <div class="form-group">
+                              <label class="col-sm-3 control-label">Metric</label>
+                              <div class="col-sm-8">
+                                <select id="objMatrixDropdownMenu" class="form-control" role="menu" ng-change="changeShowMatrix(empObjective.metrixType)" ng-model="empObjective.metrixType">
+                                  <option ng-selected="[Select]">--Select--</option>
+                                  <option value="percentage">Percentage/Text/Number</option>
+                                  <option value="time">Time</option>
+                                </select>
+                              </div>
+                            </div>
+          
+                            <div ng-if="showOtherMatrixTypes" class="form-group">
+                              <label  class="col-sm-1 col-sm-offset-2"><h5><strong>Performace Rating</strong></h5></label>
+                              <div class="form-group ">
+                                <label  class="col-sm-2 control-label">Poor : 1</label>
+                                <div class="col-sm-5">
+                                  <input class="form-control" id="poorPerfField" placeholder="Lowest achievement..." type="text"  
+                                  ng-model="empObjective.metricOneDef">
+                                </div>
+                              </div>
+                              <label  class="col-sm-1 col-sm-offset-2"></label>
+                              <div class="form-group">
+                                <label  class="col-sm-2 control-label">Unsatisfactory : 2</label>
+                                <div class="col-sm-5">
+                                  <input class="form-control" id="unsatPerfField" placeholder="Next lowest achievement..." type="text" 
+                                  ng-model="empObjective.metricTwoDef">
+                                </div>
+                              </div>
+                              <label  class="col-sm-1 col-sm-offset-2"></label>
+                              <div class="form-group">
+                                <label  class="col-sm-2 control-label">Target Met : 3</label>
+                                <div class="col-sm-5">
+                                  <input class="form-control" id="targetPerfField" placeholder="Expected goal..." type="text" 
+                                  ng-model="empObjective.metricThreeDef">
+                                </div>
+                              </div>
+                              <label  class="col-sm-1 col-sm-offset-2"></label>
+                              <div class="form-group">
+                                <label  class="col-sm-2 control-label">Exceeding : 4</label>
+                                <div class="col-sm-5">
+                                  <input class="form-control" id="exceedPerfField" placeholder="More than expected..." type="text" 
+                                  ng-model="empObjective.metricFourDef">
+                                </div>
+                              </div>              
+                              <label  class="col-sm-1 col-sm-offset-2"></label>
+                              <div class="form-group">
+                                <label  class="col-sm-2 control-label">Outstanding : 5</label>
+                                <div class="col-sm-5">
+                                  <input class="form-control" id="outstandPerfField" placeholder="Way more than expected..." type="text" 
+                                  ng-model="empObjective.metricFiveDef">
+                                </div>
+                              </div>
+                            </div>
+
+                            <div ng-if="showTimeMatrix" class="form-group">
+                              <label class="col-sm-1 col-sm-offset-2"><h5><strong>Performace Rating</strong></h5></label>
+                              <div class="form-group">
+                                <label class="col-sm-2 control-label">Poor : 1</label>
+                                <div class="col-sm-2">
+                                  <label for="dateFrom">From:</label>
+                                    <datepicker date-format="yyyy-MM-dd">
+                                      <input ng-model="empObjective.metricOneFrom" class="form-control" type="text"/>
+                                    </datepicker>
+                                </div>
+                                <div class="col-sm-2">
+                                  <label for="dateTo">To:</label>
+                                  <datepicker date-format="yyyy-MM-dd">
+                                    <input ng-model="empObjective.metricOneTo" class="form-control" type="text"/>
+                                  </datepicker>
+                                </div>
+                              </div>
+                              <label class="col-sm-1 col-sm-offset-2"></label>
+                              <div class="form-group">
+                                <label class="col-sm-2 control-label">Unsatisfactory : 2</label>
+                                <div class="col-sm-2">
+                                  <label for="dateFrom">From:</label>
+                                  <datepicker date-format="yyyy-MM-dd">
+                                    <input ng-model="empObjective.metricTwoFrom" class="form-control" type="text"/>
+                                  </datepicker>
+                                </div>
+                                <div class="col-sm-2">
+                                  <label for="dateTo">To:</label>
+                                  <datepicker date-format="yyyy-MM-dd">
+                                    <input ng-model="empObjective.metricTwoTo" class="form-control" type="text"/>
+                                  </datepicker>
+                                </div>
+                              </div>
+                              <label class="col-sm-1 col-sm-offset-2"></label>
+                              <div class="form-group">
+                                <label class="col-sm-2 control-label">Target Met : 3</label>
+                                <div class="col-sm-2">
+                                  <label for="dateFrom">From:</label>
+                                  <datepicker date-format="yyyy-MM-dd">
+                                    <input ng-model="empObjective.metricThreeFrom" class="form-control" type="text"/>
+                                  </datepicker>
+                                </div>
+                                <div class="col-sm-2">
+                                  <label for="dateTo">To:</label>
+                                  <datepicker date-format="yyyy-MM-dd">
+                                    <input ng-model="empObjective.metricThreeTo" class="form-control" type="text"/>
+                                  </datepicker>
+                                </div>
+                              </div>
+                              <label class="col-sm-1 col-sm-offset-2"></label>
+                              <div class="form-group">
+                                <label class="col-sm-2 control-label">Exceeding : 4</label>
+                                <div class="col-sm-2">
+                                  <label for="dateFrom">From:</label>
+                                  <datepicker date-format="yyyy-MM-dd">
+                                    <input ng-model="empObjective.metricFourFrom" class="form-control" type="text"/>
+                                  </datepicker>
+                                </div>
+                                <div class="col-sm-2">
+                                  <label for="dateFrom">To:</label>
+                                  <datepicker date-format="yyyy-MM-dd">
+                                    <input ng-model="empObjective.metricFourTo" class="form-control" type="text"/>
+                                  </datepicker>
+                                </div>
+                              </div>
+                              <label class="col-sm-1 col-sm-offset-2"></label>
+                              <div class="form-group">
+                                <label class="col-sm-2 control-label">Outstanding : 5</label>
+                                <div class="col-sm-2">
+                                  <label for="dateFrom">From:</label>
+                                  <datepicker date-format="yyyy-MM-dd">
+                                    <input ng-model="empObjective.metricFiveFrom" class="form-control" type="text"/>
+                                  </datepicker>
+                                </div>
+                                <div class="col-sm-2">
+                                  <label for="dateFrom">To:</label>
+                                  <datepicker date-format="yyyy-MM-dd">
+                                    <input ng-model="empObjective.metricFiveTo" class="form-control" type="text"/>
+                                  </datepicker>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-sm-10 col-sm-offset-1">
+                                <button id="submitFinanceObjButton" class="btn btn-success" style="float:right;" ng-click="createSubObjective()"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Create</button>    
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  
+</div> <!-- end supervisorTab div-->

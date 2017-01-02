@@ -1,0 +1,551 @@
+<div class="tab-pane fade in" id="HRTab" ng-controller="hrRolesController">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">HR Quick Actions</h4>
+        </div>
+        <div class="panel-body">
+            <div class="bool-container">
+                <div class="col-sm-12" ng-controller="ctrl560cfdc514d04f8439306951">
+                    <div class="tab-container bool-container">
+                        <ul class="nav bool-container nav-pills nav-normal" id="obj560cf73114d04f843930692b">
+                            <li class="dropdown" id="obj560cf73114d04f843930693c">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Company Structure</a>
+                                <ul class="dropdown-menu bool-container">
+                                    <li id="obj560cf73114d04f843930693d"><a href="#structTreeView" data-toggle="tab">Tree View</a></li>
+                                    <li id="obj560cf73114d04f843930693e"><a href="#structInitCompany" data-toggle="tab">Initialise Company</a></li>
+                                    <li id="obj560cf73114d04f843930693f"><a href="#structAddComponent" data-toggle="tab">Alter Components</a></li>
+                                    <li id="obj560cf73114d04f8439306940" ng-show='false'><a href="#structEditComponent" data-toggle="tab">Edit Component</a></li>
+                                    <li id="obj560cf73114d04f8439306941" ng-show='false'><a href="#structRemComponent" data-toggle="tab">Remove Component</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown" id="obj560cf73114d04f8439306942">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Employee</a>
+                                <ul class="dropdown-menu bool-container">
+                                    <li id="obj560cf73114d04f8439306943"><a href="#empNew" data-toggle="tab" ng-click='fetchEmployees()'>Alter Employees</a></li>
+                                    <li id="obj560cf73114d04f8439306944" ng-show='false'><a href="#empEdit" data-toggle="tab">Edit Employee</a></li>
+                                    <li id="obj560cf73114d04f8439306945" ng-show='false'><a href="#empRem" data-toggle="tab">Remove Employee</a></li>
+                                    <li id="obj560cf73114d04f8439306946"><a href="#empAssignToPos" data-toggle="tab">Assign To Position</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown" id="obj560cf73214d04f8439306947">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Perspective</a>
+                                <ul class="dropdown-menu bool-container">
+                                    <li id="obj560cf73214d04f8439306948"><a href="#perspNew" data-toggle="tab" ng-click='fetchPersps()'>Alter Perspectives</a></li>
+                                    <li id="obj560cf73214d04f8439306949" ng-show='false'><a href="#perspEdit" data-toggle="tab">Edit Perspective</a></li>
+                                    <li id="obj560cf73214d04f843930694a" ng-show='false'><a href="#perspRem" data-toggle="tab">Remove Perspective</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Strategy</a>
+                                <ul class="dropdown-menu bool-container">
+                                    <li><a href="#perspNew" data-toggle="tab" ng-click='fetchPersps()'>Alter Strategy</a></li>
+                                    <li><a href="#perspEdit" data-toggle="tab">Edit Strategy</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Settings</a>
+                                <ul class="dropdown-menu bool-container">
+                                    <li><a href="#evalPeriodNew" data-toggle="tab" ng-click='fetchEvalPeriods()'>Alter evaluation periods</a></li>
+                                    <li><a href="#evalPeriodClose" data-toggle="tab" ng-click='fetchCEvalPeriods()'>Close evaluation periods</a></li>
+                                    <li><a href="#objPeriodNew" data-toggle="tab" ng-click='fetchObjPeriods()'>Alter objective periods</a></li>
+                                    <li><a href="#objPeriodClose" data-toggle="tab" ng-click='fetchCObjPeriods()'>Close objective periods</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <br />
+                        <div class="tab-content bool-container">
+                            <div class="tab-pane fade bool-container" id="structRemComponent"> </div>
+                            <div class="tab-pane fade bool-container" id="structTab"> </div>
+                            <div class="tab-pane fade bool-container" id="perspTab"> </div>
+                            <div class="tab-pane fade bool-container" id="structTreeView">
+                                <div class="col-sm-10 col-sm-offset-1" id="obj560d0a2e61db4270469f237c">
+                                    <div class="bool-container panel panel-default">
+                                        <div class="panel-heading" id="obj560d0a2e61db4270469f237d">
+                                            <div class="bool-container panel-title">
+                                                <h4>Company Tree</h4>
+                                            </div>
+                                        </div>
+                                        <div class="bool-container panel-body">
+                                            <div id="tree"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade bool-container" id="structInitCompany">
+                                <div class="col-sm-8 col-sm-offset-2 row-fluid" id="obj560cfb0b14d04f843930694b">
+                                    <div class="bool-container panel panel-default">
+                                        <div class="panel-heading" id="obj560cfb0b14d04f843930694c">
+                                            <div class="bool-container panel-title">
+                                                <h4>Initialise Company</h4>
+                                            </div>
+                                        </div>
+                                        <div class="bool-container panel-body">
+                                            <div ng-bind-html="hrInitCompMsg | trustHtml"></div>
+                                            <div class="col-sm-12" id="obj560cfb4714d04f843930694e">
+                                                <form class="bool-container form-horizontal" role="form">
+                                                    <div class="form-group" id="obj560cfc2614d04f843930694f">
+                                                        <label for="structInitCompName" class="col-sm-2 control-label">Company Name:</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control bool-input" ng-model="structInitCompName" placeholder="Enter Company Name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" id="obj560cfc2614d04f843930694f2">
+                                                        <label for="userNamePref" class="col-sm-2 control-label">Username Prefix:</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control bool-input" ng-model="userNamePref" placeholder="Enter Username Prefix">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" id="obj560cfc9914d04f8439306950">
+                                                        <div class="col-sm-4 col-sm-offset-2">
+                                                            <button type="button" class="bool-input btn btn-default btn-sm glyphicon glyphicon-save btn-success" ng-model="structInitCompNameSave" ng-click="func560d000d14d04f84393069550()">&nbsp;Save</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            &nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade bool-container" id="structAddComponent">
+                                <div class="col-sm-5 col-sm-offset-0" id="obj55df08bc0d163f0c59158b4b">
+                                    <div class="bool-container panel panel-default">
+                                        <div class="panel-heading" id="obj55df08bc0d163f0c59158b4c">
+                                            <div class="bool-container panel-title">
+                                                <h4>Structure Parameters</h4></div>
+                                        </div>
+                                        <div class="bool-container panel-body">
+                                            <div ng-bind-html="hrAddCompMsg | trustHtml"></div>
+                                            <div class="col-sm-12" id="obj55df0be2e0ea11bb64c0dfd7">
+                                                <form class="bool-container form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label for="parentObjid" class="col-sm-2 control-label">Under:</label>
+                                                        <div class="col-sm-9">
+                                                            <select class="form-control bool-input" ng-model="parentObjid">
+                                                                <option ng-repeat="item in structPar" value="{{item._id}}">{{item.name}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" id="obj55df1054422cb97270d3d712">
+                                                        <label for="name" class="col-sm-2 control-label">Name:</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" class="form-control bool-input" ng-model="name" placeholder="Component Name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="structType" class="col-sm-3 control-label">Component Type:</label>
+                                                        <div class="col-sm-8">
+                                                            <select class="form-control bool-input" ng-model="structureType">
+                                                                <option ng-repeat="item in structType" value="{{item.val}}">{{item.disp}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" id="obj55df1154b720665973937b89">
+                                                        <div class="col-sm-8 col-sm-offset-2">
+                                                            <button type="button" class="bool-input btn btn-default btn-sm glyphicon glyphicon-plus btn-block btn-success" ng-model="structCompoAddBtn" ng-click="func55df11e094e05079749e0a04()">&nbsp;Add Component</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div>
+                                                <div class="col-sm-12" ultimate-datatable="compStructDT">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade bool-container" id="structEditComponent"> </div>
+                            <div class="tab-pane fade bool-container" id="empTab"> </div>
+                            <div class="tab-pane fade bool-container container-fluid" id="empNew">
+                                <div class="col-sm-12 col-sm-offset-0 row-fluid" id="obj560d42f315f84cd81604f991">
+                                    <div class="bool-container panel panel-default">
+                                        <div class="panel-heading" id="obj560d42f315f84cd81604f992">
+                                            <div class="bool-container panel-title">
+                                                <h4>New Employee</h4>
+                                            </div>
+                                        </div>
+                                        <div class="bool-container panel-body">
+                                            <div ng-bind-html="hrEmpCompMsg | trustHtml"></div>
+                                            <div class="col-sm-8 col-sm-offset-2" id="obj560d433215f84cd81604f994">
+                                                <form class="bool-container form-horizontal" role="form">
+                                                        <div class="form-group" id="obj560d456e2742985c0c8ceb46">
+                                                            <label for="newEmpFName" class="col-sm-5 control-label">First Name:</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control bool-input" ng-model="newEmpFName" placeholder="Employee First Name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group" id="obj560d45982742985c0c8ceb47">
+                                                            <label for="newEmpMName" class="col-sm-5 control-label">Middle Name:</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control bool-input" ng-model="newEmpMName" placeholder="Employee Mid Name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group" id="obj560d45c62742985c0c8ceb48">
+                                                            <label for="newEmpLName" class="col-sm-5 control-label">Last Name:</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control bool-input" ng-model="newEmpLName" placeholder="Employee Last Name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group" id="obj560d460c2742985c0c8ceb49">
+                                                            <label for="newEmpNatId" class="col-sm-5 control-label">National ID:</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control bool-input" ng-model="newEmpNatId" placeholder="Employee ID">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group" id="obj560d46492742985c0c8ceb4a">
+                                                            <label for="newEmpNum" class="col-sm-5 control-label">Employee Number:</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control bool-input" ng-model="newEmpNum" placeholder="Employee Number">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="newEmpPos" class="col-sm-5 control-label">Position:</label>&nbsp;
+                                                            <div class="col-sm-6">
+                                                                <select class="form-control bool-input" ng-model="newEmpPos">
+                                                                    <option ng-selected="[Select]" ng-disabled>[Select]</option>
+                                                                    <option ng-repeat="item in listOfPos" value="{{item.name}}">{{item.name}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="newEmpSup" class="col-sm-5 control-label">Supervisor:</label>
+                                                            <div class="col-sm-6">
+                                                                <select class="form-control bool-input" ng-model="newEmpSup">
+                                                                    <option ng-selected="[Select]">--Select--</option>
+                                                                    <option ng-repeat="item in allMyEmployees" value="{{item._id}}">{{item.empName+"|"+item.position}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group" id="obj560d47282742985c0c8ceb4c">
+                                                            <div class="col-sm-2 col-sm-offset-9">
+                                                                <button type="button" class="bool-input btn glyphicon glyphicon-plus btn-success" ng-model="newEmpSaveBtn" ng-click="saveNewEmployee()">&nbsp;Add</button>
+                                                            </div>
+                                                        </div>
+                                                </form>
+                                            </div>
+                                            &nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div>
+                                                <div class="col-sm-12" ultimate-datatable="compEmpsDT">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade bool-container" id="empEdit"> </div>
+                            <div class="tab-pane fade bool-container" id="empRem"> </div>
+                            <div class="tab-pane fade bool-container" id="empAssignToPos"> </div>
+                            <div class="tab-pane fade bool-container" id="perspNew">
+                                <div class="col-sm-6 col-sm-offset-0" id="obj560d37130e390d844474bfa8">
+                                    <div class="bool-container panel panel-default">
+                                        <div class="panel-heading" id="obj560d37130e390d844474bfa9">
+                                            <div class="bool-container panel-title">
+                                                <h4>New Perspective</h4>
+                                            </div>
+                                        </div>
+                                        <div class="bool-container panel-body">
+                                            <div class="col-sm-12" id="obj560d37c7e6df47f417053357">
+                                                <form class="bool-container form-horizontal" role="form">
+                                                    <div class="form-group" id="obj560d3a91e6df47f417053358">
+                                                        <label for="perspName" class="col-sm-5 control-label">Perspective Name:</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control bool-input" ng-model="perspName" placeholder="Enter New Perspective">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" id="obj560d3a91e6df47f417053358">
+                                                        <label for="perspDescr" class="col-sm-5 control-label">Description:</label>
+                                                        <div class="col-sm-6">
+                                                            <textarea type="text" class="form-control bool-input" ng-model="perspDescr" placeholder="Description"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" id="obj560d3ad5e6df47f417053359">
+                                                        <div class="col-sm-4 col-sm-offset-8">
+                                                            <button type="button" class="bool-input btn btn-default btn-sm glyphicon glyphicon-plus btn-success" ng-model="perspNameSaveBtn" ng-click="saveNewPerspective()">&nbsp;Add</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            &nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-sm-offset-0" id="obj560d37460e390d844474bfab">
+                                    <div class="bool-container panel panel-default">
+                                        <div class="panel-heading" id="obj560d37460e390d844474bfac">
+                                            <div class="bool-container panel-title">
+                                                <h4>List Of Perspectives</h4>
+                                            </div>
+                                        </div>
+                                        <div class="bool-container panel-body">
+                                            
+                                            <div>
+                                                <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div>
+                                                            <div class="col-sm-12" ultimate-datatable="perspListDT">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade bool-container" id="perspEdit"> </div>
+                            <div class="tab-pane fade bool-container" id="perspRem"> </div>
+
+                            <div class="tab-pane fade bool-container container-fluid" id="evalPeriodNew">
+                                <div class="col-sm-12 col-sm-offset-0 row-fluid" id="obj560d42f315f84cd81604f991">
+                                    <div class="bool-container panel panel-default">
+                                        <div class="panel-heading" id="obj560d42f315f84cd81604f992">
+                                            <div class="bool-container panel-title">
+                                                <h4>New Evaluation Period</h4>
+                                            </div>
+                                        </div>
+                                        <div class="bool-container panel-body">
+                                            <div ng-bind-html="hrEmpCompMsg | trustHtml"></div>
+                                            <div class="col-sm-12">
+                                                <div class="alert alert-danger alert-dismissable" ng-if="hasCreateEvalPErrors">
+                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                    <strong>Error:</strong><br><span>{{createEvalPError}}<br></span>
+                                                </div>
+
+                                                <div class="alert alert-success alert-dismissable" ng-if="createEvalPSuccess">
+                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                    <strong>Success:</strong><br><span>{{createEvalPMsg}}<br></span>
+                                                </div>
+                                                <form class="bool-container form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label for="newEmpFName" class="col-sm-2 control-label">Period name:</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control bool-input" ng-model="evalPeriod.name" placeholder="Evaluation period Name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-4 col-sm-offset-2">
+                                                            <label for="dateFrom">From:</label>
+                                                            <datepicker date-format="yyyy-MM-dd">
+                                                               <input ng-model="evalPeriod.from" class="form-control" type="text"/>
+                                                            </datepicker>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <label for="dateTo">To:</label>
+                                                            <datepicker date-format="yyyy-MM-dd">
+                                                               <input ng-model="evalPeriod.to" class="form-control" type="text"/>
+                                                            </datepicker>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-2 col-sm-offset-2">
+                                                            <button type="button" class="bool-input btn glyphicon glyphicon-plus btn-success" ng-click="createEvalPeriod()">&nbsp;Add</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            &nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div>
+                                                <div class="col-sm-12" ultimate-datatable="evalPeriodsDT">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade bool-container container-fluid" id="evalPeriodClose">
+                                <div class="col-sm-12 col-sm-offset-0 row-fluid" id="obj560d42f315f84cd81604f991">
+                                    <div class="bool-container panel panel-default">
+                                        <div class="panel-heading" id="obj560d42f315f84cd81604f992">
+                                            <div class="bool-container panel-title">
+                                                <h4>Close Evaluation Period</h4>
+                                            </div>
+                                        </div>
+                                        <div class="bool-container panel-body">
+                                            <div ng-bind-html="hrEmpCompMsg | trustHtml"></div>
+                                            <div class="col-sm-12">
+                                                <div class="alert alert-danger alert-dismissable" ng-if="hasCreateEvalPErrors">
+                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                    <strong>Error:</strong><br><span>{{createEvalPError}}<br></span>
+                                                </div>
+
+                                                <div class="alert alert-success alert-dismissable" ng-if="createEvalPSuccess">
+                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                    <strong>Success:</strong><br><span>{{createEvalPMsg}}<br></span>
+                                                </div>
+                                                <form class="bool-container form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label" for="period">Period</label>
+                                                        <div class="col-sm-8">
+                                                            <select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="evalPClosePeriod">
+                                                                <option ng-selected="[Select]">--Select--</option>
+                                                                <option ng-repeat="evalPeriod in cEvalPeriods">{{evalPeriod.name}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label" for="period">Comment</label>
+                                                        <div class="col-sm-8">
+                                                            <textarea rows="4" class="col-sm-12" name="rejectObj"  ng-model="evalPCloseComment">
+                                                            </textarea>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <div class="col-sm-2 col-sm-offset-2">
+                                                            <button type="button" class="bool-input btn glyphicon glyphicon-plus btn-success" ng-click="closeObjPeriod()">&nbsp;Close</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            &nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade bool-container container-fluid" id="objPeriodNew">
+                                <div class="col-sm-12 col-sm-offset-0 row-fluid" id="obj560d42f315f84cd81604f991">
+                                    <div class="bool-container panel panel-default">
+                                        <div class="panel-heading" id="obj560d42f315f84cd81604f992">
+                                            <div class="bool-container panel-title">
+                                                <h4>New Objectives Period</h4>
+                                            </div>
+                                        </div>
+                                        <div class="bool-container panel-body">
+                                            <div ng-bind-html="hrEmpCompMsg | trustHtml"></div>
+                                            <div class="col-sm-12">
+
+                                                <div class="alert alert-danger alert-dismissable" ng-if="hasCreateObjPErrors">
+                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                    <strong>Error:</strong><span>{{createObjPError}}</span>
+                                                </div>
+
+                                                <div class="alert alert-success alert-dismissable" ng-if="createObjPSuccess">
+                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                    <strong>Success:</strong><span>{{createObjPMsg}}<br></span>
+                                                </div>
+                                                <form class="bool-container form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label for="newEmpFName" class="col-sm-2 control-label">Period name:</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control bool-input" ng-model="objPeriod.name" placeholder="Objectives period Name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-4 col-sm-offset-2">
+                                                            <label for="dateFrom">From:</label>
+                                                            <datepicker date-format="yyyy-MM-dd">
+                                                               <input ng-model="objPeriod.from" class="form-control" type="text"/>
+                                                            </datepicker>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <label for="dateTo">To:</label>
+                                                            <datepicker date-format="yyyy-MM-dd">
+                                                               <input ng-model="objPeriod.to" class="form-control" type="text"/>
+                                                            </datepicker>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-2 col-sm-offset-2">
+                                                            <button type="button" class="bool-input btn glyphicon glyphicon-plus btn-success" ng-click="createObjPeriod()">&nbsp;Add</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            &nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div>
+                                                <div class="col-sm-12" ultimate-datatable="objPeriodsDT">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade bool-container container-fluid" id="objPeriodClose">
+                                <div class="col-sm-12 col-sm-offset-0 row-fluid" id="obj560d42f315f84cd81604f991">
+                                    <div class="bool-container panel panel-default">
+                                        <div class="panel-heading" id="obj560d42f315f84cd81604f992">
+                                            <div class="bool-container panel-title">
+                                                <h4>Close Objectives Period</h4>
+                                            </div>
+                                        </div>
+                                        <div class="bool-container panel-body">
+                                            <div ng-bind-html="hrEmpCompMsg | trustHtml"></div>
+                                            <div class="col-sm-12">
+
+                                                <div class="alert alert-danger alert-dismissable" ng-if="hasCreateObjPErrors">
+                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                    <strong>Error:</strong><br><span>{{closeObjPError}}<br></span>
+                                                </div>
+
+                                                <div class="alert alert-success alert-dismissable" ng-if="createObjPSuccess">
+                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                    <strong>Success:</strong><br><span>{{closeObjPMsg}}<br></span>
+                                                </div>
+                                                <form class="bool-container form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label" for="period">Period</label>
+                                                        <div class="col-sm-8">
+                                                            <select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="objPClosePeriod">
+                                                                <option ng-selected="[Select]">--Select--</option>
+                                                                <option ng-repeat="objPeriod in cObjPeriods">{{objPeriod.name}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-sm-3 control-label" for="period">Comment</label>
+                                                        <div class="col-sm-8">
+                                                            <textarea rows="4" class="col-sm-12" name="rejectObj"  ng-model="objPCloseComment">
+                                                            </textarea>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <div class="col-sm-2 col-sm-offset-2">
+                                                            <button type="button" class="bool-input btn glyphicon glyphicon-plus btn-success" ng-click="closeObjPeriod()">&nbsp;Close</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            &nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
