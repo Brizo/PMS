@@ -453,64 +453,67 @@ bsc.service('allObjectives', ['$http', function($http) {
         $http.post("/getAllStateObjectives").success(function(res) {
             $scope.allStateKPAs = res;
 
-            var allStateDTConfig = {
-                "name": "allState",
-                "columns": [{
-                    "header": "Perspective",
-                    "property": "perspective",
-                    "order": true,
-                    "type": "text",
-                    "edit": true,
-                    "selected": true,
-                }, {
-                    "header": "Key Perfomance Area",
-                    "property": "kpa",
-                    "order": true,
-                    "type": "text",
-                    "edit": true
-                }, {
-                    "header": "Key Perfomance Indicator",
-                    "property": "kpi",
-                    "order": true,
-                    "type": "text",
-                    "edit": true
-                }, {
-                    "header": "Period",
-                    "property": "objPeriod",
-                    "order": true,
-                    "type": "text",
-                    "edit": true
-                }, {
-                    "header": "Status",
-                    "property": "status",
-                    "order": true,
-                    "type": "text",
-                    "edit": true
-                }],
-                "pagination": {
-                    "mode": 'local'
-                },
-                "order": {
-                    "mode": 'local'
-                },
-                "hide": {
-                    "active": true,
-                    "showButton": true
-                }
-            };
-
-            //Data for Employee Objects DT
-            var allStateObjData = $scope.allStateKPAs;
-
-            //Initialising the datatable with this configuration
-            $scope.allStateObjDT = datatable(allStateDTConfig);
-            //Setting the data to the datatable
-            $scope.allStateObjDT.setData(allStateObjData);
-
-            if (res.length <= 0) {
+            if ($scope.allStateKPAs.length <= 0) {
                 $scope.hasAllStateObjInfo = true;
                 $scope.allStateObjInfo = "There are no objectives sent for approval";
+            } else {
+
+                var allStateDTConfig = {
+                    "name": "allState",
+                    "columns": [{
+                        "header": "Perspective",
+                        "property": "perspective",
+                        "order": true,
+                        "type": "text",
+                        "edit": true,
+                        "selected": true,
+                    }, {
+                        "header": "Key Perfomance Area",
+                        "property": "kpa",
+                        "order": true,
+                        "type": "text",
+                        "edit": true
+                    }, {
+                        "header": "Key Perfomance Indicator",
+                        "property": "kpi",
+                        "order": true,
+                        "type": "text",
+                        "edit": true
+                    }, {
+                        "header": "Period",
+                        "property": "objPeriod",
+                        "order": true,
+                        "type": "text",
+                        "edit": true
+                    }, {
+                        "header": "Status",
+                        "property": "status",
+                        "order": true,
+                        "type": "text",
+                        "edit": true
+                    }],
+                    "pagination": {
+                        "mode": 'local'
+                    },
+                    "order": {
+                        "mode": 'local'
+                    },
+                    "hide": {
+                        "active": true,
+                        "showButton": true
+                    }
+                };
+
+                //Data for Employee Objects DT
+                var allStateObjData = $scope.allStateKPAs;
+
+                //Initialising the datatable with this configuration
+                $scope.allStateObjDT = datatable(allStateDTConfig);
+                //Setting the data to the datatable
+                $scope.allStateObjDT.setData(allStateObjData);
             }
+
+            
         }).error(function() {
             console.log('There is an error');
         });

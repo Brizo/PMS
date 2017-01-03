@@ -168,13 +168,13 @@
 											<label class="col-sm-1"><h5><strong>Rating</strong></h5></label>
 											<div class="form-group">
 												<label class="col-sm-3 control-label">Poor : 1</label>
-												<div class="col-sm-2">
+												<div class="col-sm-3">
 													<label for="dateFrom">From:</label>
 				                                    <datepicker date-format="yyyy-MM-dd">
 				                                       <input ng-model="empObjective.metricOneFrom" class="form-control" type="text"/>
 				                                    </datepicker>
 												</div>
-												<div class="col-sm-2">
+												<div class="col-sm-3">
 													<label for="dateTo">To:</label>
 													<datepicker date-format="yyyy-MM-dd">
 				                                       <input ng-model="empObjective.metricOneTo" class="form-control" type="text"/>
@@ -184,13 +184,13 @@
 											<label class="col-sm-1"></label>
 											<div class="form-group">
 												<label class="col-sm-3 control-label">Unsatisfactory : 2</label>
-												<div class="col-sm-2">
+												<div class="col-sm-3">
 													<label for="dateFrom">From:</label>
 													<datepicker date-format="yyyy-MM-dd">
 				                                       <input ng-model="empObjective.metricTwoFrom" class="form-control" type="text"/>
 				                                    </datepicker>
 												</div>
-												<div class="col-sm-2">
+												<div class="col-sm-3">
 													<label for="dateTo">To:</label>
 													<datepicker date-format="yyyy-MM-dd">
 				                                       <input ng-model="empObjective.metricTwoTo" class="form-control" type="text"/>
@@ -200,13 +200,13 @@
 											<label class="col-sm-1"></label>
 											<div class="form-group">
 												<label class="col-sm-3 control-label">Target Met : 3</label>
-												<div class="col-sm-2">
+												<div class="col-sm-3">
 													<label for="dateFrom">From:</label>
 													<datepicker date-format="yyyy-MM-dd">
 				                                       <input ng-model="empObjective.metricThreeFrom" class="form-control" type="text"/>
 				                                    </datepicker>
 												</div>
-												<div class="col-sm-2">
+												<div class="col-sm-3">
 													<label for="dateTo">To:</label>
 													<datepicker date-format="yyyy-MM-dd">
 				                                       <input ng-model="empObjective.metricThreeTo" class="form-control" type="text"/>
@@ -216,13 +216,13 @@
 											<label class="col-sm-1"></label>
 											<div class="form-group">
 												<label class="col-sm-3 control-label">Exceeding : 4</label>
-												<div class="col-sm-2">
+												<div class="col-sm-3">
 													<label for="dateFrom">From:</label>
 													<datepicker date-format="yyyy-MM-dd">
 				                                       <input ng-model="empObjective.metricFourFrom" class="form-control" type="text"/>
 				                                    </datepicker>
 												</div>
-												<div class="col-sm-2">
+												<div class="col-sm-3">
 													<label for="dateFrom">To:</label>
 													<datepicker date-format="yyyy-MM-dd">
 				                                       <input ng-model="empObjective.metricFourTo" class="form-control" type="text"/>
@@ -232,13 +232,13 @@
 											<label class="col-sm-1"></label>
 											<div class="form-group">
 												<label class="col-sm-3 control-label">Outstanding : 5</label>
-												<div class="col-sm-2">
+												<div class="col-sm-3">
 													<label for="dateFrom">From:</label>
 													<datepicker date-format="yyyy-MM-dd">
 				                                       <input ng-model="empObjective.metricFiveFrom" class="form-control" type="text"/>
 				                                    </datepicker>
 												</div>
-												<div class="col-sm-2">
+												<div class="col-sm-3">
 													<label for="dateFrom">To:</label>
 													<datepicker date-format="yyyy-MM-dd">
 				                                       <input ng-model="empObjective.metricFiveTo" class="form-control" type="text"/>
@@ -631,7 +631,7 @@
 					  				<strong>Info!:</strong>&nbsp;<span>{{allStateObjInfo}}<br></span>
 			   		 	 	 	</div> <!--end info alert -->
 								
-								<div class="row">
+								<div class="row" ng-if="hasAllStateObjInfo">
                                     <div>
                                         <div class="col-sm-12" ultimate-datatable="allStateObjDT">
                                         </div>
