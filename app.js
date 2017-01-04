@@ -303,7 +303,8 @@ app.post("/fetchAllObjPeriods", function(req, res) {
 
 app.post("/getAllUnactionedObjs", function(req, res) {
     var ID = req.session.loggdUser.objId;
-    db.Objectives.find({status: "unactioned",owner:ID}, function(err, docs) {
+    var period = req.body.period;
+    db.Objectives.find({status: "unactioned",owner:ID, objPeriod:period}, function(err, docs) {
         if (err) {
             res.send("Error : "+err);
         } else {

@@ -355,95 +355,102 @@ bsc.service('allObjectives', ['$http', function($http) {
         $scope.hasSubmitObjInfo = false;
         $scope.submitObjInfo = null;
 
-        $http.post("/getAllUnactionedObjs").success(function(res) {
-            $scope.unactionedKPAs = [];
-            $scope.showSubErr = false;
-            $scope.unactionedKPAs = res;
-            $scope.showSubmit = true;
+        var period = {period:$scope.submitObjPeriod};
 
-            var unactionedKPAConfig = {
-                "name": "unactioned",
-                "columns": [{
-                    "header": "",
-                    "render": function(value, line) {
-                        var edit = '<a href="#editObjective" class="btn btn-sm btn-warning btn-block" data-toggle="tab" ng-click="getEditObjective(value.data)"><span class="glyphicon glyphicon-edit" >Edit</span></a>';
-                        return edit;
+        if ($scope.submitObjPeriod == null || $scope.submitObjPeriod == "") {
+            $scope.hasSubmitObjErrors = true;
+            $scope.submitObjError = "Please select the objective period";
+        } else {
+            $http.post("/getAllUnactionedObjs", period).success(function(res) {
+                $scope.unactionedKPAs = [];
+                $scope.showSubErr = false;
+                $scope.unactionedKPAs = res;
+                $scope.showSubmit = true;
+
+                var unactionedKPAConfig = {
+                    "name": "unactioned",
+                    "columns": [{
+                        "header": "",
+                        "render": function(value, line) {
+                            var edit = '<a href="#editObjective" class="btn btn-sm btn-warning btn-block" data-toggle="tab" ng-click="getEditObjective(value.data)"><span class="glyphicon glyphicon-edit" >Edit</span></a>';
+                            return edit;
+                        }
+                    }, {
+                        "header": "",
+                        "render": function(value, line) {
+                            var remove = '<a data-backdrop="static" class="btn btn-sm btn-danger btn-block" data-keyboard="false" href="#delObjectiveModal" ng-click="selectToDelObj(value.data._id)"data-toggle="modal"><span class="glyphicon glyphicon-trash">Delete</span></a>';
+                            return remove;
+                        }
+                    },{
+                        "header": "Mark/Unmark",
+                        "render": function(value, line) {
+                            var mark = '<span><input type="checkbox" ng-checked="master" name="select" ng-click="selectObjForSubmission(value.data)"/>Mark</span>';
+                            return mark;
+                        }
+                    }, {
+                        "header": "Perspective",
+                        "property": "perspective",
+                        "order": true,
+                        "type": "text",
+                        "edit": true,
+                        "selected": true,
+                    }, {
+                        "header": "Key Perfomance Area",
+                        "property": "kpa",
+                        "order": true,
+                        "type": "text",
+                        "edit": true
+                    }, {
+                        "header": "Key Perfomance Indicator",
+                        "property": "kpi",
+                        "order": true,
+                        "type": "text",
+                        "edit": true
+                    }, {
+                        "header": "Period",
+                        "property": "objPeriod",
+                        "order": true,
+                        "type": "text",
+                        "edit": true
+                    }, {
+                        "header": "weighting",
+                        "property": "detailedWeighting",
+                        "order": true,
+                        "type": "text",
+                        "edit": true
+                    }],
+                    "pagination": {
+                        "mode": 'local'
+                    },
+                    "order": {
+                        "mode": 'local'
+                    },
+                    "hide": {
+                        "active": true,
+                        "showButton": true
                     }
-                }, {
-                    "header": "",
-                    "render": function(value, line) {
-                        var remove = '<a data-backdrop="static" class="btn btn-sm btn-danger btn-block" data-keyboard="false" href="#delObjectiveModal" ng-click="selectToDelObj(value.data._id)"data-toggle="modal"><span class="glyphicon glyphicon-trash">Delete</span></a>';
-                        return remove;
-                    }
-                },{
-                    "header": "Mark/Unmark",
-                    "render": function(value, line) {
-                        var mark = '<span><input type="checkbox" ng-checked="master" name="select" ng-click="selectObjForSubmission(value.data)"/>Mark</span>';
-                        return mark;
-                    }
-                }, {
-                    "header": "Perspective",
-                    "property": "perspective",
-                    "order": true,
-                    "type": "text",
-                    "edit": true,
-                    "selected": true,
-                }, {
-                    "header": "Key Perfomance Area",
-                    "property": "kpa",
-                    "order": true,
-                    "type": "text",
-                    "edit": true
-                }, {
-                    "header": "Key Perfomance Indicator",
-                    "property": "kpi",
-                    "order": true,
-                    "type": "text",
-                    "edit": true
-                }, {
-                    "header": "Period",
-                    "property": "objPeriod",
-                    "order": true,
-                    "type": "text",
-                    "edit": true
-                }, {
-                    "header": "weighting",
-                    "property": "detailedWeighting",
-                    "order": true,
-                    "type": "text",
-                    "edit": true
-                }],
-                "pagination": {
-                    "mode": 'local'
-                },
-                "order": {
-                    "mode": 'local'
-                },
-                "hide": {
-                    "active": true,
-                    "showButton": true
                 }
-            }
 
-            //Data for all unactioned kpas
-            var unactionedKpaData = $scope.unactionedKPAs;
+                //Data for all unactioned kpas
+                var unactionedKpaData = $scope.unactionedKPAs;
 
-            //Initialising the datatable with this configuration
-            $scope.unactionedKPADT = datatable(unactionedKPAConfig);
-            //Setting the data to the datatable
-            $scope.unactionedKPADT.setData(unactionedKpaData);
-            if (res.length <= 0) {
-                $scope.noUnactionedObj = true;
-                $scope.hasSubmitObjInfo = true;
-                $scope.submitObjInfo = "There are no unactioned objectives at the moment";
-            }
+                //Initialising the datatable with this configuration
+                $scope.unactionedKPADT = datatable(unactionedKPAConfig);
+                //Setting the data to the datatable
+                $scope.unactionedKPADT.setData(unactionedKpaData);
+                if (res.length <= 0) {
+                    $scope.noUnactionedObj = true;
+                    $scope.hasSubmitObjInfo = true;
+                    $scope.submitObjInfo = "There are no unactioned objectives at the moment";
+                }
 
-           // if ($scope.unactionedKPAs.length > 0) {
-            //    $scope.showSubErr = false;
-            //}
-        }).error(function() {
-            console.log('There is an error');
-        });
+               // if ($scope.unactionedKPAs.length > 0) {
+                //    $scope.showSubErr = false;
+                //}
+            }).error(function() {
+                console.log('There is an error');
+            });
+        }
     };
 
     $scope.getAllStateObjs = function () {
