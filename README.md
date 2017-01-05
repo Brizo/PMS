@@ -1,8 +1,8 @@
 Project		: Sebentile Perfomance Management System
 Version		: 1
 Author		: Nhlakanipho Brian Sihlongonyane
-			  Systems Analyst
-			  Swaziland Electricity Company
+	          Systems Analyst
+	          Swaziland Electricity Company
 Start date	: 3 January 2016
 
 Description
