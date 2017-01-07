@@ -90,7 +90,7 @@ bsc.service('allObjectives', ['$http', function($http) {
     $scope.isHR = false,
     $scope.isAdmin = false,
 
-    
+    // gets logged in information from stored session
     $scope.getLoggedUser = function() {
         $http.post("/getLoggedInEmp").success(function(resp) {
             $scope.loggedUserName = resp.empName;
