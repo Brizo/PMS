@@ -155,7 +155,7 @@ bsc.service('allObjectives', ['$http', function($http) {
     $scope.showSubErr = true;
     $scope.showSubMsg = "There are no created Objectives to submit for now, Create Objectives. If this problem persists contact your IT Administrator.";
     $scope.showSCardErr = true;
-    $scope.showSCardMsg = "Your Perfomance contract is not ready yet. There are no Approved Objectives to work on for now ... Please Contact your supervisor or try again later.";
+    $scope.showSCardMsg = "Your Perfomance contract is not ready yet. There are no Approved Objectives to work on for now ...";
     $scope.showConErr = true;
     $scope.showConMsg = "Your Scorecard is not ready yet. Complete employee self-evaluation and wait for your supervisor to evaluate you.";
     $scope.showEvalErr = true;
