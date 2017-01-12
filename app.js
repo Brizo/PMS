@@ -500,7 +500,7 @@ app.post("/getAllEmpBsc", function(req, res) {
     });
 })
 
-app.post("/getPeriodicBscOjs", function(req, res) {
+app.post("/getPeriodicBscObjs", function(req, res) {
     var ID = req.session.loggdUser.objId;
     var period = req.body.period;
     db.Objectives.find({
@@ -518,6 +518,7 @@ app.post("/getPeriodicBscOjs", function(req, res) {
             console.log("There is an error");
         } else {
             res.json(docs);
+            console.log(docs.length);
         }
     });
 })

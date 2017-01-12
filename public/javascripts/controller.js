@@ -984,41 +984,44 @@ bsc.service('allObjectives', ['$http', function($http) {
 
         $scope.showContract = false;
         $scope.showSCardErr = false;
+        $scope.hasShowContractErrors = false;
+        $scope.showContractInfo = null;
 
         $scope.allGroupedPerspectives = [];
         var item = {period : $scope.contractPeriod};
 
         $http.post("/getSpecificApprovedObjs", item).success(function(res) {
-            if (res.length > 0) {
-                $scope.showContract = true;
-                $scope.showSCardErr = false;
-                $scope.approvedKPAs = res;
-            } else if (res.length <= 0) {
+            if (res.length <= 0) {
                 $scope.showContract = false;
                 $scope.showSCardErr = true;
                 $scope.approvedKPAs = [];
-            }
 
-            $scope.scorecardHeights = $scope.approvedKPAs.length + 1;
+                $scope.hasShowContractErrors = true;
+                $scope.showContractInfo = "Perfomance contract not yet ready";
+            } else {
+                $scope.showContract = true;
+                $scope.showSCardErr = false;
+                $scope.approvedKPAs = res;
+                $scope.scorecardHeights = $scope.approvedKPAs.length + 1;
 
-            for (var i = 0; i < $scope.allPerspectives.length; i++) {
-                $scope[$scope.allPerspectives[i].perspName] = [];
+                for (var i = 0; i < $scope.allPerspectives.length; i++) {
+                    $scope[$scope.allPerspectives[i].perspName] = [];
 
-                for (var j = 0; j < $scope.approvedKPAs.length; j++) {
-                    if ($scope.approvedKPAs[j].perspective == $scope.allPerspectives[i].perspName) {
-                        $scope[$scope.allPerspectives[i].perspName].push($scope.approvedKPAs[j]);
+                    for (var j = 0; j < $scope.approvedKPAs.length; j++) {
+                        if ($scope.approvedKPAs[j].perspective == $scope.allPerspectives[i].perspName) {
+                            $scope[$scope.allPerspectives[i].perspName].push($scope.approvedKPAs[j]);
+                        }
                     }
                 }
-            }
 
-            for (var m = 0; m < $scope.allPerspectives.length; m++) {
-                var entry = {
-                    pers: $scope.allPerspectives[m].perspName,
-                    objs: $scope[$scope.allPerspectives[m].perspName]
-                };
-                $scope.allGroupedPerspectives.push(entry);
+                for (var m = 0; m < $scope.allPerspectives.length; m++) {
+                    var entry = {
+                        pers: $scope.allPerspectives[m].perspName,
+                        objs: $scope[$scope.allPerspectives[m].perspName]
+                    };
+                    $scope.allGroupedPerspectives.push(entry);
+                }
             }
-
         }).error(function() {
             console.log('There is an error');
         });
@@ -1071,16 +1074,22 @@ bsc.service('allObjectives', ['$http', function($http) {
     };
 
     // retrieve rated objectives : 
-    $scope.getPeriodicBscOjs = function() {
+    $scope.getPeriodicBscObjs = function() {
 
         $scope.allGroupedPerspectives = [];
         $scope.empTotalScore = 0;
         $scope.empDetailedW = 0;
         var item = {period : $scope.bscPeriod};
+        $scope.hasShowBscInfo = false;
+        $scope.showBscInfo = null;
 
+        $http.post("/getPeriodicBscObjs", item).success(function(res) {
 
-        $http.post("/getSpecificEmpBsc", item).success(function(res) {
-            if (res.length > 0) {
+            if (res.length <= 0) {
+                $scope.approvedKPAs = [];
+                $scope.hasShowBscInfo = true;
+                $scope.showBscInfo = "Balanced Score Card is not yet ready";
+            } else {
                 $scope.showConErr = false;
                 $scope.approvedKPAs = res;
                 for (var i = 0; i < $scope.approvedKPAs.length; i++) {
@@ -1088,30 +1097,27 @@ bsc.service('allObjectives', ['$http', function($http) {
                     $scope.empDetailedW = $scope.empDetailedW + Number($scope.approvedKPAs[i].detailedWeighting);
                 }
                 $scope.showBalanceScore = true;
-            } else if (res.length <= 0) {
-                $scope.approvedKPAs = [];
-            }
+                $scope.scorecardHeights = $scope.approvedKPAs.length + 1;
 
-            $scope.scorecardHeights = $scope.approvedKPAs.length + 1;
+                for (var i = 0; i < $scope.allPerspectives.length; i++) {
+                    $scope[$scope.allPerspectives[i].perspName] = [];
 
-            for (var i = 0; i < $scope.allPerspectives.length; i++) {
-                $scope[$scope.allPerspectives[i].perspName] = [];
-
-                for (var j = 0; j < $scope.approvedKPAs.length; j++) {
-                    if ($scope.approvedKPAs[j].perspective == $scope.allPerspectives[i].perspName) {
-                        $scope[$scope.allPerspectives[i].perspName].push($scope.approvedKPAs[j]);
+                    for (var j = 0; j < $scope.approvedKPAs.length; j++) {
+                        if ($scope.approvedKPAs[j].perspective == $scope.allPerspectives[i].perspName) {
+                            $scope[$scope.allPerspectives[i].perspName].push($scope.approvedKPAs[j]);
+                        }
                     }
                 }
-            }
 
-            for (var m = 0; m < $scope.allPerspectives.length; m++) {
-                var entry = {
-                    pers: $scope.allPerspectives[m].perspName,
-                    objs: $scope[$scope.allPerspectives[m].perspName]
-                };
-                $scope.allGroupedPerspectives.push(entry);
-            }
+                for (var m = 0; m < $scope.allPerspectives.length; m++) {
+                    var entry = {
+                        pers: $scope.allPerspectives[m].perspName,
+                        objs: $scope[$scope.allPerspectives[m].perspName]
+                    };
+                    $scope.allGroupedPerspectives.push(entry);
+                }
 
+            }
         }).error(function() {
             console.log('There is an error');
         });
