@@ -1203,6 +1203,23 @@ bsc.service('allObjectives', ['$http', function($http) {
 
     }
 
+    // get ObjPeriods : 
+    $scope.getObjPeriods = function() {
+        $http.post("/getAllObjPeriods").success(function(res) {
+
+            if (res.length > 0) {
+                $scope.allObjPeriods = res;
+            } else if (res.length <= 0) {
+                $scope.allObjPeriods = [];
+            }
+
+        }).error(function() {
+            console.log('There is an error');
+        });
+    };
+
+    $scope.getObjPeriods();
+
     $scope.evalPeriod = {};
 
     $scope.createEvalPeriod = function () {

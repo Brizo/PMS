@@ -38,8 +38,8 @@
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Strategy</a>
                                 <ul class="dropdown-menu bool-container">
-                                    <li><a href="#perspNew" data-toggle="tab" ng-click='fetchPersps()'>Alter Strategy</a></li>
-                                    <li><a href="#perspEdit" data-toggle="tab">Edit Strategy</a></li>
+                                    <li><a href="#strategyNew" data-toggle="tab" ng-click='fetchStrategy()'>Alter Strategy</a></li>
+                                    <li><a href="#strategyEdit" data-toggle="tab">Alter Strategy areas</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -299,6 +299,76 @@
                                                     <div class="row">
                                                         <div>
                                                             <div class="col-sm-12" ultimate-datatable="perspListDT">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade bool-container" id="strategyNew">
+                                <div class="col-sm-6 col-sm-offset-0">
+                                    <div class="bool-container panel panel-default">
+                                        <div class="panel-heading">
+                                            <div class="bool-container panel-title">
+                                                <h4>New Strategy</h4>
+                                            </div>
+                                        </div>
+                                        <div class="bool-container panel-body">
+                                            <div class="col-sm-12">
+                                                <br>
+                                                <form class="bool-container form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label" for="period">Period</label>
+                                                        <div class="col-sm-8">
+                                                            <select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="empObjective.objPeriod" ng-change="changeShowBCT()">
+                                                                <option ng-selected="[Select]">--Select--</option>
+                                                                <option ng-repeat="objPeriod in allObjPeriods" value="{{objPeriod._id}}">{{objPeriod.name}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="perspName" class="col-sm-4 control-label">Goal Category</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control bool-input" ng-model="perspName" placeholder="Enter New Perspective">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="perspDescr" class="col-sm-4 control-label">Goal Description</label>
+                                                        <div class="col-sm-8">
+                                                            <textarea type="text" class="form-control bool-input" ng-model="perspDescr" placeholder="Description"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-4 col-sm-offset-4">
+                                                            <button type="button" class="bool-input btn btn-default btn-sm glyphicon glyphicon-plus btn-success" ng-model="perspNameSaveBtn" ng-click="saveNewPerspective()">&nbsp;Add</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            &nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-sm-offset-0">
+                                    <div class="bool-container panel panel-default">
+                                        <div class="panel-heading">
+                                            <div class="bool-container panel-title">
+                                                <h4>Company Strategy</h4>
+                                            </div>
+                                        </div>
+                                        <div class="bool-container panel-body">
+                                            
+                                            <div>
+                                                <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div>
+                                                            <div class="col-sm-12" ultimate-datatable="">
                                                             </div>
                                                         </div>
                                                     </div>
