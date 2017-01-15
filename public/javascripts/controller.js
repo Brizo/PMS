@@ -1241,6 +1241,102 @@ bsc.service('allObjectives', ['$http', function($http) {
         });
     }
 
+    $scope.companyGoal = {};
+
+    $scope.createNewGoal = function () {
+        $scope.hasCreateGoalErrors = false;
+        $scope.createGoalError = null;
+        $scope.createGoalSuccessMsg = null;
+        $scope.createCGoalSuccess = false;
+
+        if ($scope.companyGoal.name == null || $scope.companyGoal.from == '--Select--' || $scope.companyGoal.name == null) {
+            $scope.hasCreateGoalErrors = true;
+            $scope.createGoalError = "Please fill all fields"; 
+        } else {
+            $http.post('/createCompanyGoal', $scope.companyGoal).success(function(resp) {
+                $scope.createCGoalSuccess = true;
+                $scope.createGoalSuccessMsg = resp;
+                $scope.companyGoal = {};
+                $scope.fetchCompanyGoals();
+            }); 
+        }
+    }
+
+    $scope.fetchCompanyGoals = function() {
+        $scope.fetchCGoalInfo = null;
+        $scope.hsFetchCGoalInfo = false;
+
+        $http.post('/fetchAllCGoals').success(function(resp) {
+            $scope.companyGoals = resp;
+
+            if (resp.length <= 0) {
+                $scope.fetchCGoalInfo = "There are no company goals yet";
+                $scope.hsFetchCGoalInfo = true;
+            } else {
+                //Current Perspective Objects Datatable Config
+                var companyGoalsConfig = {
+                    "name": "simple_datatable",
+                    "columns": [{
+                        "header": "Id",
+                        "property": "_id",
+                        "order": true,
+                        "type": "text",
+                        "edit": false,
+                        "hide": true
+
+                    }, {
+                        "header": "Name",
+                        "property": "name",
+                        "order": true,
+                        "type": "text",
+                        "edit": true,
+                        "selected": true
+                    }],
+                    "edit": {
+                        "active": true,
+                        "columnMode": true
+                    },
+                    "pagination": {
+                        "mode": 'local'
+                    },
+                    "order": {
+                        "mode": 'local'
+                    },
+                    "remove": {
+                        "active": true,
+                        "mode": 'remote',
+                        "url": function(value) {
+                            return "/dtRemoveCGoal/:" + value._id
+                        },
+                        "method": "delete"
+                    },
+                    "save": {
+                        "active": true,
+                        "mode": 'remote',
+                        "url": "/dtEditCGoal",
+                        "method": "post"
+                    },
+                    "hide": {
+                        "active": true,
+                        "showButton": true
+                    },
+                    "filter": {
+                        "active": true,
+                        "highlight": true,
+                        "columnMode": true
+                    }
+                };
+
+                var goalsDatatableData = $scope.companyGoals;
+
+                //Initialising the datatable with this configuration
+                $scope.companyGoalsDT = datatable(companyGoalsConfig);
+                //Setting the data to the datatable
+                $scope.companyGoalsDT.setData(goalsDatatableData);
+            } 
+        })
+    };
+
     $scope.objPeriod = {};
 
     $scope.createObjPeriod = function () {

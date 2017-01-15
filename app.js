@@ -11,7 +11,7 @@ var app = express();
 
 //var databaseUrl = "147.110.192.71,147.110.192.100,147.110.186.221/sebentiledb?slaveOk=true";
 var databaseUrl = "127.0.0.1/sebentiledb";
-var collections = ["Objectives","EvalPeriods","ObjPeriods", "Division", "Transaction", "Document", "Employees", "Scorecard", "structure", "perspective", "sessions", "tracking", "empcloseperiods"];
+var collections = ["Objectives","EvalPeriods","ObjPeriods", "CompanyGoals", "Division", "Transaction", "Document", "Employees", "Scorecard", "structure", "perspective", "sessions", "tracking", "empcloseperiods"];
 var db = require("mongojs").connect(databaseUrl, collections);
 
 var ObjectId = db.ObjectId;
@@ -293,6 +293,16 @@ app.post("/getAllObjPeriods", function(req, res) {
 
 app.post("/fetchAllObjPeriods", function(req, res) {
     db.ObjPeriods.find(function(err, docs) {
+        if (err) {
+            console.log("There is an error");
+        } else {
+            res.json(docs);
+        }
+    });
+})
+
+app.post("/fetchAllCGoals", function(req, res) {
+    db.CompanyGoals.find(function(err, docs) {
         if (err) {
             console.log("There is an error");
         } else {
@@ -886,6 +896,17 @@ app.post('/saveNewPerspective', function(req, res) {
                 res.send(resp);
             });
 
+        }
+    });
+})
+
+app.post('/createCompanyGoal', function(req, res) {
+    query = req.body;
+
+    db.CompanyGoals.insert(query, function(err, saved) {
+        if (err) res.send('Error!');
+        else {
+            res.send("Company Goal successfully created")
         }
     });
 })
