@@ -19,18 +19,18 @@
                                 </ul>
                             </li>
                             <li class="dropdown" id="obj560cf73114d04f8439306942">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Employee</a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Employees</a>
                                 <ul class="dropdown-menu bool-container">
-                                    <li id="obj560cf73114d04f8439306943"><a href="#empNew" data-toggle="tab" ng-click='fetchEmployees()'>Alter Employees</a></li>
+                                    <li id="obj560cf73114d04f8439306943"><a href="#empNew" data-toggle="tab" ng-click='fetchEmployees()'>Maintain Employees</a></li>
                                     <li id="obj560cf73114d04f8439306944" ng-show='false'><a href="#empEdit" data-toggle="tab">Edit Employee</a></li>
                                     <li id="obj560cf73114d04f8439306945" ng-show='false'><a href="#empRem" data-toggle="tab">Remove Employee</a></li>
                                     <li id="obj560cf73114d04f8439306946"><a href="#empAssignToPos" data-toggle="tab">Assign To Position</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown" id="obj560cf73214d04f8439306947">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Perspective</a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Perspectives</a>
                                 <ul class="dropdown-menu bool-container">
-                                    <li id="obj560cf73214d04f8439306948"><a href="#perspNew" data-toggle="tab" ng-click='fetchPersps()'>Perspectives</a></li>
+                                    <li id="obj560cf73214d04f8439306948"><a href="#perspNew" data-toggle="tab" ng-click='fetchPersps()'>Maintain Perspectives</a></li>
                                     <li id="obj560cf73214d04f8439306949" ng-show='false'><a href="#perspEdit" data-toggle="tab">Edit Perspective</a></li>
                                     <li id="obj560cf73214d04f843930694a" ng-show='false'><a href="#perspRem" data-toggle="tab">Remove Perspective</a></li>
                                 </ul>
@@ -48,7 +48,7 @@
                                     <li><a href="#evalPeriodClose" data-toggle="tab" ng-click='fetchCEvalPeriods()'>Close evaluation periods</a></li>
                                     <li><a href="#objPeriodNew" data-toggle="tab" ng-click='fetchObjPeriods()'>Objective periods</a></li>
                                     <li><a href="#objPeriodClose" data-toggle="tab" ng-click='fetchCObjPeriods()'>Close objective periods</a></li>
-                                    <li><a href="#objPeriodClose" data-toggle="tab" ng-click='fetchCObjPeriods()'>Financial Year</a></li>
+                                    <li><a href="#financialYrNew" data-toggle="tab" ng-click='fetchFinYears()'>Financial Year</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -336,9 +336,9 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-4 control-label" for="period">Goal Period</label>
                                                         <div class="col-sm-8">
-                                                            <select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="companyGoal.period" ng-change="changeShowBCT()">
+                                                            <select class="form-control" role="menu" ng-model="companyGoal.period">
                                                                 <option ng-selected="[Select]">--Select--</option>
-                                                                <option ng-repeat="objPeriod in allObjPeriods" value="{{objPeriod._id}}">{{objPeriod.name}}</option>
+                                                                <option ng-repeat="finYear in allFinYears" value="{{finYear._id}}">{{finYear.name}}</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -564,6 +564,71 @@
                                         <div class="row">
                                             <div>
                                                 <div class="col-sm-12" ultimate-datatable="objPeriodsDT">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade bool-container container-fluid" id="financialYrNew">
+                                <div class="col-sm-12 col-sm-offset-0 row-fluid" id="obj560d42f315f84cd81604f991">
+                                    <div class="bool-container panel panel-default">
+                                        <div class="panel-heading" id="obj560d42f315f84cd81604f992">
+                                            <div class="bool-container panel-title">
+                                                <h4>New Fincial Year</h4>
+                                            </div>
+                                        </div>
+                                        <div class="bool-container panel-body">
+                                            <div ng-bind-html="hrEmpCompMsg | trustHtml"></div>
+                                            <div class="col-sm-12">
+
+                                                <div class="alert alert-danger alert-dismissable" ng-if="hasCreateFinYrErrors">
+                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                    <strong>Error:</strong><span>{{createFinYrError}}</span>
+                                                </div>
+
+                                                <div class="alert alert-success alert-dismissable" ng-if="createFinYrSuccess">
+                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                    <strong>Success:</strong><span>{{createFinYrMsg}}<br></span>
+                                                </div>
+                                                <form class="bool-container form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label for="newEmpFName" class="col-sm-2 control-label">Year name:</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control bool-input" ng-model="finYear.name" placeholder="Financial Year Name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-4 col-sm-offset-2">
+                                                            <label for="dateFrom">From:</label>
+                                                            <datepicker date-format="yyyy-MM-dd">
+                                                               <input ng-model="finYear.from" class="form-control" type="text"/>
+                                                            </datepicker>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <label for="dateTo">To:</label>
+                                                            <datepicker date-format="yyyy-MM-dd">
+                                                               <input ng-model="finYear.to" class="form-control" type="text"/>
+                                                            </datepicker>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-2 col-sm-offset-2">
+                                                            <button type="button" class="bool-input btn glyphicon glyphicon-plus btn-success" ng-click="createFinYear()">&nbsp;Add</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            &nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div>
+                                                <div class="col-sm-12" ultimate-datatable="finYearsDT">
                                                 </div>
                                             </div>
                                         </div>

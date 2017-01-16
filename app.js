@@ -11,7 +11,7 @@ var app = express();
 
 //var databaseUrl = "147.110.192.71,147.110.192.100,147.110.186.221/sebentiledb?slaveOk=true";
 var databaseUrl = "127.0.0.1/sebentiledb";
-var collections = ["Objectives","EvalPeriods","ObjPeriods", "CompanyGoals", "Division", "Transaction", "Document", "Employees", "Scorecard", "structure", "perspective", "sessions", "tracking", "empcloseperiods"];
+var collections = ["Objectives","EvalPeriods","ObjPeriods", "financialYears", "CompanyGoals", "Division", "Transaction", "Document", "Employees", "Scorecard", "structure", "perspective", "sessions", "tracking", "empcloseperiods"];
 var db = require("mongojs").connect(databaseUrl, collections);
 
 var ObjectId = db.ObjectId;
@@ -936,6 +936,19 @@ app.post('/createObjPeriod', function(req, res) {
     });
 })
 
+app.post('/createFinYear', function(req, res) {
+    query = req.body;
+    query['status'] = 'open';
+    console.log(query);
+
+    db.financialYears.insert(query, function(err, resp) {
+        if (err) res.send('Error!');
+        else {
+            res.send("Financial Year successfully saved")
+        }
+    });
+})
+
 app.post('/saveNewEmployee', function(req, res) {
     query = req.body;
     var today = Date();
@@ -967,6 +980,15 @@ app.post('/getPerspectives', function(req, res) {
 
 app.post('/getAllEvalPeriods', function(req, res) {
     db.EvalPeriods.find(function(err, resp) {
+        if (err) res.send('Error!');
+        else {
+            res.send(resp);
+        }
+    });
+});
+
+app.post('/getAllFinYears', function(req, res) {
+    db.financialYears.find(function(err, resp) {
         if (err) res.send('Error!');
         else {
             res.send(resp);

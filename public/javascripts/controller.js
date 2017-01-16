@@ -1220,6 +1220,23 @@ bsc.service('allObjectives', ['$http', function($http) {
 
     $scope.getObjPeriods();
 
+    // get ObjPeriods : 
+    $scope.getFinYears = function() {
+        $http.post("/getAllFinYears").success(function(res) {
+
+            if (res.length > 0) {
+                $scope.allFinYears = res;
+            } else if (res.length <= 0) {
+                $scope.allFinYears = [];
+            }
+
+        }).error(function() {
+            console.log('There is an error');
+        });
+    };
+
+    $scope.getFinYears();
+
     $scope.evalPeriod = {};
 
     $scope.createEvalPeriod = function () {
@@ -1443,6 +1460,115 @@ bsc.service('allObjectives', ['$http', function($http) {
             $scope.objPeriodsDT = datatable(objPeriodsConfig);
             //Setting the data to the datatable
             $scope.objPeriodsDT.setData(datatableData2);
+        })
+    };
+
+    $scope.finYear = {};
+
+    $scope.createFinYear = function () {
+        $scope.hasCreateFinYrErrors = false;
+        $scope.createFinYrError = null;
+        $scope.createFinYrMsg = null;
+        $scope.createFinYrSuccess = false;
+
+        if ($scope.finYear.name == null || $scope.finYear.from == null || $scope.finYear.to == null) {
+            $scope.hasCreateFinYrErrors = true;
+            $scope.createFinYrError = "Please fill all fields"; 
+        } else {
+            $http.post('/createFinYear',$scope.finYear).success(function(resp) {
+                $scope.createFinYrSuccess = true;
+                $scope.createFinYrMsg = resp;
+                $scope.finYear = {};
+                $scope.fetchFinYears();
+            });
+        }
+
+        
+    }
+
+    $scope.fetchFinYears = function() {
+
+        $http.post('/getAllFinYears').success(function(resp) {
+            $scope.finYears = resp;
+
+            //Current Perspective Objects Datatable Config
+            var finYearsConfig = {
+                "name": "simple_datatable",
+                "columns": [{
+                    "header": "Id",
+                    "property": "_id",
+                    "order": true,
+                    "type": "text",
+                    "edit": false,
+                    "hide": true
+
+                }, {
+                    "header": "Name",
+                    "property": "name",
+                    "order": true,
+                    "type": "text",
+                    "edit": true,
+                    "selected": true
+                }, {
+                    "header": "From",
+                    "property": "from",
+                    "order": true,
+                    "type": "text",
+                    "edit": true
+                }, {
+                    "header": "To",
+                    "property": "to",
+                    "order": true,
+                    "type": "text",
+                    "edit": true
+                }, {
+                    "header": "Status",
+                    "property": "status",
+                    "order": true,
+                    "type": "text",
+                    "edit": true
+                }],
+                "edit": {
+                    "active": true,
+                    "columnMode": true
+                },
+                "pagination": {
+                    "mode": 'local'
+                },
+                "order": {
+                    "mode": 'local'
+                },
+                "remove": {
+                    "active": true,
+                    "mode": 'remote',
+                    "url": function(value) {
+                        return "/dtRemoveFinYr/:" + value._id
+                    },
+                    "method": "delete"
+                },
+                "save": {
+                    "active": true,
+                    "mode": 'remote',
+                    "url": "/dtEditFinYr",
+                    "method": "post"
+                },
+                "hide": {
+                    "active": true,
+                    "showButton": true
+                },
+                "filter": {
+                    "active": true,
+                    "highlight": true,
+                    "columnMode": true
+                }
+            };
+
+            var finYearsDataDt = $scope.finYears;
+
+            //Initialising the datatable with this configuration
+            $scope.finYearsDT = datatable(finYearsConfig);
+            //Setting the data to the datatable
+            $scope.finYearsDT.setData(finYearsDataDt);
         })
     };
 
