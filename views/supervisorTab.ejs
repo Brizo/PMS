@@ -161,12 +161,17 @@
               </div>
 
               <div class="panel-body">
-                <div class="alert alert-danger alert-dismissable" ng-if="hasEmpToApprObjs">
+                <div class="alert alert-danger alert-dismissable" ng-if="hasEmpToApprObjsError">
                   <button type="button" class="close" data-dismiss="alert">&times;</button>
-                  <strong>Error:</strong><br><span>{{empToApprObjsMsg}}<br></span>
+                  <strong>Error:</strong><span>{{empToApprObjsErrorMsg}}<br></span>
                 </div> <!--end danger alert -->
 
-                <div ng-if="!hasEmpToApprObjs">
+                <div class="alert alert-info alert-dismissable" ng-if="hasEmpToApprObjsInfo">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Info : </strong><span>{{empToApprObjsInfoMsg}}<br></span>
+                </div> <!--end danger alert -->
+
+                <div ng-if="!hasEmpToApprObjsInfo">
                   <nav>
                     <ul class="pager">
                       <li><a href="#" ng-click="nextPerspective()">Next Perspective</a></li>
@@ -371,10 +376,6 @@
                   </div>
                 </div>
                 <div class="panel-body container-fluid">
-                  <div class="alert alert-info">
-                    <button type="button" class="close" data-dismiss="alert">X</button>
-                    <p>Select a perspective to create your KPA(s)!</p>
-                  </div><br>
 
                   <div class="alert alert-danger alert-dismissable" ng-if="hasCreateObjErrors">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -613,11 +614,11 @@
                   </div>
                 </div>
                 <div class="panel-body container-fluid">
-                  <div class="alert alert-danger alert-dismissable col-sm-12" ng-show="showConErr">
-                    <button type="button" class="close" data-dismiss="alert">X</button>
-                    <strong>Oops!:</strong>&nbsp;<span ng-model='showConMsg'>
-                    {{showConMsg}}<br></span>
-                  </div> 
+                  <div class="alert alert-info alert-dismissable" ng-if="hasViewBscSupInfo">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Info : </strong><span>{{viewBscSupInfoMsg}}<br></span>
+                  </div> <!--end danger alert --> 
+
                   <div  ng-show="!showConErr" class="panel-body container-fluid"> 
                     <table class="hlk" id="scorecard" style="width: 100%;">
                       <thead>

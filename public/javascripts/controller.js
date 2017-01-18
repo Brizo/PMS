@@ -725,42 +725,42 @@ bsc.service('allObjectives', ['$http', function($http) {
         $scope.allGroupedPerspectives = [];
         $scope.empTotalScore = 0;
         $scope.empDetailedW = 0;
-
-        console.log("getting employee's bsc");
-        console.log(id);
+        $scope.hasViewBscSupInfo = false;
+        $scope.viewBscSupInfoMsg = null;
 
         $http.post("/getAllSupBsc",{empId:id}).success(function(res) {
-            if (res.length > 0) {
+
+            if (res.length <= 0) {
+                $scope.approvedKPAs = [];
+                $scope.hasViewBscSupInfo = true;
+                $scope.viewBscSupInfoMsg = "There are no employee balanced score cards yet";
+            } else {
                 $scope.showConErr = false;
                 $scope.approvedKPAs = res;
                 for (var i = 0; i < $scope.approvedKPAs.length; i++) {
                     $scope.empTotalScore = $scope.empTotalScore + Number($scope.approvedKPAs[i].score);
                     $scope.empDetailedW = $scope.empDetailedW + Number($scope.approvedKPAs[i].detailedWeighting);
                 }
-            } else if (res.length <= 0) {
-                $scope.approvedKPAs = [];
-            }
+                $scope.scorecardHeights = $scope.approvedKPAs.length + 1;
 
-            $scope.scorecardHeights = $scope.approvedKPAs.length + 1;
+                for (var i = 0; i < $scope.allPerspectives.length; i++) {
+                    $scope[$scope.allPerspectives[i].perspName] = [];
 
-            for (var i = 0; i < $scope.allPerspectives.length; i++) {
-                $scope[$scope.allPerspectives[i].perspName] = [];
-
-                for (var j = 0; j < $scope.approvedKPAs.length; j++) {
-                    if ($scope.approvedKPAs[j].perspective == $scope.allPerspectives[i].perspName) {
-                        $scope[$scope.allPerspectives[i].perspName].push($scope.approvedKPAs[j]);
+                    for (var j = 0; j < $scope.approvedKPAs.length; j++) {
+                        if ($scope.approvedKPAs[j].perspective == $scope.allPerspectives[i].perspName) {
+                            $scope[$scope.allPerspectives[i].perspName].push($scope.approvedKPAs[j]);
+                        }
                     }
                 }
-            }
 
-            for (var m = 0; m < $scope.allPerspectives.length; m++) {
-                var entry = {
-                    pers: $scope.allPerspectives[m].perspName,
-                    objs: $scope[$scope.allPerspectives[m].perspName]
-                };
-                $scope.allGroupedPerspectives.push(entry);
+                for (var m = 0; m < $scope.allPerspectives.length; m++) {
+                    var entry = {
+                        pers: $scope.allPerspectives[m].perspName,
+                        objs: $scope[$scope.allPerspectives[m].perspName]
+                    };
+                    $scope.allGroupedPerspectives.push(entry);
+                }
             }
-
         }).error(function() {
             console.log('There is an error');
         });
@@ -1193,26 +1193,22 @@ bsc.service('allObjectives', ['$http', function($http) {
         $http.post('/route560d4856d00d941c304c7254').success(function(resp) {
             $scope.listOfPos = resp;
         });
-
     }
 
     $scope.getPerspectives = function() {
         $http.post('/getPerspectives').success(function(resp) {
             $scope.listOfPersp = resp;
         });
-
     }
 
     // get ObjPeriods : 
     $scope.getObjPeriods = function() {
         $http.post("/getAllObjPeriods").success(function(res) {
-
             if (res.length > 0) {
                 $scope.allObjPeriods = res;
             } else if (res.length <= 0) {
                 $scope.allObjPeriods = [];
             }
-
         }).error(function() {
             console.log('There is an error');
         });
@@ -2387,46 +2383,47 @@ bsc.service('allObjectives', ['$http', function($http) {
             $scope.clickScorecards = false;
             $scope.allGroupedPerspectives = [];
             $scope.empAlias = {Id: empId, Name: empName};
-            $scope.hasEmpToApprObjs = false;
-            $scope.empToApprObjsMsg = null;
+            $scope.hasEmpToApprObjsError = false;
+            $scope.empToApprObjsErrorMsg = null;
+            $scope.hasEmpToApprObjsInfo = false;
+            $scope.empToApprObjsInfoMsg = null;
 
             $http.post("/getToApproveObjs",{empId:empId}).success(function (res) {              
-                if(res.length > 0){
-                    $scope.sentKPAs = res;      
-                } else if (res.length <= 0) {
+                if (res.length <= 0) {
                     $scope.sentKPAs = [];
-                    $scope.hasEmpToApprObjs = true;
-                    $scope.empToApprObjsMsg = "There are no submitted objectives for employee";
-                }
+                    $scope.hasEmpToApprObjsInfo = true;
+                    $scope.empToApprObjsInfoMsg = "There are no submitted objectives for employee";
+                } else {
 
-                for (var i = 0; i < res.length; i++) {
-                    if (res[i].metrixType == 'time') {
-                        res[i].metricOneDef['label'] = res[i].metricOneDef.from +' to '+res[i].metricOneDef.To;
-                        res[i].metricTwoDef['label'] = res[i].metricTwoDef.from +' to '+res[i].metricTwoDef.To;
-                        res[i].metricThreeDef['label'] = res[i].metricThreeDef.from +' to '+res[i].metricThreeDef.To;
-                        res[i].metricFourDef['label'] = res[i].metricFourDef.from +' to '+res[i].metricFourDef.To;
-                        res[i].metricFiveDef['label'] = res[i].metricFiveDef.from +' to '+res[i].metricFiveDef.To;
-                    }
-                }
-
-                $scope.scorecardHeights = $scope.sentKPAs.length + 1;
-
-                for (var i = 0; i < $scope.allPerspectives.length; i++) {
-                    $scope[$scope.allPerspectives[i].perspName] = [];
-
-                    for (var j = 0; j < $scope.sentKPAs.length; j++) {
-                        if ($scope.sentKPAs[j].perspective == $scope.allPerspectives[i].perspName) {
-                            $scope[$scope.allPerspectives[i].perspName].push($scope.sentKPAs[j]);
+                    for (var i = 0; i < res.length; i++) {
+                        if (res[i].metrixType == 'time') {
+                            res[i].metricOneDef['label'] = res[i].metricOneDef.from +' to '+res[i].metricOneDef.To;
+                            res[i].metricTwoDef['label'] = res[i].metricTwoDef.from +' to '+res[i].metricTwoDef.To;
+                            res[i].metricThreeDef['label'] = res[i].metricThreeDef.from +' to '+res[i].metricThreeDef.To;
+                            res[i].metricFourDef['label'] = res[i].metricFourDef.from +' to '+res[i].metricFourDef.To;
+                            res[i].metricFiveDef['label'] = res[i].metricFiveDef.from +' to '+res[i].metricFiveDef.To;
                         }
                     }
-                }
 
-                for (var m = 0; m < $scope.allPerspectives.length; m++) {
-                    var entry = {pers:$scope.allPerspectives[m].perspName, objs:$scope[$scope.allPerspectives[m].perspName]};
-                    $scope.allGroupedPerspectives.push(entry); 
-                }
+                    $scope.scorecardHeights = $scope.sentKPAs.length + 1;
 
-                $scope.currentPersp = $scope.allGroupedPerspectives[$scope.incNumber];
+                    for (var i = 0; i < $scope.allPerspectives.length; i++) {
+                        $scope[$scope.allPerspectives[i].perspName] = [];
+
+                        for (var j = 0; j < $scope.sentKPAs.length; j++) {
+                            if ($scope.sentKPAs[j].perspective == $scope.allPerspectives[i].perspName) {
+                                $scope[$scope.allPerspectives[i].perspName].push($scope.sentKPAs[j]);
+                            }
+                        }
+                    }
+
+                    for (var m = 0; m < $scope.allPerspectives.length; m++) {
+                        var entry = {pers:$scope.allPerspectives[m].perspName, objs:$scope[$scope.allPerspectives[m].perspName]};
+                        $scope.allGroupedPerspectives.push(entry); 
+                    }
+
+                    $scope.currentPersp = $scope.allGroupedPerspectives[$scope.incNumber];
+                }
 
             }).error(function () {
                 console.log('There is an error');
