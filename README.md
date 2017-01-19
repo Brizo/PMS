@@ -12,7 +12,7 @@ Description
 As more organisations go digital and paperless, there has been a need 
 for a systematic process of evaluating employee's perfomance thereby 
 identifying skill/knowlege gaps and rewards for outstanding employees.
-Sebentile Perfomance Management system is a web based system to 
+Sebentile Perfomance Management system is a web based system used to 
 maintain a company's stategy, creating employees perfomance contracts 
 based on strategy and then evaluating employee peformance based on perfomance 
 contracts.
@@ -52,6 +52,11 @@ System Modules
 **************
 
 1) Employee Module
+	- Create objectives
+	- View Performance contract
+	- View Company's Objectives
+	- View Company's Goals
+	- Do self evaluation
 
 2) Supervisor Module
 
