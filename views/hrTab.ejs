@@ -109,7 +109,7 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade bool-container" id="structAddComponent">
-                                <div class="col-sm-10 col-sm-offset-1" id="obj55df08bc0d163f0c59158b4b">
+                                <div class="col-sm-6" id="obj55df08bc0d163f0c59158b4b">
                                     <div class="bool-container panel panel-default">
                                         <div class="panel-heading" id="obj55df08bc0d163f0c59158b4c">
                                             <div class="bool-container panel-title">
@@ -121,7 +121,7 @@
                                             <div class="col-sm-12" id="obj55df0be2e0ea11bb64c0dfd7">
                                                 <form class="bool-container form-horizontal" role="form">
                                                     <div class="form-group">
-                                                        <label for="parentObjid" class="col-sm-3 control-label">Under:</label>
+                                                        <label for="parentObjid" class="col-sm-4 control-label">Under:</label>
                                                         <div class="col-sm-6">
                                                             <select class="form-control bool-input" ng-model="parentObjid">
                                                                 <option ng-repeat="item in structPar" value="{{item._id}}">{{item.name}}</option>
@@ -129,13 +129,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group" id="obj55df1054422cb97270d3d712">
-                                                        <label for="name" class="col-sm-3 control-label">Name:</label>
+                                                        <label for="name" class="col-sm-4 control-label">Name:</label>
                                                         <div class="col-sm-6">
                                                             <input type="text" class="form-control bool-input" ng-model="name" placeholder="Component Name">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="structType" class="col-sm-3 control-label">Component Type:</label>
+                                                        <label for="structType" class="col-sm-4 control-label">Component Type:</label>
                                                         <div class="col-sm-6">
                                                             <select class="form-control bool-input" ng-model="structureType">
                                                                 <option ng-repeat="item in structType" value="{{item.val}}">{{item.disp}}</option>
@@ -143,7 +143,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group" id="obj55df1154b720665973937b89">
-                                                        <div class="col-sm-2 col-sm-offset-3">
+                                                        <div class="col-sm-2 col-sm-offset-4">
                                                             <button type="button" class="bool-input btn btn-default btn-sm glyphicon glyphicon-plus btn-block btn-success" ng-model="structCompoAddBtn" ng-click="func55df11e094e05079749e0a04()">Add</button>
                                                         </div>
                                                     </div>
@@ -152,7 +152,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="col-sm-6">
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div>
@@ -178,59 +178,59 @@
                                             <div ng-bind-html="hrEmpCompMsg | trustHtml"></div>
                                             <div class="col-sm-10 col-sm-offset-1" id="obj560d433215f84cd81604f994">
                                                 <form class="bool-container form-horizontal" role="form">
-                                                        <div class="form-group" id="obj560d456e2742985c0c8ceb46">
-                                                            <label for="newEmpFName" class="col-sm-5 control-label">First Name:</label>
-                                                            <div class="col-sm-6">
-                                                                <input type="text" class="form-control bool-input" ng-model="newEmpFName" placeholder="Employee First Name">
-                                                            </div>
+                                                    <div class="form-group" id="obj560d456e2742985c0c8ceb46">
+                                                        <label for="newEmpFName" class="col-sm-4 control-label">First Name:</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control bool-input" ng-model="newEmpFName" placeholder="Employee First Name">
                                                         </div>
-                                                        <div class="form-group" id="obj560d45982742985c0c8ceb47">
-                                                            <label for="newEmpMName" class="col-sm-5 control-label">Middle Name:</label>
-                                                            <div class="col-sm-6">
-                                                                <input type="text" class="form-control bool-input" ng-model="newEmpMName" placeholder="Employee Mid Name">
-                                                            </div>
+                                                    </div>
+                                                    <div class="form-group" id="obj560d45982742985c0c8ceb47">
+                                                        <label for="newEmpMName" class="col-sm-4 control-label">Middle Name:</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control bool-input" ng-model="newEmpMName" placeholder="Employee Mid Name">
                                                         </div>
-                                                        <div class="form-group" id="obj560d45c62742985c0c8ceb48">
-                                                            <label for="newEmpLName" class="col-sm-5 control-label">Last Name:</label>
-                                                            <div class="col-sm-6">
-                                                                <input type="text" class="form-control bool-input" ng-model="newEmpLName" placeholder="Employee Last Name">
-                                                            </div>
+                                                    </div>
+                                                    <div class="form-group" id="obj560d45c62742985c0c8ceb48">
+                                                        <label for="newEmpLName" class="col-sm-4 control-label">Last Name:</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control bool-input" ng-model="newEmpLName" placeholder="Employee Last Name">
                                                         </div>
-                                                        <div class="form-group" id="obj560d460c2742985c0c8ceb49">
-                                                            <label for="newEmpNatId" class="col-sm-5 control-label">National ID:</label>
-                                                            <div class="col-sm-6">
-                                                                <input type="text" class="form-control bool-input" ng-model="newEmpNatId" placeholder="Employee ID">
-                                                            </div>
+                                                    </div>
+                                                    <div class="form-group" id="obj560d460c2742985c0c8ceb49">
+                                                        <label for="newEmpNatId" class="col-sm-4 control-label">National ID:</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control bool-input" ng-model="newEmpNatId" placeholder="Employee ID">
                                                         </div>
-                                                        <div class="form-group" id="obj560d46492742985c0c8ceb4a">
-                                                            <label for="newEmpNum" class="col-sm-5 control-label">Employee Number:</label>
-                                                            <div class="col-sm-6">
-                                                                <input type="text" class="form-control bool-input" ng-model="newEmpNum" placeholder="Employee Number">
-                                                            </div>
+                                                    </div>
+                                                    <div class="form-group" id="obj560d46492742985c0c8ceb4a">
+                                                        <label for="newEmpNum" class="col-sm-4 control-label">Employee Number:</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control bool-input" ng-model="newEmpNum" placeholder="Employee Number">
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label for="newEmpPos" class="col-sm-5 control-label">Position:</label>&nbsp;
-                                                            <div class="col-sm-6">
-                                                                <select class="form-control bool-input" ng-model="newEmpPos">
-                                                                    <option ng-selected="[Select]" ng-disabled>[Select]</option>
-                                                                    <option ng-repeat="item in listOfPos" value="{{item.name}}">{{item.name}}</option>
-                                                                </select>
-                                                            </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="newEmpPos" class="col-sm-4 control-label">Position:</label>&nbsp;
+                                                        <div class="col-sm-8">
+                                                            <select class="form-control bool-input" ng-model="newEmpPos">
+                                                                <option ng-selected="[Select]" ng-disabled>[Select]</option>
+                                                                <option ng-repeat="item in listOfPos" value="{{item.name}}">{{item.name}}</option>
+                                                            </select>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label for="newEmpSup" class="col-sm-5 control-label">Supervisor:</label>
-                                                            <div class="col-sm-6">
-                                                                <select class="form-control bool-input" ng-model="newEmpSup">
-                                                                    <option ng-selected="[Select]">--Select--</option>
-                                                                    <option ng-repeat="item in allMyEmployees" value="{{item._id}}">{{item.empName+"|"+item.position}}</option>
-                                                                </select>
-                                                            </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="newEmpSup" class="col-sm-4 control-label">Supervisor:</label>
+                                                        <div class="col-sm-8">
+                                                            <select class="form-control bool-input" ng-model="newEmpSup">
+                                                                <option ng-selected="[Select]">--Select--</option>
+                                                                <option ng-repeat="item in allMyEmployees" value="{{item._id}}">{{item.empName+"|"+item.position}}</option>
+                                                            </select>
                                                         </div>
-                                                        <div class="form-group" id="obj560d47282742985c0c8ceb4c">
-                                                            <div class="col-sm-2 col-sm-offset-5">
-                                                                <button type="button" class="bool-input btn glyphicon glyphicon-plus btn-success" ng-model="newEmpSaveBtn" ng-click="saveNewEmployee()">&nbsp;Add</button>
-                                                            </div>
+                                                    </div>
+                                                    <div class="form-group" id="obj560d47282742985c0c8ceb4c">
+                                                        <div class="col-sm-2 col-sm-offset-4">
+                                                            <button type="button" class="bool-input btn glyphicon glyphicon-plus btn-success" ng-model="newEmpSaveBtn" ng-click="saveNewEmployee()">&nbsp;Add</button>
                                                         </div>
+                                                    </div>
                                                 </form>
                                             </div>
                                             &nbsp;
@@ -252,7 +252,7 @@
                             <div class="tab-pane fade bool-container" id="empRem"> </div>
                             <div class="tab-pane fade bool-container" id="empAssignToPos"> </div>
                             <div class="tab-pane fade bool-container" id="perspNew">
-                                <div class="col-sm-6 col-sm-offset-0" id="obj560d37130e390d844474bfa8">
+                                <div class="col-sm-6" id="obj560d37130e390d844474bfa8">
                                     <div class="bool-container panel panel-default">
                                         <div class="panel-heading" id="obj560d37130e390d844474bfa9">
                                             <div class="bool-container panel-title">
@@ -285,7 +285,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-sm-offset-0" id="obj560d37460e390d844474bfab">
+                                <div class="col-sm-6" id="obj560d37460e390d844474bfab">
                                     <div class="bool-container panel panel-default">
                                         <div class="panel-heading" id="obj560d37460e390d844474bfac">
                                             <div class="bool-container panel-title">
@@ -391,7 +391,7 @@
                             <div class="tab-pane fade bool-container" id="perspRem"> </div>
 
                             <div class="tab-pane fade bool-container container-fluid" id="evalPeriodNew">
-                                <div class="col-sm-12 col-sm-offset-0 row-fluid" id="obj560d42f315f84cd81604f991">
+                                <div class="col-sm-6 row-fluid" id="obj560d42f315f84cd81604f991">
                                     <div class="bool-container panel panel-default">
                                         <div class="panel-heading" id="obj560d42f315f84cd81604f992">
                                             <div class="bool-container panel-title">
@@ -410,6 +410,7 @@
                                                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                                                     <strong>Success:</strong><br><span>{{createEvalPMsg}}<br></span>
                                                 </div>
+                                                <br>
                                                 <form class="bool-container form-horizontal" role="form">
                                                     <div class="form-group">
                                                         <label for="newEmpFName" class="col-sm-2 control-label">Period name:</label>
@@ -418,7 +419,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <div class="col-sm-4 col-sm-offset-2">
+                                                        <label for="period" class="col-sm-2 control-label">Period:</label>
+                                                        <div class="col-sm-4">
                                                             <label for="dateFrom">From:</label>
                                                             <datepicker date-format="yyyy-MM-dd">
                                                                <input ng-model="evalPeriod.from" class="form-control" type="text"/>
@@ -442,7 +444,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="col-sm-6">
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div>
@@ -507,7 +509,7 @@
                             </div>
 
                             <div class="tab-pane fade bool-container container-fluid" id="objPeriodNew">
-                                <div class="col-sm-12 col-sm-offset-0 row-fluid" id="obj560d42f315f84cd81604f991">
+                                <div class="col-sm-6 row-fluid" id="obj560d42f315f84cd81604f991">
                                     <div class="bool-container panel panel-default">
                                         <div class="panel-heading" id="obj560d42f315f84cd81604f992">
                                             <div class="bool-container panel-title">
@@ -527,6 +529,7 @@
                                                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                                                     <strong>Success:</strong><span>{{createObjPMsg}}<br></span>
                                                 </div>
+                                                <br>
                                                 <form class="bool-container form-horizontal" role="form">
                                                     <div class="form-group">
                                                         <label for="newEmpFName" class="col-sm-2 control-label">Period name:</label>
@@ -535,7 +538,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <div class="col-sm-4 col-sm-offset-2">
+                                                        <label for="period" class="col-sm-2 control-label">Period:</label>
+                                                        <div class="col-sm-4">
                                                             <label for="dateFrom">From:</label>
                                                             <datepicker date-format="yyyy-MM-dd">
                                                                <input ng-model="objPeriod.from" class="form-control" type="text"/>
@@ -559,7 +563,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="col-sm-6">
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div>
@@ -572,7 +576,7 @@
                             </div>
 
                             <div class="tab-pane fade bool-container container-fluid" id="financialYrNew">
-                                <div class="col-sm-12 col-sm-offset-0 row-fluid" id="obj560d42f315f84cd81604f991">
+                                <div class="col-sm-6 row-fluid" id="obj560d42f315f84cd81604f991">
                                     <div class="bool-container panel panel-default">
                                         <div class="panel-heading" id="obj560d42f315f84cd81604f992">
                                             <div class="bool-container panel-title">
@@ -592,6 +596,7 @@
                                                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                                                     <strong>Success:</strong><span>{{createFinYrMsg}}<br></span>
                                                 </div>
+                                                <br>
                                                 <form class="bool-container form-horizontal" role="form">
                                                     <div class="form-group">
                                                         <label for="newEmpFName" class="col-sm-2 control-label">Year name:</label>
@@ -600,7 +605,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <div class="col-sm-4 col-sm-offset-2">
+                                                        <label for="period" class="col-sm-2 control-label">Period:</label>
+                                                        <div class="col-sm-4">
                                                             <label for="dateFrom">From:</label>
                                                             <datepicker date-format="yyyy-MM-dd">
                                                                <input ng-model="finYear.from" class="form-control" type="text"/>
@@ -624,7 +630,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="col-sm-6">
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div>

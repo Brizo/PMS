@@ -459,7 +459,7 @@ bsc.service('allObjectives', ['$http', function($http) {
     };
 
     $scope.getAllStateObjs = function () {
-        $scope.hasAllStateObjInfo = false;
+        $scope.hasAllStateObjInfof = false;
         $scope.allStateObjInfo = null;
 
         $http.post("/getAllStateObjectives").success(function(res) {
@@ -1290,15 +1290,7 @@ bsc.service('allObjectives', ['$http', function($http) {
                 var companyGoalsConfig = {
                     "name": "simple_datatable",
                     "columns": [{
-                        "header": "Id",
-                        "property": "_id",
-                        "order": true,
-                        "type": "text",
-                        "edit": false,
-                        "hide": true
-
-                    }, {
-                        "header": "Name",
+                        "header": "Goal",
                         "property": "name",
                         "order": true,
                         "type": "text",
@@ -1382,14 +1374,6 @@ bsc.service('allObjectives', ['$http', function($http) {
             var objPeriodsConfig = {
                 "name": "simple_datatable",
                 "columns": [{
-                    "header": "Id",
-                    "property": "_id",
-                    "order": true,
-                    "type": "text",
-                    "edit": false,
-                    "hide": true
-
-                }, {
                     "header": "Name",
                     "property": "name",
                     "order": true,
@@ -1491,14 +1475,6 @@ bsc.service('allObjectives', ['$http', function($http) {
             var finYearsConfig = {
                 "name": "simple_datatable",
                 "columns": [{
-                    "header": "Id",
-                    "property": "_id",
-                    "order": true,
-                    "type": "text",
-                    "edit": false,
-                    "hide": true
-
-                }, {
                     "header": "Name",
                     "property": "name",
                     "order": true,
@@ -1577,14 +1553,6 @@ bsc.service('allObjectives', ['$http', function($http) {
             var evalPeriodsConfig = {
                 "name": "simple_datatable",
                 "columns": [{
-                    "header": "Id",
-                    "property": "_id",
-                    "order": true,
-                    "type": "text",
-                    "edit": false,
-                    "hide": true
-
-                }, {
                     "header": "Name",
                     "property": "name",
                     "order": true,
@@ -1743,14 +1711,6 @@ bsc.service('allObjectives', ['$http', function($http) {
             var datatableConfig = {
                 "name": "simple_datatable",
                 "columns": [{
-                    "header": "Id",
-                    "property": "_id",
-                    "order": true,
-                    "type": "text",
-                    "edit": false,
-                    "hide": true
-
-                }, {
                     "header": "Name",
                     "property": "name",
                     "order": true,
@@ -1970,14 +1930,6 @@ bsc.service('allObjectives', ['$http', function($http) {
             var datatableConfig1 = {
                 "name": "simple_datatable",
                 "columns": [{
-                    "header": "Id",
-                    "property": "_id",
-                    "order": true,
-                    "type": "text",
-                    "edit": false,
-                    "hide": true
-
-                }, {
                     "header": "First Name",
                     "property": "fname",
                     "order": true,
@@ -2006,12 +1958,6 @@ bsc.service('allObjectives', ['$http', function($http) {
                 }, {
                     "header": "National ID",
                     "property": "natid",
-                    "order": true,
-                    "type": "text",
-                    "edit": true
-                }, {
-                    "header": "Employee #",
-                    "property": "empno",
                     "order": true,
                     "type": "text",
                     "edit": true
