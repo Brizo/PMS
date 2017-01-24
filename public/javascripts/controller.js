@@ -459,7 +459,7 @@ bsc.service('allObjectives', ['$http', function($http) {
     };
 
     $scope.getAllStateObjs = function () {
-        $scope.hasAllStateObjInfof = false;
+        $scope.hasAllStateObjInfo = false;
         $scope.allStateObjInfo = null;
 
         $http.post("/getAllStateObjectives").success(function(res) {
@@ -714,7 +714,7 @@ bsc.service('allObjectives', ['$http', function($http) {
                 $scope.submitObjSuccess = true;
                 $scope.submitObjSuccessMsg = res;
                 $scope.unactionedKPAs = [];
-                $scope.getUnactndObjectives();
+                //$scope.getUnactndObjectives();
             });
         }
     };
@@ -2334,9 +2334,14 @@ bsc.service('allObjectives', ['$http', function($http) {
             $scope.hasEmpToApprObjsInfo = false;
             $scope.empToApprObjsInfoMsg = null;
 
-            $http.post("/getToApproveObjs",{empId:empId}).success(function (res) {              
+            console.log(empId);
+
+            $http.post("/getToApproveObjs",{empId:empId}).success(function (res) {  
+                $scope.sentKPAs = [];
+
+                console.log(res.length);
+
                 if (res.length <= 0) {
-                    $scope.sentKPAs = [];
                     $scope.hasEmpToApprObjsInfo = true;
                     $scope.empToApprObjsInfoMsg = "There are no submitted objectives for employee";
                 } else {
