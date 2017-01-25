@@ -2334,18 +2334,12 @@ bsc.service('allObjectives', ['$http', function($http) {
             $scope.hasEmpToApprObjsInfo = false;
             $scope.empToApprObjsInfoMsg = null;
 
-            console.log(empId);
-
             $http.post("/getToApproveObjs",{empId:empId}).success(function (res) {  
-                $scope.sentKPAs = [];
-
-                console.log(res.length);
-
                 if (res.length <= 0) {
+                    $scope.sentKPAs = [];
                     $scope.hasEmpToApprObjsInfo = true;
                     $scope.empToApprObjsInfoMsg = "There are no submitted objectives for employee";
                 } else {
-
                     for (var i = 0; i < res.length; i++) {
                         if (res[i].metrixType == 'time') {
                             res[i].metricOneDef['label'] = res[i].metricOneDef.from +' to '+res[i].metricOneDef.To;
@@ -2356,17 +2350,30 @@ bsc.service('allObjectives', ['$http', function($http) {
                         }
                     }
 
+                    $scope.sentKPAs = res;
+
                     $scope.scorecardHeights = $scope.sentKPAs.length + 1;
 
+                    var dummyObj = {kpa:0, kpi:0, metricOneDef:{label:"none"}, metricTwoDef:{label:"none"}, matricThreeDef:{label:"none"}, 
+                        matricFourDef:{label:"none"}, matricFiveDef:{label:"none"},showActions:0};
+
+                    // Group objectives by perspectives and store them in array with 
+                    // perspective name as the index
                     for (var i = 0; i < $scope.allPerspectives.length; i++) {
                         $scope[$scope.allPerspectives[i].perspName] = [];
 
                         for (var j = 0; j < $scope.sentKPAs.length; j++) {
                             if ($scope.sentKPAs[j].perspective == $scope.allPerspectives[i].perspName) {
+                                $scope.sentKPAs[j].showActions = 1;
                                 $scope[$scope.allPerspectives[i].perspName].push($scope.sentKPAs[j]);
                             }
                         }
+
+                        if ($scope[$scope.allPerspectives[i].perspName].length == 0) {
+                            $scope[$scope.allPerspectives[i].perspName].push(dummyObj);
+                        }
                     }
+
 
                     for (var m = 0; m < $scope.allPerspectives.length; m++) {
                         var entry = {pers:$scope.allPerspectives[m].perspName, objs:$scope[$scope.allPerspectives[m].perspName]};

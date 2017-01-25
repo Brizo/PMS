@@ -182,13 +182,13 @@
                     <caption><h4><b>{{currentPersp.pers}}</b></h4></caption>
                     <thead>
                       <tr>
-                          <th>Key Performance Area</th>
-                          <th>Key Performance Indicator</th>
-                          <th>Poor Performance Rating of 1</th>
-                          <th>Unsatisfactory Performance Rating of 2</th>
-                          <th>Target Met Performance Rating of 3</th>
-                          <th>Exceptional Performance Rating of 4</th>
-                          <th>Outstanding Performance Rating of 5</th>
+                          <th>KPA</th>
+                          <th>KPI</th>
+                          <th>Poor(1)</th>
+                          <th>Unsatisfactory(2)</th>
+                          <th>Target Met(3)</th>
+                          <th>Exceptional(4)</th>
+                          <th>Outstanding(5)</th>
                           <th style="width:15%;">Action</th>                          
                       </tr>
                     </thead>
@@ -207,7 +207,7 @@
                             <td ng-model="objective.metricFourDef.label">{{objective.metricFourDef.label}}</td>
 
                             <td ng-model="objective.metricFiveDef.label">{{objective.metricFiveDef.label}}</td>
-                            <td style="width:15%;">  
+                            <td style="width:15%;" ng-show="{{objective.showActions}} == 1">  
                               <a class="btn btn-sm btn-success"  href="#confirmAppModal" data-toggle="modal" ng-click="clickApprove()">
                                 <span class="glyphicon glyphicon-ok">&nbsp;Approve</span>
                               </a>
