@@ -249,6 +249,73 @@ bsc.service('allObjectives', ['$http', function($http) {
         });
     };
 
+    $scope.fetchCompanyGoals = function() {
+        $scope.fetchCGoalInfo = null;
+        $scope.hsFetchCGoalInfo = false;
+
+        $http.post('/fetchAllCGoals').success(function(resp) {
+            $scope.companyGoals = resp;
+
+            if (resp.length <= 0) {
+                $scope.fetchCGoalInfo = "There are no company goals yet";
+                $scope.hsFetchCGoalInfo = true;
+            } else {
+                //Current Perspective Objects Datatable Config
+                var companyGoalsConfig = {
+                    "name": "simple_datatable",
+                    "columns": [{
+                        "header": "Goal",
+                        "property": "name",
+                        "order": true,
+                        "type": "text",
+                        "edit": true,
+                        "selected": true
+                    }],
+                    "edit": {
+                        "active": true,
+                        "columnMode": true
+                    },
+                    "pagination": {
+                        "mode": 'local'
+                    },
+                    "order": {
+                        "mode": 'local'
+                    },
+                    "remove": {
+                        "active": true,
+                        "mode": 'remote',
+                        "url": function(value) {
+                            return "/dtRemoveCGoal/:" + value._id
+                        },
+                        "method": "delete"
+                    },
+                    "save": {
+                        "active": true,
+                        "mode": 'remote',
+                        "url": "/dtEditCGoal",
+                        "method": "post"
+                    },
+                    "hide": {
+                        "active": true,
+                        "showButton": true
+                    },
+                    "filter": {
+                        "active": true,
+                        "highlight": true,
+                        "columnMode": true
+                    }
+                };
+
+                var goalsDatatableData = $scope.companyGoals;
+
+                //Initialising the datatable with this configuration
+                $scope.companyGoalsDT = datatable(companyGoalsConfig);
+                //Setting the data to the datatable
+                $scope.companyGoalsDT.setData(goalsDatatableData);
+            } 
+        })
+    };
+
     // retrieve eval obj objectives : 
     $scope.getEvalObjectives = function() {
         $http.post("/getAllEvalObjectives").success(function (res) {
@@ -947,31 +1014,73 @@ bsc.service('allObjectives', ['$http', function($http) {
         $scope.allGroupedPerspectives = [];
 
         $http.post("/getAllApprovedObjectives").success(function(res) {
-            if (res.length > 0) {
+            if (res.length <= 0) {
+                $scope.approvedKPAs = [];
+            } else if (res.length > 0) {
+                
                 $scope.showSCardErr = false;
                 $scope.approvedKPAs = res;
-            } else if (res.length <= 0) {
-                $scope.approvedKPAs = [];
-            }
 
-            $scope.scorecardHeights = $scope.approvedKPAs.length + 1;
+                $scope.scorecardHeights = $scope.approvedKPAs.length + 1;
 
-            for (var i = 0; i < $scope.allPerspectives.length; i++) {
-                $scope[$scope.allPerspectives[i].perspName] = [];
+                for (var i = 0; i < $scope.allPerspectives.length; i++) {
+                    $scope[$scope.allPerspectives[i].perspName] = [];
 
-                for (var j = 0; j < $scope.approvedKPAs.length; j++) {
-                    if ($scope.approvedKPAs[j].perspective == $scope.allPerspectives[i].perspName) {
-                        $scope[$scope.allPerspectives[i].perspName].push($scope.approvedKPAs[j]);
+                    for (var j = 0; j < $scope.approvedKPAs.length; j++) {
+                        if ($scope.approvedKPAs[j].perspective == $scope.allPerspectives[i].perspName) {
+                            $scope[$scope.allPerspectives[i].perspName].push($scope.approvedKPAs[j]);
+                        }
                     }
+                }
+
+                for (var m = 0; m < $scope.allPerspectives.length; m++) {
+                    var entry = {
+                        pers: $scope.allPerspectives[m].perspName,
+                        objs: $scope[$scope.allPerspectives[m].perspName]
+                    };
+                    $scope.allGroupedPerspectives.push(entry);
                 }
             }
 
-            for (var m = 0; m < $scope.allPerspectives.length; m++) {
-                var entry = {
-                    pers: $scope.allPerspectives[m].perspName,
-                    objs: $scope[$scope.allPerspectives[m].perspName]
-                };
-                $scope.allGroupedPerspectives.push(entry);
+        }).error(function() {
+            console.log('There is an error');
+        });
+    };
+
+    // retrieve approved objectives : 
+    $scope.getSupConObjs = function() {
+
+        $scope.allGroupedPerspectives = [];
+
+        $http.post("/getAllSupApprObj").success(function(res) {
+
+            if (res.length <= 0) {
+                $scope.approvedKPAs = [];
+            } else if (res.length > 0) {
+                
+                $scope.showSCardErr = false;
+                $scope.approvedKPAs = res;
+            
+                $scope.scorecardHeights = $scope.approvedKPAs.length + 1;
+
+                for (var i = 0; i < $scope.allPerspectives.length; i++) {
+                    $scope[$scope.allPerspectives[i].perspName] = [];
+
+                    for (var j = 0; j < $scope.approvedKPAs.length; j++) {
+                        if ($scope.approvedKPAs[j].perspective == $scope.allPerspectives[i].perspName) {
+                            $scope[$scope.allPerspectives[i].perspName].push($scope.approvedKPAs[j]);
+                        }
+                    }
+                }
+
+                for (var m = 0; m < $scope.allPerspectives.length; m++) {
+                    var entry = {
+                        pers: $scope.allPerspectives[m].perspName,
+                        objs: $scope[$scope.allPerspectives[m].perspName]
+                    };
+                    $scope.allGroupedPerspectives.push(entry);
+                }
+
             }
 
         }).error(function() {

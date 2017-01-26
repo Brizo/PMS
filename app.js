@@ -414,6 +414,19 @@ app.post("/getAllApprovedObjectives", function(req, res) {
     });
 })
 
+app.post("/getAllSupApprObj", function(req, res) {
+    var ID = req.session.loggdUser.empSub;
+    db.Objectives.find({
+        status: "approved", owner:ID
+    }, function(err, docs) {
+        if (err) {
+            console.log("There is an error");
+        } else {
+            res.json(docs);
+        }
+    });
+})
+
 app.post("/getSpecificApprovedObjs", function(req, res) {
     var ID = req.session.loggdUser.objId;
     var period = req.body.period;
