@@ -1473,11 +1473,8 @@ bsc.service('allObjectives', ['$http', function($http) {
     }
 
     $scope.fetchObjPeriods = function() {
-
         $http.post('/fetchAllObjPeriods').success(function(resp) {
             $scope.objPeriods = resp;
-
-            console.log(resp);
 
             //Current Perspective Objects Datatable Config
             var objPeriodsConfig = {
@@ -1570,9 +1567,7 @@ bsc.service('allObjectives', ['$http', function($http) {
                 $scope.finYear = {};
                 $scope.fetchFinYears();
             });
-        }
-
-        
+        }  
     }
 
     $scope.fetchFinYears = function() {
@@ -1905,6 +1900,7 @@ bsc.service('allObjectives', ['$http', function($http) {
         $http.post('/getStructure').success(function(resp) {
             $scope.myTree = [];
             $scope.myTree.push(resp.nodeData);
+            console.log(resp.nodeData);
         });
 
     }

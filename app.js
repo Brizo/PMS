@@ -430,7 +430,6 @@ app.post("/getAllSupApprObj", function(req, res) {
 app.post("/getSpecificApprovedObjs", function(req, res) {
     var ID = req.session.loggdUser.objId;
     var period = req.body.period;
-    console.log(period);
 
     db.Objectives.find({
         status: "approved", owner:ID, objPeriod:period
@@ -541,7 +540,6 @@ app.post("/getPeriodicBscObjs", function(req, res) {
             console.log("There is an error");
         } else {
             res.json(docs);
-            console.log(docs.length);
         }
     });
 })
@@ -952,7 +950,6 @@ app.post('/createObjPeriod', function(req, res) {
 app.post('/createFinYear', function(req, res) {
     query = req.body;
     query['status'] = 'open';
-    console.log(query);
 
     db.financialYears.insert(query, function(err, resp) {
         if (err) res.send('Error!');
@@ -1077,6 +1074,7 @@ app.post('/getStructure', function(req, res) {
 
     setTimeout(function() {
         res.send(myTree.showStruct());
+        //console.log(myTree.showStruct());
     }, 600);
 });
 

@@ -229,8 +229,6 @@ function boolTree() {
             sibsData.push(node.nodeData);
         });
 
-        console.dir(sibsData);
-
         if (sibsData.length > 0) {return sibsData};
 
         
@@ -341,7 +339,7 @@ function boolTree() {
                 } else if (node.baseWigName == "accordion-panel-body") {
                     //panelType = "panel-"+node.nodeOps.panelType;
                     //panelWidthElem = '<div class="col-sm-'+node.nodeWidth+'"></div>';
-                    console.log(node);
+                    //console.log(node);
                     partCont = '<div id="' + node.nodeOps.parName + '" class="panel-collapse collapse"></div>';
                     parData = self.getNodeData(nodeIsn);
                     $ = cheerio.load(parData);
