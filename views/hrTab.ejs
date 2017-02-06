@@ -407,7 +407,7 @@
                                                     <strong>Error : </strong><span>{{createVisionError}}<br></span>
                                                 </div>
 
-                                                <div class="alert alert-success alert-dismissable" ng-if="createCVisionSuccess">
+                                                <div class="alert alert-success alert-dismissable" ng-if="createVisionSuccess">
                                                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                                                     <strong>Success : </strong><span>{{createVisionSuccessMsg}}<br></span>
                                                 </div>
@@ -416,7 +416,7 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-4 control-label" for="period">Vision Period</label>
                                                         <div class="col-sm-8">
-                                                            <select class="form-control" role="menu" ng-model="companyGoal.period">
+                                                            <select class="form-control" role="menu" ng-model="companyVision.period">
                                                                 <option ng-selected="[Select]">--Select--</option>
                                                                 <option ng-repeat="finYear in allFinYears" value="{{finYear._id}}">{{finYear.name}}</option>
                                                             </select>
@@ -425,12 +425,12 @@
                                                     <div class="form-group">
                                                         <label for="perspDescr" class="col-sm-4 control-label">Vision Description</label>
                                                         <div class="col-sm-8">
-                                                            <textarea type="text" class="form-control bool-input" ng-model="companyGoal.name" placeholder="Vision"></textarea>
+                                                            <textarea type="text" class="form-control bool-input" ng-model="companyVision.name" placeholder="Vision"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="col-sm-4 col-sm-offset-4">
-                                                            <button type="button" class="bool-input btn btn-default btn-sm glyphicon glyphicon-plus btn-success" ng-click="createNewGoal()">&nbsp;Add</button>
+                                                            <button type="button" class="bool-input btn btn-default btn-sm glyphicon glyphicon-plus btn-success" ng-click="createNewVision()">&nbsp;Add</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -443,19 +443,19 @@
                                     <div class="bool-container panel panel-default">
                                         <div class="panel-heading">
                                             <div class="bool-container panel-title">
-                                                <h4>Company Goals</h4>
+                                                <h4>Company Vision</h4>
                                             </div>
                                         </div>
                                         <div class="bool-container panel-body">
                                             <div>
                                                 <div class="container-fluid">
-                                                    <div class="alert alert-warning alert-dismissable" ng-if="hsFetchCGoalInfo">
+                                                    <div class="alert alert-warning alert-dismissable" ng-if="hsFetchVisionInfo">
                                                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                                        <strong>Info:</strong><span>{{fetchCGoalInfo}}<br></span>
+                                                        <strong>Info:</strong><span>{{fetchVisionInfo}}<br></span>
                                                     </div>
                                                     <div class="row">
                                                         <div>
-                                                            <div class="col-sm-12" ultimate-datatable="companyGoalsDT">
+                                                            <div class="col-sm-12" ultimate-datatable="companyVisionDT">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -483,7 +483,7 @@
                                                     <strong>Error : </strong><span>{{createMissionError}}<br></span>
                                                 </div>
 
-                                                <div class="alert alert-success alert-dismissable" ng-if="createCGoalSuccess">
+                                                <div class="alert alert-success alert-dismissable" ng-if="createMissionSuccess">
                                                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                                                     <strong>Success : </strong><span>{{createMissionSuccessMsg}}<br></span>
                                                 </div>
@@ -493,7 +493,7 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-4 control-label" for="period">Mission Period</label>
                                                         <div class="col-sm-8">
-                                                            <select class="form-control" role="menu" ng-model="companyGoal.period">
+                                                            <select class="form-control" role="menu" ng-model="companyMission.period">
                                                                 <option ng-selected="[Select]">--Select--</option>
                                                                 <option ng-repeat="finYear in allFinYears" value="{{finYear._id}}">{{finYear.name}}</option>
                                                             </select>
@@ -502,7 +502,7 @@
                                                     <div class="form-group">
                                                         <label for="perspDescr" class="col-sm-4 control-label">Mission Description</label>
                                                         <div class="col-sm-8">
-                                                            <textarea type="text" class="form-control bool-input" ng-model="companyGoal.name" placeholder="Mission"></textarea>
+                                                            <textarea type="text" class="form-control bool-input" ng-model="companyMision.name" placeholder="Mission"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -526,9 +526,9 @@
                                         <div class="bool-container panel-body">
                                             <div>
                                                 <div class="container-fluid">
-                                                    <div class="alert alert-warning alert-dismissable" ng-if="hsFetchCGoalInfo">
+                                                    <div class="alert alert-warning alert-dismissable" ng-if="hsFetchMissionInfo">
                                                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                                        <strong>Info:</strong><span>{{fetchCMissionInfo}}<br></span>
+                                                        <strong>Info:</strong><span>{{fetchMissionInfo}}<br></span>
                                                     </div>
                                                     <div class="row">
                                                         <div>
@@ -555,14 +555,14 @@
                                         <div class="bool-container panel-body">
                                             <div class="col-sm-12">
                                                 <br>
-                                                <div class="alert alert-danger alert-dismissable" ng-if="hasCreateMissionErrors">
+                                                <div class="alert alert-danger alert-dismissable" ng-if="hasCreateValueErrors">
                                                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                                    <strong>Error : </strong><span>{{createMissionError}}<br></span>
+                                                    <strong>Error : </strong><span>{{createValueError}}<br></span>
                                                 </div>
 
-                                                <div class="alert alert-success alert-dismissable" ng-if="createCGoalSuccess">
+                                                <div class="alert alert-success alert-dismissable" ng-if="createValueSuccess">
                                                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                                    <strong>Success : </strong><span>{{createMissionSuccessMsg}}<br></span>
+                                                    <strong>Success : </strong><span>{{createValueSuccessMsg}}<br></span>
                                                 </div>
 
 
@@ -570,7 +570,7 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-4 control-label" for="period">Value Period</label>
                                                         <div class="col-sm-8">
-                                                            <select class="form-control" role="menu" ng-model="companyGoal.period">
+                                                            <select class="form-control" role="menu" ng-model="companyValue.period">
                                                                 <option ng-selected="[Select]">--Select--</option>
                                                                 <option ng-repeat="finYear in allFinYears" value="{{finYear._id}}">{{finYear.name}}</option>
                                                             </select>
@@ -579,12 +579,12 @@
                                                     <div class="form-group">
                                                         <label for="perspDescr" class="col-sm-4 control-label">Value Description</label>
                                                         <div class="col-sm-8">
-                                                            <textarea type="text" class="form-control bool-input" ng-model="companyGoal.name" placeholder="Mission"></textarea>
+                                                            <textarea type="text" class="form-control bool-input" ng-model="companyValue.name" placeholder="Mission"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="col-sm-4 col-sm-offset-4">
-                                                            <button type="button" class="bool-input btn btn-default btn-sm glyphicon glyphicon-plus btn-success" ng-click="createNewMission()">&nbsp;Add</button>
+                                                            <button type="button" class="bool-input btn btn-default btn-sm glyphicon glyphicon-plus btn-success" ng-click="createNewValue()">&nbsp;Add</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -603,13 +603,13 @@
                                         <div class="bool-container panel-body">
                                             <div>
                                                 <div class="container-fluid">
-                                                    <div class="alert alert-warning alert-dismissable" ng-if="hsFetchCGoalInfo">
+                                                    <div class="alert alert-warning alert-dismissable" ng-if="hsFetchValueInfo">
                                                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                                        <strong>Info:</strong><span>{{fetchCMissionInfo}}<br></span>
+                                                        <strong>Info:</strong><span>{{fetchValueInfo}}<br></span>
                                                     </div>
                                                     <div class="row">
                                                         <div>
-                                                            <div class="col-sm-12" ultimate-datatable="companyMissionDT">
+                                                            <div class="col-sm-12" ultimate-datatable="companyValuesDT">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -632,14 +632,14 @@
                                         <div class="bool-container panel-body">
                                             <div class="col-sm-12">
                                                 <br>
-                                                <div class="alert alert-danger alert-dismissable" ng-if="hasCreateMissionErrors">
+                                                <div class="alert alert-danger alert-dismissable" ng-if="hasCreateObjErrors">
                                                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                                    <strong>Error : </strong><span>{{createMissionError}}<br></span>
+                                                    <strong>Error : </strong><span>{{createObjError}}<br></span>
                                                 </div>
 
-                                                <div class="alert alert-success alert-dismissable" ng-if="createCGoalSuccess">
+                                                <div class="alert alert-success alert-dismissable" ng-if="createObjSuccess">
                                                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                                    <strong>Success : </strong><span>{{createMissionSuccessMsg}}<br></span>
+                                                    <strong>Success : </strong><span>{{createObjSuccessMsg}}<br></span>
                                                 </div>
 
 
@@ -647,21 +647,31 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-4 control-label" for="period">Objective Period</label>
                                                         <div class="col-sm-8">
-                                                            <select class="form-control" role="menu" ng-model="companyGoal.period">
+                                                            <select class="form-control" role="menu" ng-model="companyObjective.period">
                                                                 <option ng-selected="[Select]">--Select--</option>
                                                                 <option ng-repeat="finYear in allFinYears" value="{{finYear._id}}">{{finYear.name}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label" for="period">Objective Period</label>
+                                                        <div class="col-sm-8">
+                                                            <select class="form-control" role="menu" ng-model="companyObjective.perspective">
+                                                                <option ng-selected="[Select]">--Select--</option>
+                                                                <option ng-repeat="pers in listOfPersp" value="{{pers._id}}">{{pers.perspName}}</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="perspDescr" class="col-sm-4 control-label">Objective Description</label>
                                                         <div class="col-sm-8">
-                                                            <textarea type="text" class="form-control bool-input" ng-model="companyGoal.name" placeholder="Objective"></textarea>
+                                                            <textarea type="text" class="form-control bool-input" ng-model="companyObjective.name" placeholder="Objective"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="col-sm-4 col-sm-offset-4">
-                                                            <button type="button" class="bool-input btn btn-default btn-sm glyphicon glyphicon-plus btn-success" ng-click="createNewMission()">&nbsp;Add</button>
+                                                            <button type="button" class="bool-input btn btn-default btn-sm glyphicon glyphicon-plus btn-success" ng-click="createNewObjective()">&nbsp;Add</button>
                                                         </div>
                                                     </div>
                                                 </form>

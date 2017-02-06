@@ -1270,6 +1270,11 @@ bsc.service('allObjectives', ['$http', function($http) {
     $scope.initCompStructType = 'company';
     $scope.initCompParObjId = '0';
     $scope.listOfPos = null;
+    $scope.companyGoal = {};
+    $scope.companyVision = {};
+    $scope.companyMission = {};
+    $scope.companyValue = {};
+    $scope.companyObjective = {};
 
     $scope.myTree = [];
 
@@ -1309,6 +1314,8 @@ bsc.service('allObjectives', ['$http', function($http) {
             $scope.listOfPersp = resp;
         });
     }
+
+    $scope.getPerspectives();
 
     // get ObjPeriods : 
     $scope.getObjPeriods = function() {
@@ -1363,15 +1370,13 @@ bsc.service('allObjectives', ['$http', function($http) {
         });
     }
 
-    $scope.companyGoal = {};
-
     $scope.createNewGoal = function () {
         $scope.hasCreateGoalErrors = false;
         $scope.createGoalError = null;
         $scope.createGoalSuccessMsg = null;
         $scope.createCGoalSuccess = false;
 
-        if ($scope.companyGoal.name == null || $scope.companyGoal.from == '--Select--' || $scope.companyGoal.name == null) {
+        if ($scope.companyGoal.name == null || $scope.companyGoal.period == '--Select--') {
             $scope.hasCreateGoalErrors = true;
             $scope.createGoalError = "Please fill all fields"; 
         } else {
@@ -1380,6 +1385,82 @@ bsc.service('allObjectives', ['$http', function($http) {
                 $scope.createGoalSuccessMsg = resp;
                 $scope.companyGoal = {};
                 $scope.fetchCompanyGoals();
+            }); 
+        }
+    }
+
+    $scope.createNewVision = function () {
+        $scope.hasCreateVisionErrors = false;
+        $scope.createVisionError = null;
+        $scope.createVisionSuccessMsg = null;
+        $scope.createVisionSuccess = false;
+
+        if ($scope.companyVision.name == null || $scope.companyVision.period == '--Select--') {
+            $scope.hasCreateVisionErrors = true;
+            $scope.createVisionError = "Please fill all fields"; 
+        } else {
+            $http.post('/createCompanyVision', $scope.companyVision).success(function(resp) {
+                $scope.createVisionSuccess = true;
+                $scope.createVisionSuccessMsg = resp;
+                $scope.companyVision = {};
+                $scope.fetchCompanyVisions();
+            }); 
+        }
+    }
+
+    $scope.createNewMission = function () {
+        $scope.hasCreateMissionErrors = false;
+        $scope.createMissionError = null;
+        $scope.createMissionSuccessMsg = null;
+        $scope.createMissionSuccess = false;
+
+        if ($scope.companyMission.name == null || $scope.companyMission.period == '--Select--') {
+            $scope.hasCreateMissionErrors = true;
+            $scope.createMissionError = "Please fill all fields"; 
+        } else {
+            $http.post('/createCompanyMission', $scope.companyMission).success(function(resp) {
+                $scope.createMissionSuccess = true;
+                $scope.createMissionSuccessMsg = resp;
+                $scope.companyMission = {};
+                $scope.fetchCompanyMissions();
+            }); 
+        }
+    }
+
+    $scope.createNewValue = function () {
+        $scope.hasCreateValueErrors = false;
+        $scope.createValueError = null;
+        $scope.createValueSuccessMsg = null;
+        $scope.createValueSuccess = false;
+
+        if ($scope.companyValue.name == null || $scope.companyValue.period == '--Select--') {
+            $scope.hasCreateValueErrors = true;
+            $scope.createValueError = "Please fill all fields"; 
+        } else {
+            $http.post('/createCompanyValue', $scope.companyValue).success(function(resp) {
+                $scope.createValueSuccess = true;
+                $scope.createValueSuccessMsg = resp;
+                $scope.companyValue = {};
+                $scope.fetchCompanyValues();
+            }); 
+        }
+    }
+
+    $scope.createNewObjective = function () {
+        $scope.hasCreateObjErrors = false;
+        $scope.createObjectiveError = null;
+        $scope.createObjSuccessMsg = null;
+        $scope.createObjsSuccess = false;
+
+        if ($scope.companyObjective.name == null || $scope.companyObjective.period == '--Select--' || $scope.companyObjective.perspective == '--Select--') {
+            $scope.hasCreateObjErrors = true;
+            $scope.createObjError = "Please fill all fields"; 
+        } else {
+            $http.post('/createCompanyObjective', $scope.companyObjective).success(function(resp) {
+                $scope.createObjSuccess = true;
+                $scope.createObjSuccessMsg = resp;
+                $scope.companyObjective = {};
+                $scope.fetchCompanyObjectives();
             }); 
         }
     }

@@ -11,7 +11,8 @@ var app = express();
 
 //var databaseUrl = "147.110.192.71,147.110.192.100,147.110.186.221/sebentiledb?slaveOk=true";
 var databaseUrl = "127.0.0.1/sebentiledb";
-var collections = ["Objectives","EvalPeriods","ObjPeriods", "financialYears", "CompanyGoals", "Division", "Transaction", "Document", "Employees", "Scorecard", "structure", "perspective", "sessions", "tracking", "empcloseperiods"];
+var collections = ["Objectives","EvalPeriods","ObjPeriods", "financialYears", "strategy", "Division", 
+    "Transaction", "Document", "Employees", "Scorecard", "structure", "perspective", "sessions", "tracking", "empcloseperiods"];
 var db = require("mongojs").connect(databaseUrl, collections);
 
 var ObjectId = db.ObjectId;
@@ -302,7 +303,47 @@ app.post("/fetchAllObjPeriods", function(req, res) {
 })
 
 app.post("/fetchAllCGoals", function(req, res) {
-    db.CompanyGoals.find(function(err, docs) {
+    db.strategy.find({type:"goal"}, function(err, docs) {
+        if (err) {
+            console.log("There is an error");
+        } else {
+            res.json(docs);
+        }
+    });
+})
+
+app.post("/fetchAllCVisions", function(req, res) {
+    db.strategy.find({type:"vision"}, function(err, docs) {
+        if (err) {
+            console.log("There is an error");
+        } else {
+            res.json(docs);
+        }
+    });
+})
+
+app.post("/fetchAllCMissions", function(req, res) {
+    db.strategy.find({type:"mission"}, function(err, docs) {
+        if (err) {
+            console.log("There is an error");
+        } else {
+            res.json(docs);
+        }
+    });
+})
+
+app.post("/fetchAllCValues", function(req, res) {
+    db.strategy.find({type:"value"}, function(err, docs) {
+        if (err) {
+            console.log("There is an error");
+        } else {
+            res.json(docs);
+        }
+    });
+})
+
+app.post("/fetchAllCObjectives", function(req, res) {
+    db.strategy.find({type:"objective"}, function(err, docs) {
         if (err) {
             console.log("There is an error");
         } else {
@@ -911,13 +952,62 @@ app.post('/saveNewPerspective', function(req, res) {
     });
 })
 
+app.post('/createCompanyVision', function(req, res) {
+    query = req.body;
+    query['type'] = 'vision';
+
+    db.strategy.insert(query, function(err, saved) {
+        if (err) res.send('Error!');
+        else {
+            res.send("Company Vision successfully created")
+        }
+    });
+})
+
+app.post('/createCompanyMission', function(req, res) {
+    query = req.body;
+    query['type'] = 'mission';
+
+    db.strategy.insert(query, function(err, saved) {
+        if (err) res.send('Error!');
+        else {
+            res.send("Company Mission successfully created")
+        }
+    });
+})
+
+app.post('/createCompanyValue', function(req, res) {
+    query = req.body;
+    query['type'] = 'value';
+
+    db.strategy.insert(query, function(err, saved) {
+        if (err) res.send('Error!');
+        else {
+            res.send("Company Value successfully created")
+        }
+    });
+})
+
 app.post('/createCompanyGoal', function(req, res) {
     query = req.body;
+    query['type'] = 'goal';
 
-    db.CompanyGoals.insert(query, function(err, saved) {
+    db.strategy.insert(query, function(err, saved) {
         if (err) res.send('Error!');
         else {
             res.send("Company Goal successfully created")
+        }
+    });
+})
+
+app.post('/createCompanyObjective', function(req, res) {
+    query = req.body;
+    query['type'] = 'objective';
+
+    db.strategy.insert(query, function(err, saved) {
+        if (err) res.send('Error!');
+        else {
+            res.send("Company Objective successfully created")
         }
     });
 })
