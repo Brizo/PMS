@@ -1486,6 +1486,13 @@ bsc.service('allObjectives', ['$http', function($http) {
                         "type": "text",
                         "edit": true,
                         "selected": true
+                    },{
+                        "header": "Period",
+                        "property": "period",
+                        "order": true,
+                        "type": "text",
+                        "edit": true,
+                        "selected": true
                     }],
                     "edit": {
                         "active": true,
@@ -1528,6 +1535,309 @@ bsc.service('allObjectives', ['$http', function($http) {
                 $scope.companyGoalsDT = datatable(companyGoalsConfig);
                 //Setting the data to the datatable
                 $scope.companyGoalsDT.setData(goalsDatatableData);
+            } 
+        })
+    };
+
+    $scope.fetchCompanyVisions = function() {
+        $scope.fetchGoalInfo = null;
+        $scope.hsFetchGoalInfo = false;
+
+        $http.post('/fetchAllCVisions').success(function(resp) {
+            $scope.companyVisions = resp;
+
+            if (resp.length <= 0) {
+                $scope.fetchVisionInfo = "There are no company visions yet";
+                $scope.hsFetchVisionInfo = true;
+            } else {
+                //Current Perspective Objects Datatable Config
+                var companyVisionsConfig = {
+                    "name": "simple_datatable",
+                    "columns": [{
+                        "header": "Vision",
+                        "property": "name",
+                        "order": true,
+                        "type": "text",
+                        "edit": true,
+                        "selected": true
+                    },{
+                        "header": "Period",
+                        "property": "period",
+                        "order": true,
+                        "type": "text",
+                        "edit": true,
+                        "selected": true
+                    }],
+                    "edit": {
+                        "active": true,
+                        "columnMode": true
+                    },
+                    "pagination": {
+                        "mode": 'local'
+                    },
+                    "order": {
+                        "mode": 'local'
+                    },
+                    "remove": {
+                        "active": true,
+                        "mode": 'remote',
+                        "url": function(value) {
+                            return "/dtRemoveCGoal/:" + value._id
+                        },
+                        "method": "delete"
+                    },
+                    "save": {
+                        "active": true,
+                        "mode": 'remote',
+                        "url": "/dtEditCGoal",
+                        "method": "post"
+                    },
+                    "hide": {
+                        "active": true,
+                        "showButton": true
+                    },
+                    "filter": {
+                        "active": true,
+                        "highlight": true,
+                        "columnMode": true
+                    }
+                };
+
+                var visionsDatatableData = $scope.companyVisions;
+
+                //Initialising the datatable with this configuration
+                $scope.companyVisionsDT = datatable(companyVisionsConfig);
+                //Setting the data to the datatable
+                $scope.companyVisionsDT.setData(visionsDatatableData);
+            } 
+        })
+    };
+
+    $scope.fetchCompanyMissions = function() {
+        $scope.fetchMissionInfo = null;
+        $scope.hsFetchMissionInfo = false;
+
+        $http.post('/fetchAllCMissions').success(function(resp) {
+            $scope.companyMissions = resp;
+
+            if (resp.length <= 0) {
+                $scope.fetchMissionInfo = "There are no company visions yet";
+                $scope.hsFetchMissionInfo = true;
+            } else {
+                //Current Perspective Objects Datatable Config
+                var companyMissionsConfig = {
+                    "name": "simple_datatable",
+                    "columns": [{
+                        "header": "Mission",
+                        "property": "name",
+                        "order": true,
+                        "type": "text",
+                        "edit": true,
+                        "selected": true
+                    },{
+                        "header": "Period",
+                        "property": "period",
+                        "order": true,
+                        "type": "text",
+                        "edit": true,
+                        "selected": true
+                    }],
+                    "edit": {
+                        "active": true,
+                        "columnMode": true
+                    },
+                    "pagination": {
+                        "mode": 'local'
+                    },
+                    "order": {
+                        "mode": 'local'
+                    },
+                    "remove": {
+                        "active": true,
+                        "mode": 'remote',
+                        "url": function(value) {
+                            return "/dtRemoveCMission/:" + value._id
+                        },
+                        "method": "delete"
+                    },
+                    "save": {
+                        "active": true,
+                        "mode": 'remote',
+                        "url": "/dtEditCMission",
+                        "method": "post"
+                    },
+                    "hide": {
+                        "active": true,
+                        "showButton": true
+                    },
+                    "filter": {
+                        "active": true,
+                        "highlight": true,
+                        "columnMode": true
+                    }
+                };
+
+                var missionsDatatableData = $scope.companyMissions;
+
+                //Initialising the datatable with this configuration
+                $scope.companyMissionsDT = datatable(companyMissionsConfig);
+                //Setting the data to the datatable
+                $scope.companyMissionsDT.setData(missionsDatatableData);
+            } 
+        })
+    };
+
+    $scope.fetchCompanyValues = function() {
+        $scope.fetchValueInfo = null;
+        $scope.hsFetchValueInfo = false;
+
+        $http.post('/fetchAllCValues').success(function(resp) {
+            $scope.companyValues = resp;
+
+            if (resp.length <= 0) {
+                $scope.fetchValueInfo = "There are no company values yet";
+                $scope.hsFetchValueInfo = true;
+            } else {
+                //Current Perspective Objects Datatable Config
+                var companyValuesConfig = {
+                    "name": "simple_datatable",
+                    "columns": [{
+                        "header": "Value",
+                        "property": "name",
+                        "order": true,
+                        "type": "text",
+                        "edit": true,
+                        "selected": true
+                    },{
+                        "header": "Period",
+                        "property": "period",
+                        "order": true,
+                        "type": "text",
+                        "edit": true,
+                        "selected": true
+                    }],
+                    "edit": {
+                        "active": true,
+                        "columnMode": true
+                    },
+                    "pagination": {
+                        "mode": 'local'
+                    },
+                    "order": {
+                        "mode": 'local'
+                    },
+                    "remove": {
+                        "active": true,
+                        "mode": 'remote',
+                        "url": function(value) {
+                            return "/dtRemoveCValue/:" + value._id
+                        },
+                        "method": "delete"
+                    },
+                    "save": {
+                        "active": true,
+                        "mode": 'remote',
+                        "url": "/dtEditCValue",
+                        "method": "post"
+                    },
+                    "hide": {
+                        "active": true,
+                        "showButton": true
+                    },
+                    "filter": {
+                        "active": true,
+                        "highlight": true,
+                        "columnMode": true
+                    }
+                };
+
+                var valuesDatatableData = $scope.companyValues;
+
+                //Initialising the datatable with this configuration
+                $scope.companyValuesDT = datatable(companyValuesConfig);
+                //Setting the data to the datatable
+                $scope.companyValuesDT.setData(valuesDatatableData);
+            } 
+        })
+    };
+
+    $scope.fetchCompanyObjectives = function() {
+        $scope.fetchObjectiveInfo = null;
+        $scope.hsFetchObjectiveInfo = false;
+
+        $http.post('/fetchAllCObjectives').success(function(resp) {
+            $scope.companyObjectives = resp;
+
+            if (resp.length <= 0) {
+                $scope.fetchMissionInfo = "There are no company visions yet";
+                $scope.hsFetchMissionInfo = true;
+            } else {
+                //Current Perspective Objects Datatable Config
+                var companyObjectivesConfig = {
+                    "name": "simple_datatable",
+                    "columns": [{
+                        "header": "Objective",
+                        "property": "name",
+                        "order": true,
+                        "type": "text",
+                        "edit": true,
+                        "selected": true
+                    },{
+                        "header": "Period",
+                        "property": "period",
+                        "order": true,
+                        "type": "text",
+                        "edit": true,
+                        "selected": true
+                    },{
+                        "header": "Perspective",
+                        "property": "perspective",
+                        "order": true,
+                        "type": "text",
+                        "edit": true,
+                        "selected": true
+                    }],
+                    "edit": {
+                        "active": true,
+                        "columnMode": true
+                    },
+                    "pagination": {
+                        "mode": 'local'
+                    },
+                    "order": {
+                        "mode": 'local'
+                    },
+                    "remove": {
+                        "active": true,
+                        "mode": 'remote',
+                        "url": function(value) {
+                            return "/dtRemoveCObjective/:" + value._id
+                        },
+                        "method": "delete"
+                    },
+                    "save": {
+                        "active": true,
+                        "mode": 'remote',
+                        "url": "/dtEditCObjective",
+                        "method": "post"
+                    },
+                    "hide": {
+                        "active": true,
+                        "showButton": true
+                    },
+                    "filter": {
+                        "active": true,
+                        "highlight": true,
+                        "columnMode": true
+                    }
+                };
+
+                var objectivesDatatableData = $scope.companyObjectives;
+
+                //Initialising the datatable with this configuration
+                $scope.companyObjectivesDT = datatable(companyObjectivesConfig);
+                //Setting the data to the datatable
+                $scope.companyObjectivesDT.setData(objectivesDatatableData);
             } 
         })
     };

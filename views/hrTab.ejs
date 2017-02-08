@@ -38,11 +38,11 @@
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Strategy</a>
                                 <ul class="dropdown-menu bool-container">
-                                    <li><a href="#visionNew" data-toggle="tab" ng-click='fetchCompanyVision()'>Vision</a></li>
-                                    <li><a href="#missionNew" data-toggle="tab" ng-click='fetchCompanyMission()'>Mission</a></li>
+                                    <li><a href="#visionNew" data-toggle="tab" ng-click='fetchCompanyVisions()'>Vision</a></li>
+                                    <li><a href="#missionNew" data-toggle="tab" ng-click='fetchCompanyMissions()'>Mission</a></li>
                                     <li><a href="#goalNew" data-toggle="tab" ng-click='fetchCompanyGoals()'>Goals</a></li>
-                                    <li><a href="#valueNew" data-toggle="tab" ng-click='fetchCompanyGoals()'>Values</a></li>
-                                    <li><a href="#objectiveNew" data-toggle="tab" ng-click='fetchCompanyGoals()'>Objectives</a></li>                      
+                                    <li><a href="#valueNew" data-toggle="tab" ng-click='fetchCompanyValues()'>Values</a></li>
+                                    <li><a href="#objectiveNew" data-toggle="tab" ng-click='fetchCompanyObjectives()'>Objectives</a></li>                      
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -443,7 +443,7 @@
                                     <div class="bool-container panel panel-default">
                                         <div class="panel-heading">
                                             <div class="bool-container panel-title">
-                                                <h4>Company Vision</h4>
+                                                <h4>Company Visions</h4>
                                             </div>
                                         </div>
                                         <div class="bool-container panel-body">
@@ -455,7 +455,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div>
-                                                            <div class="col-sm-12" ultimate-datatable="companyVisionDT">
+                                                            <div class="col-sm-12" ultimate-datatable="companyVisionsDT">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -502,7 +502,7 @@
                                                     <div class="form-group">
                                                         <label for="perspDescr" class="col-sm-4 control-label">Mission Description</label>
                                                         <div class="col-sm-8">
-                                                            <textarea type="text" class="form-control bool-input" ng-model="companyMision.name" placeholder="Mission"></textarea>
+                                                            <textarea type="text" class="form-control bool-input" ng-model="companyMission.name" placeholder="Mission"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -520,7 +520,7 @@
                                     <div class="bool-container panel panel-default">
                                         <div class="panel-heading">
                                             <div class="bool-container panel-title">
-                                                <h4>Company Mission</h4>
+                                                <h4>Company Missions</h4>
                                             </div>
                                         </div>
                                         <div class="bool-container panel-body">
@@ -532,7 +532,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div>
-                                                            <div class="col-sm-12" ultimate-datatable="companyMissionDT">
+                                                            <div class="col-sm-12" ultimate-datatable="companyMissionsDT">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -579,7 +579,7 @@
                                                     <div class="form-group">
                                                         <label for="perspDescr" class="col-sm-4 control-label">Value Description</label>
                                                         <div class="col-sm-8">
-                                                            <textarea type="text" class="form-control bool-input" ng-model="companyValue.name" placeholder="Mission"></textarea>
+                                                            <textarea type="text" class="form-control bool-input" ng-model="companyValue.name" placeholder="Value"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -603,9 +603,9 @@
                                         <div class="bool-container panel-body">
                                             <div>
                                                 <div class="container-fluid">
-                                                    <div class="alert alert-warning alert-dismissable" ng-if="hsFetchValueInfo">
+                                                    <div class="alert alert-warning alert-dismissable" ng-if="hsFetchValuesInfo">
                                                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                                        <strong>Info:</strong><span>{{fetchValueInfo}}<br></span>
+                                                        <strong>Info:</strong><span>{{fetchValuesInfo}}<br></span>
                                                     </div>
                                                     <div class="row">
                                                         <div>
@@ -690,13 +690,13 @@
                                         <div class="bool-container panel-body">
                                             <div>
                                                 <div class="container-fluid">
-                                                    <div class="alert alert-warning alert-dismissable" ng-if="hsFetchCGoalInfo">
+                                                    <div class="alert alert-warning alert-dismissable" ng-if="hsFetchObjectivesInfo">
                                                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                                        <strong>Info:</strong><span>{{fetchCMissionInfo}}<br></span>
+                                                        <strong>Info:</strong><span>{{fetchObjectiveInfo}}<br></span>
                                                     </div>
                                                     <div class="row">
                                                         <div>
-                                                            <div class="col-sm-12" ultimate-datatable="companyMissionDT">
+                                                            <div class="col-sm-12" ultimate-datatable="companyObjectivesDT">
                                                             </div>
                                                         </div>
                                                     </div>

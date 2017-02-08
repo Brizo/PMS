@@ -352,6 +352,46 @@ app.post("/fetchAllCObjectives", function(req, res) {
     });
 })
 
+app.post("/fetchAllCVisions", function(req, res) {
+    db.strategy.find({type:"vision"}, function(err, docs) {
+        if (err) {
+            console.log("There is an error");
+        } else {
+            res.json(docs);
+        }
+    });
+})
+
+app.post("/fetchAllCMissions", function(req, res) {
+    db.strategy.find({type:"mission"}, function(err, docs) {
+        if (err) {
+            console.log("There is an error");
+        } else {
+            res.json(docs);
+        }
+    });
+})
+
+app.post("/fetchAllCValues", function(req, res) {
+    db.strategy.find({type:"value"}, function(err, docs) {
+        if (err) {
+            console.log("There is an error");
+        } else {
+            res.json(docs);
+        }
+    });
+})
+
+app.post("/fetchAllCObjectives", function(req, res) {
+    db.strategy.find({type:"objective"}, function(err, docs) {
+        if (err) {
+            console.log("There is an error");
+        } else {
+            res.json(docs);
+        }
+    });
+})
+
 app.post("/getAllUnactionedObjs", function(req, res) {
     var ID = req.session.loggdUser.objId;
     var period = req.body.period;
