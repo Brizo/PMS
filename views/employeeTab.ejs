@@ -1,66 +1,1027 @@
 <div class="tab-pane fade in" id="employeeTab" ng-controller="empRoleController">	 
-	<div>
-      	<ul class="nav nav-pills nav-normal">
-         	<li class="dropdown">
-            	<a class="dropdown-toggle" data-toggle="dropdown" href="#" data-toggle="tooltip" data-placement="top" title="Click to Create or Submit Objectives">Objectives</a>
-            	<ul class="dropdown-menu">
-               		<li><a href="#createEmpObjective" ng-click="clearEmpObjectivesErrors();getObjPeriods()" data-toggle="tab">New Objective</a></li>
-               		<li><a href="#submitObjectives" data-toggle="tab">Submit Objectives</a></li>
-               		<li><a href="#allStateObjectives" ng-click="getAllStateObjs()" data-toggle="tab">View Submitted Objectives</a></li>
-               		<li><a href="#unapprovedObjectives" ng-click="getEmpRejectedObjs()" data-toggle="tab">Rejected Objectives</a></li>
-               		<li><a href="#closeObjCreation" ng-click="getObjPeriods()" data-toggle="tab">Close Objective Creation</a></li>
-            	</ul>
-         	</li>
-         	<li class="dropdown">
-            	<a class="dropdown-toggle" ng-click="clearSC();" data-toggle="dropdown" href="#" data-toggle="tooltip" data-placement="top" title="Click and Choose an option">View</a>
-            	<ul class="dropdown-menu">
-               		<li><a ng-click="getContractObjs()" href="#perfContract" data-toggle="tab">Perfomance Contract</a></li>
-               		<li><a ng-click="getBscObjs();" href="#viewBSC" data-toggle="tab">Scorecard</a></li>
-               		<li><a ng-click="getSupConObjs();" href="#viewSupContract" data-toggle="tab">Superior's Contract</a></li>
-               		<li><a ng-click="#" href="#viewCObjectives" data-toggle="tab">Company wide objectives</a></li>
-               		<li><a ng-click="fetchCompanyGoals()" href="#viewCGoals" data-toggle="tab">Company wide Goals</a></li>
-            	</ul>
-         	</li>
-         	<li class="dropdown">
-            	<a class="dropdown-toggle" data-toggle="dropdown" href="#" data-toggle="tooltip" data-placement="top" title="Click to perform your evaluation">Evaluation</a>
-            	<ul class="dropdown-menu">
-               		<li><a ng-click="clearApproved();getEvalObjectives()" href="#selfEval" data-toggle="tab" >Self evaluation</a></li>
-               		<li><a ng-click="getObjPeriods()" href="#closeSelfEval" data-toggle="tab" >Close evaluation</a></li>
-            	</ul>
-         	</li>
-         	<li>
-            	<a data-toggle="tab" href="#empDashBoard" data-toggle="tooltip" data-placement="top" title="Click to view Employee Dashboard">Mini Dashboard</a>
-         	</li>
-      	</ul>
-      	<br>
-      	<div class="tab-content">
-			<!-- create objective : By Brian-->
-			<div class="tab-pane fade" id="createEmpObjective">
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="panel panel-default">
-			              	<div class="panel-heading">
-			                 	<div class="panel-title">
-						  			<h5 class="panel-title">Create Key Performance Area(s)</h5>
-			                	 </div>
-			              	</div>
-			              	<div class="panel-body container-fluid">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<ul class="nav nav-pills nav-normal">
+	         	<li class="dropdown">
+	            	<a class="dropdown-toggle" data-toggle="dropdown" href="#" data-toggle="tooltip" data-placement="top" title="Click to Create or Submit Objectives">Objectives</a>
+	            	<ul class="dropdown-menu">
+	               		<li><a href="#createEmpObjective" ng-click="clearEmpObjectivesErrors();getObjPeriods()" data-toggle="tab">New Objective</a></li>
+	               		<li><a href="#submitObjectives" data-toggle="tab">Submit Objectives</a></li>
+	               		<li><a href="#allStateObjectives" ng-click="getAllStateObjs()" data-toggle="tab">View Submitted Objectives</a></li>
+	               		<li><a href="#unapprovedObjectives" ng-click="getEmpRejectedObjs()" data-toggle="tab">Rejected Objectives</a></li>
+	               		<li><a href="#closeObjCreation" ng-click="getObjPeriods()" data-toggle="tab">Close Objective Creation</a></li>
+	            	</ul>
+	         	</li>
+	         	<li class="dropdown">
+	            	<a class="dropdown-toggle" ng-click="clearSC();" data-toggle="dropdown" href="#" data-toggle="tooltip" data-placement="top" title="Click and Choose an option">View</a>
+	            	<ul class="dropdown-menu">
+	               		<li><a ng-click="getContractObjs()" href="#perfContract" data-toggle="tab">Perfomance Contract</a></li>
+	               		<li><a ng-click="getBscObjs();" href="#viewBSC" data-toggle="tab">Scorecard</a></li>
+	               		<li><a ng-click="getSupConObjs();" href="#viewSupContract" data-toggle="tab">Superior's Contract</a></li>
+	               		<li><a ng-click="#" href="#viewCObjectives" data-toggle="tab">Company wide objectives</a></li>
+	               		<li><a ng-click="fetchCompanyGoals()" href="#viewCGoals" data-toggle="tab">Company wide Goals</a></li>
+	            	</ul>
+	         	</li>
+	         	<li class="dropdown">
+	            	<a class="dropdown-toggle" data-toggle="dropdown" href="#" data-toggle="tooltip" data-placement="top" title="Click to perform your evaluation">Evaluation</a>
+	            	<ul class="dropdown-menu">
+	               		<li><a ng-click="clearApproved();getEvalObjectives()" href="#selfEval" data-toggle="tab" >Self evaluation</a></li>
+	               		<li><a ng-click="getObjPeriods()" href="#closeSelfEval" data-toggle="tab" >Close evaluation</a></li>
+	            	</ul>
+	         	</li>
+	         	<li>
+	            	<a data-toggle="tab" href="#empDashBoard" data-toggle="tooltip" data-placement="top" title="Click to view Employee Dashboard">Mini Dashboard</a>
+	         	</li>
+	      	</ul>
+		</div>
+		<div class="panel-body">
+	      	<div class="tab-content">
+				<!-- create objective : By Brian-->
+				<div class="tab-pane fade" id="createEmpObjective">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="panel panel-default">
+				              	<div class="panel-heading">
+				                 	<div class="panel-title">
+							  			<h5 class="panel-title">Create Key Performance Area(s)</h5>
+				                	 </div>
+				              	</div>
+				              	<div class="panel-body container-fluid">
 
-					  			<div class="alert alert-danger alert-dismissable" ng-if="hasCreateObjErrors">
-					  				<button type="button" class="close" data-dismiss="alert">&times;</button>
-					  				<strong>Error:</strong><span>{{createObjError}}<br></span>
-			   		 	 	 	</div>
+						  			<div class="alert alert-danger alert-dismissable" ng-if="hasCreateObjErrors">
+						  				<button type="button" class="close" data-dismiss="alert">&times;</button>
+						  				<strong>Error:</strong><span>{{createObjError}}<br></span>
+				   		 	 	 	</div>
 
-			   		 	 	 	<div class="alert alert-success alert-dismissable" ng-if="createObjSuccess">
-					  				<button type="button" class="close" data-dismiss="alert">&times;</button>
-					  				<strong>Success:</strong><span>{{createObjSuccessMsg}}<br></span>
-			   		 	 	 	</div>
+				   		 	 	 	<div class="alert alert-success alert-dismissable" ng-if="createObjSuccess">
+						  				<button type="button" class="close" data-dismiss="alert">&times;</button>
+						  				<strong>Success:</strong><span>{{createObjSuccessMsg}}<br></span>
+				   		 	 	 	</div>
 
-					  			<form class="form-horizontal">
-					  				<div class="col-sm-6">
-					  					<br />
-						  			
-						  				<div class="form-group">
+						  			<form class="form-horizontal">
+						  				<div class="col-sm-6">
+						  					<br />
+							  			
+							  				<div class="form-group">
+												<label class="col-sm-3 control-label" for="period">Period</label>
+												<div class="col-sm-8">
+													<select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="empObjective.objPeriod" ng-change="changeShowBCT()">
+														<option ng-selected="[Select]">--Select--</option>
+														<option ng-repeat="objPeriod in allObjPeriods" value="{{objPeriod._id}}">{{objPeriod.name}}</option>
+													</select>
+												</div>
+											</div>
+
+											<div ng-if="showBCT">
+												<div class="form-group">
+													<label class="col-sm-3 control-label" for="perspective">Perspective</label>
+													<div class="col-sm-8">
+														<select id="objPerspDropdownMenu" class="form-control" role="menu" ng-model="empObjective.perspective">
+															<option ng-selected="[Select]">--Select--</option>
+															<option ng-repeat="persp in allPerspectives">{{persp.perspName}}</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-3 control-label" for="detailedWeighting">Detailed Weighting</label>
+													<div class="col-sm-8">
+														<input type="text" placeholder="Enter the Detailed Weighting for objective..." ng-model="empObjective.detailedWeighting" class="form-control">
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-sm-3 control-label" for="kpa">Key Performance Area</label>
+													<div class="col-sm-8">
+														<input class="form-control" placeholder="Enter the description of the objective..." ng-model="empObjective.kpa">
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<label class="col-sm-3 control-label" for="kpi">Key Performance Indicator</label>&nbsp;
+													<div class="col-sm-8">
+														<textarea class="form-control" placeholder="Enter the Desired Standard Output..." type="text" rows="3" ng-model="empObjective.kpi"></textarea>
+													</div>
+												</div>
+
+							   		 	 	 	<div class="form-group">
+													<label class="col-sm-3 control-label">Metric</label>
+													<div class="col-sm-8">
+														<select id="objMatrixDropdownMenu" class="form-control" role="menu" ng-change="changeShowMatrix(empObjective.metrixType)" ng-model="empObjective.metrixType">
+															<option ng-selected="[Select]">--Select--</option>
+															<option value="percentage">Percentage/Text/Number</option>
+															<option value="time">Time</option>
+														</select>
+													</div>
+												</div>
+											</div> 
+										</div><!-- end first column -->
+
+										<div class="col-sm-6">
+											<br />
+		
+											<div ng-if="showOtherMatrixTypes" class="form-group">
+												<label  class="col-sm-1"><h5><strong>Rating</strong></h5></label>
+												<div class="form-group ">
+													<label  class="col-sm-3 control-label">Poor : 1</label>
+													<div class="col-sm-6">
+														<input class="form-control" id="poorPerfField" placeholder="Lowest achievement..." type="text"  
+														ng-model="empObjective.metricOneDef">
+													</div>
+												</div>
+												<label  class="col-sm-1"></label>
+												<div class="form-group">
+													<label  class="col-sm-3 control-label">Unsatisfactory : 2</label>
+													<div class="col-sm-6">
+														<input class="form-control" id="unsatPerfField" placeholder="Next lowest achievement..." type="text" 
+														ng-model="empObjective.metricTwoDef">
+													</div>
+												</div>
+												<label  class="col-sm-1"></label>
+												<div class="form-group">
+													<label  class="col-sm-3 control-label">Target Met : 3</label>
+													<div class="col-sm-6">
+														<input class="form-control" id="targetPerfField" placeholder="Expected goal..." type="text" 
+														ng-model="empObjective.metricThreeDef">
+													</div>
+												</div>
+												<label  class="col-sm-1"></label>
+												<div class="form-group">
+													<label  class="col-sm-3 control-label">Exceeding : 4</label>
+													<div class="col-sm-6">
+														<input class="form-control" id="exceedPerfField" placeholder="More than expected..." type="text" 
+													 	ng-model="empObjective.metricFourDef">
+													</div>
+												</div> 							
+												<label  class="col-sm-1"></label>
+												<div class="form-group">
+													<label  class="col-sm-3 control-label">Outstanding : 5</label>
+													<div class="col-sm-6">
+														<input class="form-control" id="outstandPerfField" placeholder="Way more than expected..." type="text" 
+														ng-model="empObjective.metricFiveDef">
+													</div>
+												</div>
+
+												<div class="form-group">
+													<div class="col-sm-10 col-sm-offset-1">
+														<button id="submitFinanceObjButton" class="btn btn-success" style="float:right;" ng-click="createObjective()"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Create</button>		
+													</div>
+												</div>
+											</div>
+
+											<div ng-if="showTimeMatrix" class="form-group">
+												<label class="col-sm-1"><h5><strong>Rating</strong></h5></label>
+												<div class="form-group">
+													<label class="col-sm-3 control-label">Poor : 1</label>
+													<div class="col-sm-3">
+														<label for="dateFrom">From:</label>
+					                                    <datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empObjective.metricOneFrom" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+													<div class="col-sm-3">
+														<label for="dateTo">To:</label>
+														<datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empObjective.metricOneTo" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+												</div>
+												<label class="col-sm-1"></label>
+												<div class="form-group">
+													<label class="col-sm-3 control-label">Unsatisfactory : 2</label>
+													<div class="col-sm-3">
+														<label for="dateFrom">From:</label>
+														<datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empObjective.metricTwoFrom" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+													<div class="col-sm-3">
+														<label for="dateTo">To:</label>
+														<datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empObjective.metricTwoTo" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+												</div>
+												<label class="col-sm-1"></label>
+												<div class="form-group">
+													<label class="col-sm-3 control-label">Target Met : 3</label>
+													<div class="col-sm-3">
+														<label for="dateFrom">From:</label>
+														<datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empObjective.metricThreeFrom" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+													<div class="col-sm-3">
+														<label for="dateTo">To:</label>
+														<datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empObjective.metricThreeTo" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+												</div>
+												<label class="col-sm-1"></label>
+												<div class="form-group">
+													<label class="col-sm-3 control-label">Exceeding : 4</label>
+													<div class="col-sm-3">
+														<label for="dateFrom">From:</label>
+														<datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empObjective.metricFourFrom" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+													<div class="col-sm-3">
+														<label for="dateFrom">To:</label>
+														<datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empObjective.metricFourTo" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+												</div>
+												<label class="col-sm-1"></label>
+												<div class="form-group">
+													<label class="col-sm-3 control-label">Outstanding : 5</label>
+													<div class="col-sm-3">
+														<label for="dateFrom">From:</label>
+														<datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empObjective.metricFiveFrom" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+													<div class="col-sm-3">
+														<label for="dateFrom">To:</label>
+														<datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empObjective.metricFiveTo" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<div class="col-sm-10 col-sm-offset-1">
+														<button id="submitFinanceObjButton" class="btn btn-success" style="float:right;" ng-click="createObjective()"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Create</button>		
+													</div>
+												</div>
+											</div> 
+										</div><!-- end second column -->
+									</form>
+				              	</div>	    
+				            </div>
+			            </div>
+			        </div>
+	            </div>
+
+	            <!-- edit objective : By Brian-->
+				<div class="tab-pane fade" id="editObjective">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="panel panel-default">
+				              	<div class="panel-heading">
+				                 	<div class="panel-title">
+							  			<h3 class="panel-title">Edit Rejected Objective</h3>
+				                	 </div>
+				              	</div>
+				              	<div class="panel-body">
+				              		<div class="alert alert-info">
+						  				<button type="button" class="close" data-dismiss="alert">X</button>
+										<p>Modify objective and Click on the Save button</p>
+						  			</div><br>
+
+						  			<div class="alert alert-danger alert-dismissable" ng-if="hasEditObjErrors">
+						  				<button type="button" class="close" data-dismiss="alert">&times;</button>
+						  				<strong>Error:</strong><span>{{editObjError}}<br></span>
+				   		 	 	 	</div>
+
+				   		 	 	 	<div class="alert alert-success alert-dismissable" ng-if="editObjSuccess">
+						  				<button type="button" class="close" data-dismiss="alert">&times;</button>
+						  				<strong>Success:</strong><span>{{editObjSuccessMsg}}<br></span>
+				   		 	 	 	</div>
+								
+									<form class="form-horizontal">
+										<div class="form-group">
+											<label class="col-sm-3 control-label" for="detailedWeighting">Perspective</label>
+											<div class="col-sm-8">
+												<input type="text" placeholder="Enter the Detailed Weighting for objective..." ng-model="empEditObjective.perspective" class="form-control" readonly>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label class="col-sm-3 control-label" for="detailedWeighting">Detailed Weighting</label>
+											<div class="col-sm-8">
+												<input type="text" placeholder="Enter the Detailed Weighting for objective..." ng-model="empEditObjective.detailedWeighting" class="form-control" readonly>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label class="col-sm-3 control-label" for="kpa">Key Performance Area</label>
+											<div class="col-sm-8">
+												<input class="form-control" placeholder="Enter the description of the objective..." ng-model="empEditObjective.kpa">
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-3 control-label" for="kpi">Key Performance Indicator</label>&nbsp;
+											<div class="col-sm-8">
+												<textarea class="form-control" placeholder="Enter the Desired Standard Output..." type="text" rows="3" ng-model="empEditObjective.kpi"></textarea>
+											</div>
+										</div>
+										<div class="form-group">
+												<label class="col-sm-3 control-label">Metric</label>
+												<div class="col-sm-8">
+													<select id="objMatrixDropdownMenu" class="form-control" role="menu" ng-change="changeEditShowMatrix(empEditObjective.metrixType)" ng-model="empEditObjective.metrixType">
+														<option ng-selected="[Select]">--Select--</option>
+														<option value="percentage">Percentage/Text/Number</option>
+														<option value="time">Time</option>
+													</select>
+												</div>
+											</div>
+		
+											<div ng-if="showEditOtherMatrixTypes" class="form-group">
+												<label  class="col-sm-1 col-sm-offset-2"><h5><strong>Performace Rating</strong></h5></label>
+												<div class="form-group ">
+													<label  class="col-sm-2 control-label">Poor : 1</label>
+													<div class="col-sm-5">
+														<input class="form-control" id="poorPerfField" placeholder="Lowest achievement..." type="text"  
+														ng-model="empEditObjective.metricOneDef">
+													</div>
+												</div>
+												<label  class="col-sm-1 col-sm-offset-2"></label>
+												<div class="form-group">
+													<label  class="col-sm-2 control-label">Unsatisfactory : 2</label>
+													<div class="col-sm-5">
+														<input class="form-control" id="unsatPerfField" placeholder="Next lowest achievement..." type="text" 
+														ng-model="empEditObjective.metricTwoDef">
+													</div>
+												</div>
+												<label  class="col-sm-1 col-sm-offset-2"></label>
+												<div class="form-group">
+													<label  class="col-sm-2 control-label">Target Met : 3</label>
+													<div class="col-sm-5">
+														<input class="form-control" id="targetPerfField" placeholder="Expected goal..." type="text" 
+														ng-model="empEditObjective.metricThreeDef">
+													</div>
+												</div>
+												<label  class="col-sm-1 col-sm-offset-2"></label>
+												<div class="form-group">
+													<label  class="col-sm-2 control-label">Exceeding : 4</label>
+													<div class="col-sm-5">
+														<input class="form-control" id="exceedPerfField" placeholder="More than expected..." type="text" 
+													 	ng-model="empEditObjective.metricFourDef">
+													</div>
+												</div> 							
+												<label  class="col-sm-1 col-sm-offset-2"></label>
+												<div class="form-group">
+													<label  class="col-sm-2 control-label">Outstanding : 5</label>
+													<div class="col-sm-5">
+														<input class="form-control" id="outstandPerfField" placeholder="Way more than expected..." type="text" 
+														ng-model="empEditObjective.metricFiveDef">
+													</div>
+												</div>
+											</div>
+
+											<div ng-if="showEditTimeMatrix" class="form-group">
+												<label class="col-sm-1 col-sm-offset-2"><h5><strong>Performace Rating</strong></h5></label>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Poor : 1</label>
+													<div class="col-sm-2">
+														<label for="dateFrom">From:</label>
+					                                    <datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empEditObjective.metricOneFrom" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+													<div class="col-sm-2">
+														<label for="dateTo">To:</label>
+														<datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empEditObjective.metricOneTo" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+												</div>
+												<label class="col-sm-1 col-sm-offset-2"></label>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Unsatisfactory : 2</label>
+													<div class="col-sm-2">
+														<label for="dateFrom">From:</label>
+														<datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empEditObjective.metricTwoFrom" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+													<div class="col-sm-2">
+														<label for="dateTo">To:</label>
+														<datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empEditObjective.metricTwoTo" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+												</div>
+												<label class="col-sm-1 col-sm-offset-2"></label>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Target Met : 3</label>
+													<div class="col-sm-2">
+														<label for="dateFrom">From:</label>
+														<datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empEditObjective.metricThreeFrom" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+													<div class="col-sm-2">
+														<label for="dateTo">To:</label>
+														<datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empEditObjective.metricThreeTo" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+												</div>
+												<label class="col-sm-1 col-sm-offset-2"></label>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Exceeding : 4</label>
+													<div class="col-sm-2">
+														<label for="dateFrom">From:</label>
+														<datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empEditObjective.metricFourFrom" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+													<div class="col-sm-2">
+														<label for="dateFrom">To:</label>
+														<datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empEditObjective.metricFourTo" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+												</div>
+												<label class="col-sm-1 col-sm-offset-2"></label>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Outstanding : 5</label>
+													<div class="col-sm-2">
+														<label for="dateFrom">From:</label>
+														<datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empEditObjective.metricFiveFrom" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+													<div class="col-sm-2">
+														<label for="dateFrom">To:</label>
+														<datepicker date-format="yyyy-MM-dd">
+					                                       <input ng-model="empEditObjective.metricFiveTo" class="form-control" type="text"/>
+					                                    </datepicker>
+													</div>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<div class="col-sm-10 col-sm-offset-1">
+													<button id="updateObjButton" class="btn btn-success" style="float:right;" ng-click="editRejObjective(empEditObjective)"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Save</button>		
+												</div>
+											</div>
+									</form> <!-- end edit objective form-->
+				              	</div>
+				            </div>
+			            </div>
+			        </div>
+	            </div>
+
+	            <!-- submit objectives objectives : By Brian-->
+	            <div class="tab-pane fade" id="submitObjectives">
+	            	<div class="row">
+						<div class="col-sm-12">
+							<div class="panel panel-default">
+				              	<div class="panel-heading">
+				                 	<div class="panel-title">
+							  			<h5 class="panel-title">List Of Created Objectives</h5>
+				                	 </div>
+				              	</div>
+
+				              	<div class="panel-body container-fluid">
+
+				              		<div class="alert alert-success alert-dismissable" ng-if="submitObjSuccess">
+						  				<button type="button" class="close" data-dismiss="alert">&times;</button><strong>Success :</strong>&nbsp;
+					        			<span>{{submitObjSuccessMsg}}<br></span>
+				   		 	 	 	</div> <!--end success alert -->
+
+				   		 	 	 	<div class="alert alert-info alert-dismissable" ng-if="hasSubmitObjInfo">
+						  				<button type="button" class="close" data-dismiss="alert">&times;</button>
+						  				<strong>Info!:</strong>&nbsp;<span>{{submitObjInfo}}<br></span>
+				   		 	 	 	</div> <!--end info alert -->
+				              		
+					              	<div class="alert alert-danger alert-dismissable col-sm-12" ng-if="hasSubmitObjErrors">
+										<button type="button" class="close" data-dismiss="alert">X</button>
+										<strong>Error!:</strong>&nbsp;<span ng-model='showSubMsg'>{{submitObjError}}<br></span>
+									</div> 
+								</div>
+				              	<div class="panel-body container-fluid">   
+
+				              		<div class="row">
+					              		<form class="form-horizontal">
+						              		<div class="col-sm-6">
+								  				<div class="form-group">
+													<label class="col-sm-2 control-label" for="period">Period</label>
+													<div class="col-sm-8">
+														<select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="submitObjPeriod">
+															<option ng-selected="[Select]">--Select--</option>
+															<option ng-repeat="objPeriod in allObjPeriods" value="{{objPeriod._id}}">{{objPeriod.name}}</option>
+														</select>
+													</div>
+													<div class="col-sm-2"><button class="btn btn-primary" ng-click="getUnactndObjectives()"><span class="glyphicon glyphicon-download"></span>&nbsp;Retrieve</button></div>
+												</div>
+											</div>
+										</form>
+									</div>
+
+									<div class="col-sm-12" ng-if="!noUnactionedObj;showSubmit" ultimate-datatable="unactionedKPADT">
+	                                </div>
+
+	                                <div class="col-sm-12" ng-if="!noUnactionedObj;showSubmit">	
+	                                	<span ng-if="!submitObjSuccess;"><input type="checkbox" name="select" ng-model="master" ng-click="selectAllObjsForSubmission()"/> Mark all </span>
+										<br><br>
+
+										<button ng-if="!submitObjSuccess;" class="btn btn-success" ng-click="submitObjectives()"><span class="glyphicon glyphicon-send"></span>&nbsp;Submit</button>
+	                                </div>
+				              	</div>
+				            </div>
+				        </div>
+				    </div>
+	            </div>
+
+	            <!-- confirm delete objective modal : By Brian-->
+	            <div class="modal fade" id="delObjectiveModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+			    	<div class="modal-dialog">
+			    		<div class="modal-content">
+	          				<div class="modal-header">
+					        	<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+					        	<h4 class="modal-title custom_align" id="Heading">Delete this objective</h4>
+					      	</div>
+	          				<div class="modal-body">
+	       						<div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Objective?</div>
+	      					</div>
+	        				<div class="modal-footer">
+						        <button  type="button" ng-click="delObjective(toDelObjective);clearSubmitModal();" class="btn btn-success" data-dismiss="modal" ><span class="glyphicon glyphicon-ok-sign" ></span> Yes</button>
+						        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+	     					</div>
+	        			</div> 
+	  				</div>
+	      		<!-- /.modal-dialog --> 
+	    		</div>
+
+	    		<!-- confirm delete objective modal : By Brian-->
+	            <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+			    	<div class="modal-dialog">
+			    		<div class="modal-content">
+	          				<div class="modal-header">
+					        	<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+					        	<h4 class="modal-title custom_align" id="Heading">Delete this objective</h4>
+					      	</div>
+	          				<div class="modal-body">
+	       						<div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Objective?</div>
+	      					</div>
+	        				<div class="modal-footer">
+						        <button  type="button" ng-click="delObjective(toDelObjective);clearSubmitModal();" class="btn btn-success" data-dismiss="modal" ><span class="glyphicon glyphicon-ok-sign" ></span> Yes</button>
+						        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+	     					</div>
+	        			</div> 
+	  				</div>
+	      		<!-- /.modal-dialog --> 
+	    		</div>
+
+	    		<!-- unapproved objectives : By Brian-->
+	            <div class="tab-pane fade" id="unapprovedObjectives">
+	            	<div class="row">
+						<div class="col-sm-12">
+							<div class="panel panel-default">
+				              	<div class="panel-heading">
+				                 	<div class="panel-title">
+							  			<h5 class="panel-title">List Of Rejected Objectives (By Supervisor)</h5>
+				                	 </div> 
+				              	</div>
+				              	<div class="panel-body container-fluid">
+
+							  		<div class="alert alert-danger alert-dismissable" ng-if="hasRejectedObjsErrors">
+						  				<button type="button" class="close" data-dismiss="alert">&times;</button>
+						  				<strong>Error!:</strong>&nbsp;<span>{{rejectedObjError}}<br></span>
+				   		 	 	 	</div> <!--end danger alert -->
+
+				   		 	 	 	<div class="alert alert-info alert-dismissable" ng-if="hasRejectedObjInfo">
+						  				<button type="button" class="close" data-dismiss="alert">&times;</button>
+						  				<strong>Info!:</strong>&nbsp;<span>{{rejectedObjInfo}}<br></span>
+				   		 	 	 	</div> <!--end info alert -->
+
+				   		 	 	 	<form class="form-horizontal" ng-if="!hasRejectedObjInfo">
+					              		<div class="col-sm-6">
+							  				<div class="form-group">
+												<label class="col-sm-3 control-label" for="period">Period</label>
+												<div class="col-sm-8">
+													<select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="rejectedObjPeriod" ng-change="changeShowRejected()">
+														<option ng-selected="[Select]">--Select--</option>
+														<option ng-repeat="objPeriod in allObjPeriods" value="{{objPeriod._id}}">{{objPeriod.name}}</option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</form>
+									
+									<div class="col-sm-12" ultimate-datatable="rejectedKPADT">
+	                                </div>
+				              	</div>
+				            </div>
+				        </div>
+				    </div>
+	            </div>
+
+	            <!-- all state objectives : By Brian-->
+	            <div class="tab-pane fade" id="allStateObjectives">
+	            	<div class="row">
+						<div class="col-sm-12">
+							<div class="panel panel-default">
+				              	<div class="panel-heading">
+				                 	<div class="panel-title">
+							  			<h5 class="panel-title">List Of All Employee Objectives</h5>
+				                	 </div> 
+				              	</div>
+				              	<div class="panel-body container-fluid">
+							  		
+				   		 	 	 	<div class="alert alert-danger alert-dismissable" ng-if="hasAllStateObjsErrors">
+						  				<button type="button" class="close" data-dismiss="alert">&times;</button>
+						  				<strong>Error!:</strong>&nbsp;<span>{{AllStateObjsError}}<br></span>
+				   		 	 	 	</div>
+
+				   		 	 	 	<div class="alert alert-info alert-dismissable" ng-if="hasAllStateObjInfo">
+						  				<button type="button" class="close" data-dismiss="alert">&times;</button>
+						  				<strong>Info!:</strong>&nbsp;<span>{{allStateObjInfo}}<br></span>
+				   		 	 	 	</div> <!--end info alert -->
+									
+									<div class="row" ng-if="!hasAllStateObjInfo">
+	                                    <div>
+	                                        <div class="col-sm-12" ultimate-datatable="allStateObjDT">
+	                                        </div>
+	                                    </div>
+	                                </div>
+				              	</div>
+				            </div>
+				        </div>
+				    </div>
+	            </div>
+
+				<div class="tab-pane fade" id="closeObjCreation">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="panel panel-default">
+				              	<div class="panel-heading">
+				                 	<div class="panel-title">
+							  			<h3 class="panel-title">Close objective creation period</h3>
+				                	 </div>
+				              	</div>
+				              	<div class="panel-body">
+
+						  			<div class="alert alert-danger alert-dismissable" ng-if="hasCloseObjErrors">
+						  				<button type="button" class="close" data-dismiss="alert">&times;</button>
+						  				<strong>Error:</strong><span>{{closeObjError}}<br></span>
+				   		 	 	 	</div>
+
+				   		 	 	 	<div class="alert alert-success alert-dismissable" ng-if="closeObjSuccess">
+						  				<button type="button" class="close" data-dismiss="alert">&times;</button>
+						  				<strong>Success:</strong><span>{{closeObjSuccessMsg}}<br></span>
+				   		 	 	 	</div>
+								
+									<form class="form-horizontal">
+										<div class="form-group">
+											<label class="col-sm-2 control-label" for="period">Period</label>
+											<div class="col-sm-4">
+												<select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="emptocloseobjperiod">
+													<option ng-selected="[Select]">--Select--</option>
+													<option ng-repeat="objPeriod in allObjPeriods" value="{{objPeriod._id}}">{{objPeriod.name}}</option>
+												</select>
+											</div>
+											<div class="col-sm-4">
+												<button id="updateObjButton" class="btn btn-success" style="float:left;" ng-click="closeObjPeriod()"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Close</button>
+											</div>
+										</div>
+									</form> <!-- end edit objective form-->
+				              	</div>
+				            </div>
+			            </div>
+			        </div>
+	            </div>
+
+	            <!-- By Mlandvo - Dashboard -->
+	            <div class="tab-pane fade" id="empDashBoard">
+	            	<div class="row">
+		          		<div class="container">
+							<div class="col-sm-6">
+	                            <div class="panel panel-default">
+	                                <div class="panel-heading">
+	                                <div class="panel-title">Current Rating</div>
+	                                </div>
+	                                <div class="pane-body">
+	                                <div id="container-speed" style="width: 300px; height: 200px; margin: 0 auto"></div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-sm-6">
+	                            <div class="panel panel-default">
+	                                <div class="panel-heading">
+	                                <div class="panel-title">Overrall Rating</div>
+	                                </div>
+	                                <div class="pane-body">
+	                                <div id="overral" style="width: 300px; height: 200px; margin: 0 auto"></div>
+	                                </div>
+	                            </div>
+	                        </div>
+						</div>
+					</div>
+	          	</div>
+
+	            <!-- By Mlandvo - Perfomance contract -->
+	            <div class="tab-pane fade" id="perfContract">
+	            	<div class="row">
+						<div class="col-sm-12">
+							<div class="panel panel-default" >
+				              	<div class="panel-heading">
+				                 	<div class="panel-title">
+							  			<h5>Employee Performance contract</h5>
+				                	 </div>
+				              	</div>
+
+								<div class="panel-body container-fluid" >
+
+									<div class="alert alert-info alert-dismissable" ng-if="hasShowContractErrors">
+						  				<button type="button" class="close" data-dismiss="alert">&times;</button>
+						  				<strong>Info!:</strong>&nbsp;<span>{{showContractInfo}}<br></span>
+				   		 	 	 	</div> <!--end info alert -->
+
+									<form class="form-horizontal">
+							  			<div class="form-group">
+											<label class="col-sm-2 control-label" for="period">Period</label>
+											<div class="col-sm-4">
+												<select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="contractPeriod">
+													<option ng-selected="[Select]">--Select--</option>
+													<option ng-repeat="objPeriod in allObjPeriods" value="{{objPeriod._id}}">{{objPeriod.name}}</option>
+												</select>
+											</div>
+											<div class="col-sm-2">
+												<button class="btn btn-sm btn-primary" ng-click="getPeriodicContractObjs()">Retrieve</button>
+											</div>
+										</div>
+									</form>
+				              		<br>
+
+					              	<div  ng-if="showContract">
+					              		<div class="alert alert-danger alert-dismissable col-sm-12" ng-show="showSCardErr">
+										  	<button type="button" class="close" data-dismiss="alert">X</button>
+										  	<strong>Error!:</strong>&nbsp;<span ng-model='showSCardMsg'>{{showSCardMsg}}<br></span>
+										</div>
+
+									  	<table ng-show="!showSCardErr" class="hlk" id="empContract" style="width: 100%;">
+									  		<thead>
+												<tr>
+													<th class="hlk-wrek2"></th>
+													<th class="hlk-drop"  colspan="10">Employee Perfomance Contract</th>
+												</tr>
+
+												<tr>
+													<td class="hlk-suit">Perspective</td>
+													<td class="hlk-kurasaki">Key Performance Area(KPA)</td>
+													<td class="hlk-kurasaki">Key Performance Indicator(KPI)</td>
+													
+													<td class="hlk-kurasaki">Detailed Weightings (%)</td>
+													<td class="hlk-kurasaki">Poor performance - Rating of 1</td>
+													<td class="hlk-kurasaki">Unsatisfactory - Rating of 2</td>
+													<td class="hlk-kurasaki">Target met - rating of 3</td>
+													<td class="hlk-kurasaki">Exceeding - rating of 4</td>
+													<td class="hlk-kurasaki">Outstanding - Rating of 5</td>
+												</tr>
+											</thead>
+											
+											<tbody ng-repeat="group in allGroupedPerspectives">
+												<tr ng-repeat="objective in group.objs">
+													<td class="hlk-nl5m" rowspan="{{group.objs.length}}" ng:hide="$index != 0">{{objective.perspective}}</td>
+													<td class="hlk-me">{{objective.kpa}} </td>
+													<td class="hlk-me">{{objective.kpi}} </td>
+													
+													<td class="hlk-suit">{{objective.detailedWeighting}}</td>
+													<td class="hlk-truk">{{objective.metricOneDef.label}} </td>
+													<td class="hlk-me">{{objective.metricTwoDef.label}}</td>
+													<td class="hlk-nl5m">{{objective.metricThreeDef.label}}</td>
+													<td class="hlk-me">{{objective.metricFourDef.label}}</td>
+													<td class="hlk-me">{{objective.metricFiveDef.label}}</td>
+												</tr>
+											</tbody>
+										</table>
+					              	</div>
+					              	<div class="panel-footer" ng-if="showContract">
+					              		<a ng-disabled="showSCardErr" href="#" class="btn btn-sm btn-default" onClick ="$('#empContract').tableExport({type:'excel',escape:'false',tableName:'Employee Contract',htmlContent:'true'});">Export to Excel</a>
+					              		<a ng-disabled="showSCardErr" href="#" class="btn btn-sm btn-default" onClick ="$('#empContract').tableExport({type:'pdf',escape:'false',tableName:'Employee Contract'});">Export to PDF</a>
+					              	</div>
+					            </div>
+				            </div>
+				        </div>
+				    </div>
+	            </div>
+
+	            <!-- By Mlandvo - Score card -->
+	            <div class="tab-pane fade" id="viewBSC">
+	            	<div class="row">
+						<div class="col-sm-12">
+							<div class="panel panel-default" >
+				              	<div class="panel-heading">
+				                 	<div class="panel-title">
+							  			<h5 class="panel-title">Employee Balanced Scorecard</h5>
+				                	 </div>
+				              	</div>
+				              	<div class="panel-body container-fluid">
+
+				              		<div class="alert alert-info alert-dismissable" ng-if="hasShowBscInfo">
+						  				<button type="button" class="close" data-dismiss="alert">&times;</button>
+						  				<strong>Info!:</strong>&nbsp;<span>{{showBscInfo}}<br></span>
+				   		 	 	 	</div> <!--end info alert -->
+
+					              	<form class="form-horizontal">
+							  			<div class="form-group">
+											<label class="col-sm-2 control-label" for="period">Period</label>
+											<div class="col-sm-4">
+												<select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="bscPeriod">
+													<option ng-selected="[Select]">--Select--</option>
+													<option ng-repeat="objPeriod in allObjPeriods" value="{{objPeriod._id}}" ng-click="">{{objPeriod.name}}</option>
+												</select>
+											</div>
+											<div class="col-sm-2">
+												<button class="btn btn-sm btn-primary" ng-click="getPeriodicBscObjs()">Retrieve</button>
+											</div>
+										</div>
+									</form>
+									<br>
+
+					              	<div  ng-if="showBalanceScore">
+
+						              	<div class="alert alert-danger alert-dismissable col-sm-12" ng-show="showConErr">
+											<button type="button" class="close" data-dismiss="alert">X</button><strong>Error!:</strong>&nbsp;<span ng-model='showConMsg'>
+												{{showConMsg}}<br></span>
+										</div>
+
+										<table ng-show="!showConErr" class="hlk" id="scorecard" style="width: 100%;">
+									  		<thead>
+												<tr>
+													<th class="hlk-wrek2"></th>
+													<th class="hlk-drop"  colspan="8">Employee Balanced Scorecard</th>
+													<th class="hlk-drop"  colspan="3">Appraisal Report/Outcome</th>
+												</tr>
+
+												<tr>
+													<td class="hlk-suit">Perspective</td>
+													<td class="hlk-kurasaki">Key Performance Area(KPA)</td>
+													<td class="hlk-kurasaki">Key Performance Indicator(KPI)</td>
+													<td class="hlk-kurasaki">Detailed Weightings (%)</td>
+													<td class="hlk-kurasaki">Poor performance - Rating of 1</td>
+													<td class="hlk-kurasaki">Unsatisfactory - Rating of 2</td>
+													<td class="hlk-kurasaki">Target met - rating of 3</td>
+													<td class="hlk-kurasaki">Exceeding - rating of 4</td>
+													<td class="hlk-kurasaki">Outstanding - Rating of 5</td>
+													<td class="hlk-kurasaki">Rating</td>
+													<td class="hlk-kurasaki">Score</td>
+													<td class="hlk-kurasaki">Comment</td>
+												</tr>
+											</thead>
+											
+											<tbody ng-repeat="group in allGroupedPerspectives">
+												<tr ng-repeat="objective in group.objs">
+													<td class="hlk-nl5m" rowspan="{{group.objs.length}}" ng:hide="$index != 0">{{objective.perspective}}</td>
+													<td class="hlk-me">{{objective.kpa}} </td>
+													<td class="hlk-me">{{objective.kpi}} </td>
+													<td class="hlk-suit">{{objective.detailedWeighting}}</td>
+													<td class="hlk-truk">{{objective.metricOneDef.label}} </td>
+													<td class="hlk-me">{{objective.metricTwoDef.label}}</td>
+													<td class="hlk-nl5m">{{objective.metricThreeDef.label}}</td>
+													<td class="hlk-me">{{objective.metricFourDef.label}}</td>
+													<td class="hlk-me">{{objective.metricFiveDef.label}}</td>
+													<td class="hlk-me" >{{objective.supRating}}</td>
+													<td class="hlk-me">{{objective.score}}</td>
+													<td class="hlk-me">{{objective.supComment}}</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="3">Total Weightings</td>
+													<td>{{empDetailedW}}%</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td colspan="2">Overrall Score</td>
+													<td>{{empTotalScore}}</td>
+													<td></td>
+												</tr>
+											</tfoot>
+										</table>
+					              	</div>
+					             </div>
+
+				              	<div class="panel-footer" ng-if="showBalanceScore">
+				              		<a ng-disabled="showConErr" href="#" class="btn btn-sm btn-default" onClick ="$('#scorecard').tableExport({type:'excel',escape:'false',tableName:'Employee Scorecard'});">Export to Excel</a>
+				              		<a ng-disabled="showConErr" href="#" class="btn btn-sm btn-default" onClick ="$('#scorecard').tableExport({type:'pdf',escape:'false',tableName:'Employee Scorecard'});">Export to PDF</a>
+				              	</div>
+				            </div>
+				        </div>
+				    </div>
+	            </div>
+
+	            <!-- By Mlandvo - Self evaluation -->
+	            <div class="tab-pane fade" id="selfEval">
+	            	<div class="row">
+						<div class="col-sm-12">
+							<div class="panel panel-default">
+				              	<div class="panel-heading">
+				                 	<div class="panel-title">
+							  			<h5 class="panel-title">Employee Self-Evaluation</h5>
+				                	 </div>
+				              	</div>
+				              	<div class="panel-body container-fluid">
+				              		<form class="form-horizontal">
+							  			<div class="form-group">
+											<label class="col-sm-2 control-label" for="period">Period</label>
+											<div class="col-sm-4">
+												<select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="evalPeriod">
+													<option ng-selected="[Select]">--Select--</option>
+													<option ng-repeat="objPeriod in allObjPeriods" value="{{objPeriod._id}}">{{objPeriod.name}}</option>
+												</select>
+											</div>
+											<div class="col-sm-2">
+												<button class="btn btn-sm btn-primary" ng-click="getPeriodicEvalObjs()">Retrieve</button>
+											</div>
+										</div>
+									</form>
+
+									<div ng-show="showEmpEval" class="panel">
+										<div class="alert alert-info">
+								  			<button type="button" class="close" data-dismiss="alert">X</button>
+											<p>Enter Rating per Perfomance indicator under each objective and Comment or Attach files (Maximum 10 e.g PDF,Spreadsheet,Word Document) to support your Rating
+											</p>
+								  		</div>
+								  		<div class="alert alert-success alert-dismissable" ng-if="submitEvalSuccess">
+							  				<button type="button" class="close" data-dismiss="alert">&times;</button>
+							  				<strong>Success :</strong>&nbsp;<span>{{submitEvalSuccessMsg}}<br>
+						        			</span>
+					   		 	 	 	</div> <!--end success alert -->
+										<div class="alert alert-danger alert-dismissable" ng-show="evalMsgNot">
+										  	<button type="button" class="close" data-dismiss="alert">&times;</button>
+										  	<strong>Error!:</strong>&nbsp;<span ng-model='evalMsg'>{{evalMsg}}<br>
+											</span>
+										</div> 
+										<div>
+											<table ng-if="!evalMsgNot" class="table table-hover table-striped" style="width:100%">
+												<thead>
+													<tr>
+														<th style="width:10%"><h6 style="color: #003366;">Perspective</h6></th>
+													  	<th style="width:10%"><h6 style="color: #003366;">Key Performance Area</h6></th>
+													  	<th style="width:15%"><h6 style="color: #003366;">Key Performance Indicator</h6></th>
+													  	<!--<th style="width:20%"><h6 style="color: #003366;">Attachment(s)(Optional)</h6></th>-->
+													  	<th style="width:20%"><h6 style="color: #003366;">Comment(s)</h6></th>
+													  	<th style="width:20%"><h6 style="color: #003366;">Rating</h6></th>				 	
+													</tr>
+												</thead>
+												<form>	  									
+													<tbody>
+														<tr ng-repeat="objective in approvedEvalKPAs | orderBy: 'perspective' | filter: search | limitTo:10">
+															<td>{{objective.perspective}}</td>
+														  	<td>{{objective.kpa}}</td>
+														  	<td>{{objective.kpi}}</td>
+														  	<!--<td>
+															  	<input id="files" ngf-select  ngf-multiple="true" ng-model="objective.file" ngf-change="captureRating(objective);" type="file" multiple="false">
+														    </td>-->
+														  	<td>
+														  		<textarea class="form-control" type="text" rows="3" ng-model="objective.empComment" id="empComment" placeholder="(Optional)" ng-keyup="captureRating(objective);">
+														  		</textarea>
+														  	</td>
+														  	<td width="100%">									
+														    	<select class="form-control"  ng-model="objective.empRating" ng-change="captureRating(objective)">
+							                                    	<option ng-selected disabled>-- Select Rating --</option>
+							                                    	<option value="{{objective.metricOneDef.value}}">{{objective.metricOneDef.value+" |"+objective.metricOneDef.label}}</option>
+							                                    	<option value="{{objective.metricTwoDef.value}}">{{objective.metricTwoDef.value+" |"+objective.metricTwoDef.label}}</option>
+							                                    	<option value="{{objective.metricThreeDef.value}}">{{objective.metricThreeDef.value+" |"+objective.metricThreeDef.label}}</option>
+							                                    	<option value="{{objective.metricFourDef.value}}">{{objective.metricFourDef.value+" |"+objective.metricFourDef.label}}</option>
+							                                    	<option value="{{objective.metricFiveDef.value}}">{{objective.metricFiveDef.value+" |"+objective.metricFiveDef.label}}</option>
+							                                  	</select>
+						      								</td>
+														</tr>
+													</tbody>
+												</form>	
+											</table> 
+										</div>
+										<button ng-if="!evalMsgNot || submitEvalSuccess" class="btn btn-success" ng-click="selfEvaluate();"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Submit Evaluation</button>
+									</div>
+								</div>
+							</div>
+						</div>				       
+				    </div>
+				</div>
+
+				<div class="tab-pane fade" id="closeSelfEval">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="panel panel-default">
+				              	<div class="panel-heading">
+				                 	<div class="panel-title">
+							  			<h3 class="panel-title">Close evaluation period</h3>
+				                	 </div>
+				              	</div>
+				              	<div class="panel-body">
+
+						  			<div class="alert alert-danger alert-dismissable" ng-if="hasEditObjErrors">
+						  				<button type="button" class="close" data-dismiss="alert">&times;</button>
+						  				<strong>Error:</strong><span>{{editObjError}}<br></span>
+				   		 	 	 	</div>
+
+				   		 	 	 	<div class="alert alert-success alert-dismissable" ng-if="editObjSuccess">
+						  				<button type="button" class="close" data-dismiss="alert">&times;</button>
+						  				<strong>Success:</strong><span>{{editObjSuccessMsg}}<br></span>
+				   		 	 	 	</div>
+								
+									<form class="form-horizontal">
+										<div class="form-group">
 											<label class="col-sm-3 control-label" for="period">Period</label>
 											<div class="col-sm-8">
 												<select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="empObjective.objPeriod" ng-change="changeShowBCT()">
@@ -70,1010 +1031,52 @@
 											</div>
 										</div>
 
-										<div ng-if="showBCT">
-											<div class="form-group">
-												<label class="col-sm-3 control-label" for="perspective">Perspective</label>
-												<div class="col-sm-8">
-													<select id="objPerspDropdownMenu" class="form-control" role="menu" ng-model="empObjective.perspective">
-														<option ng-selected="[Select]">--Select--</option>
-														<option ng-repeat="persp in allPerspectives">{{persp.perspName}}</option>
-													</select>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-sm-3 control-label" for="detailedWeighting">Detailed Weighting</label>
-												<div class="col-sm-8">
-													<input type="text" placeholder="Enter the Detailed Weighting for objective..." ng-model="empObjective.detailedWeighting" class="form-control">
-												</div>
-											</div>
-
-											<div class="form-group">
-												<label class="col-sm-3 control-label" for="kpa">Key Performance Area</label>
-												<div class="col-sm-8">
-													<input class="form-control" placeholder="Enter the description of the objective..." ng-model="empObjective.kpa">
-												</div>
-											</div>
-											
-											<div class="form-group">
-												<label class="col-sm-3 control-label" for="kpi">Key Performance Indicator</label>&nbsp;
-												<div class="col-sm-8">
-													<textarea class="form-control" placeholder="Enter the Desired Standard Output..." type="text" rows="3" ng-model="empObjective.kpi"></textarea>
-												</div>
-											</div>
-
-						   		 	 	 	<div class="form-group">
-												<label class="col-sm-3 control-label">Metric</label>
-												<div class="col-sm-8">
-													<select id="objMatrixDropdownMenu" class="form-control" role="menu" ng-change="changeShowMatrix(empObjective.metrixType)" ng-model="empObjective.metrixType">
-														<option ng-selected="[Select]">--Select--</option>
-														<option value="percentage">Percentage/Text/Number</option>
-														<option value="time">Time</option>
-													</select>
-												</div>
-											</div>
-										</div> 
-									</div><!-- end first column -->
-
-									<div class="col-sm-6">
-										<br />
-	
-										<div ng-if="showOtherMatrixTypes" class="form-group">
-											<label  class="col-sm-1"><h5><strong>Rating</strong></h5></label>
-											<div class="form-group ">
-												<label  class="col-sm-3 control-label">Poor : 1</label>
-												<div class="col-sm-6">
-													<input class="form-control" id="poorPerfField" placeholder="Lowest achievement..." type="text"  
-													ng-model="empObjective.metricOneDef">
-												</div>
-											</div>
-											<label  class="col-sm-1"></label>
-											<div class="form-group">
-												<label  class="col-sm-3 control-label">Unsatisfactory : 2</label>
-												<div class="col-sm-6">
-													<input class="form-control" id="unsatPerfField" placeholder="Next lowest achievement..." type="text" 
-													ng-model="empObjective.metricTwoDef">
-												</div>
-											</div>
-											<label  class="col-sm-1"></label>
-											<div class="form-group">
-												<label  class="col-sm-3 control-label">Target Met : 3</label>
-												<div class="col-sm-6">
-													<input class="form-control" id="targetPerfField" placeholder="Expected goal..." type="text" 
-													ng-model="empObjective.metricThreeDef">
-												</div>
-											</div>
-											<label  class="col-sm-1"></label>
-											<div class="form-group">
-												<label  class="col-sm-3 control-label">Exceeding : 4</label>
-												<div class="col-sm-6">
-													<input class="form-control" id="exceedPerfField" placeholder="More than expected..." type="text" 
-												 	ng-model="empObjective.metricFourDef">
-												</div>
-											</div> 							
-											<label  class="col-sm-1"></label>
-											<div class="form-group">
-												<label  class="col-sm-3 control-label">Outstanding : 5</label>
-												<div class="col-sm-6">
-													<input class="form-control" id="outstandPerfField" placeholder="Way more than expected..." type="text" 
-													ng-model="empObjective.metricFiveDef">
-												</div>
-											</div>
-
-											<div class="form-group">
-												<div class="col-sm-10 col-sm-offset-1">
-													<button id="submitFinanceObjButton" class="btn btn-success" style="float:right;" ng-click="createObjective()"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Create</button>		
-												</div>
-											</div>
-										</div>
-
-										<div ng-if="showTimeMatrix" class="form-group">
-											<label class="col-sm-1"><h5><strong>Rating</strong></h5></label>
-											<div class="form-group">
-												<label class="col-sm-3 control-label">Poor : 1</label>
-												<div class="col-sm-3">
-													<label for="dateFrom">From:</label>
-				                                    <datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empObjective.metricOneFrom" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-												<div class="col-sm-3">
-													<label for="dateTo">To:</label>
-													<datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empObjective.metricOneTo" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-											</div>
-											<label class="col-sm-1"></label>
-											<div class="form-group">
-												<label class="col-sm-3 control-label">Unsatisfactory : 2</label>
-												<div class="col-sm-3">
-													<label for="dateFrom">From:</label>
-													<datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empObjective.metricTwoFrom" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-												<div class="col-sm-3">
-													<label for="dateTo">To:</label>
-													<datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empObjective.metricTwoTo" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-											</div>
-											<label class="col-sm-1"></label>
-											<div class="form-group">
-												<label class="col-sm-3 control-label">Target Met : 3</label>
-												<div class="col-sm-3">
-													<label for="dateFrom">From:</label>
-													<datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empObjective.metricThreeFrom" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-												<div class="col-sm-3">
-													<label for="dateTo">To:</label>
-													<datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empObjective.metricThreeTo" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-											</div>
-											<label class="col-sm-1"></label>
-											<div class="form-group">
-												<label class="col-sm-3 control-label">Exceeding : 4</label>
-												<div class="col-sm-3">
-													<label for="dateFrom">From:</label>
-													<datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empObjective.metricFourFrom" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-												<div class="col-sm-3">
-													<label for="dateFrom">To:</label>
-													<datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empObjective.metricFourTo" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-											</div>
-											<label class="col-sm-1"></label>
-											<div class="form-group">
-												<label class="col-sm-3 control-label">Outstanding : 5</label>
-												<div class="col-sm-3">
-													<label for="dateFrom">From:</label>
-													<datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empObjective.metricFiveFrom" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-												<div class="col-sm-3">
-													<label for="dateFrom">To:</label>
-													<datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empObjective.metricFiveTo" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-											</div>
-
-											<div class="form-group">
-												<div class="col-sm-10 col-sm-offset-1">
-													<button id="submitFinanceObjButton" class="btn btn-success" style="float:right;" ng-click="createObjective()"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Create</button>		
-												</div>
-											</div>
-										</div> 
-									</div><!-- end second column -->
-								</form>
-			              	</div>	    
-			            </div>
-		            </div>
-		        </div>
-            </div>
-
-            <!-- edit objective : By Brian-->
-			<div class="tab-pane fade" id="editObjective">
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="panel panel-default">
-			              	<div class="panel-heading">
-			                 	<div class="panel-title">
-						  			<h3 class="panel-title">Edit Rejected Objective</h3>
-			                	 </div>
-			              	</div>
-			              	<div class="panel-body">
-			              		<div class="alert alert-info">
-					  				<button type="button" class="close" data-dismiss="alert">X</button>
-									<p>Modify objective and Click on the Save button</p>
-					  			</div><br>
-
-					  			<div class="alert alert-danger alert-dismissable" ng-if="hasEditObjErrors">
-					  				<button type="button" class="close" data-dismiss="alert">&times;</button>
-					  				<strong>Error:</strong><span>{{editObjError}}<br></span>
-			   		 	 	 	</div>
-
-			   		 	 	 	<div class="alert alert-success alert-dismissable" ng-if="editObjSuccess">
-					  				<button type="button" class="close" data-dismiss="alert">&times;</button>
-					  				<strong>Success:</strong><span>{{editObjSuccessMsg}}<br></span>
-			   		 	 	 	</div>
-							
-								<form class="form-horizontal">
-									<div class="form-group">
-										<label class="col-sm-3 control-label" for="detailedWeighting">Perspective</label>
-										<div class="col-sm-8">
-											<input type="text" placeholder="Enter the Detailed Weighting for objective..." ng-model="empEditObjective.perspective" class="form-control" readonly>
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-3 control-label" for="detailedWeighting">Detailed Weighting</label>
-										<div class="col-sm-8">
-											<input type="text" placeholder="Enter the Detailed Weighting for objective..." ng-model="empEditObjective.detailedWeighting" class="form-control" readonly>
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-3 control-label" for="kpa">Key Performance Area</label>
-										<div class="col-sm-8">
-											<input class="form-control" placeholder="Enter the description of the objective..." ng-model="empEditObjective.kpa">
-										</div>
-									</div>
-									
-									<div class="form-group">
-										<label class="col-sm-3 control-label" for="kpi">Key Performance Indicator</label>&nbsp;
-										<div class="col-sm-8">
-											<textarea class="form-control" placeholder="Enter the Desired Standard Output..." type="text" rows="3" ng-model="empEditObjective.kpi"></textarea>
-										</div>
-									</div>
-									<div class="form-group">
-											<label class="col-sm-3 control-label">Metric</label>
-											<div class="col-sm-8">
-												<select id="objMatrixDropdownMenu" class="form-control" role="menu" ng-change="changeEditShowMatrix(empEditObjective.metrixType)" ng-model="empEditObjective.metrixType">
-													<option ng-selected="[Select]">--Select--</option>
-													<option value="percentage">Percentage/Text/Number</option>
-													<option value="time">Time</option>
-												</select>
-											</div>
-										</div>
-	
-										<div ng-if="showEditOtherMatrixTypes" class="form-group">
-											<label  class="col-sm-1 col-sm-offset-2"><h5><strong>Performace Rating</strong></h5></label>
-											<div class="form-group ">
-												<label  class="col-sm-2 control-label">Poor : 1</label>
-												<div class="col-sm-5">
-													<input class="form-control" id="poorPerfField" placeholder="Lowest achievement..." type="text"  
-													ng-model="empEditObjective.metricOneDef">
-												</div>
-											</div>
-											<label  class="col-sm-1 col-sm-offset-2"></label>
-											<div class="form-group">
-												<label  class="col-sm-2 control-label">Unsatisfactory : 2</label>
-												<div class="col-sm-5">
-													<input class="form-control" id="unsatPerfField" placeholder="Next lowest achievement..." type="text" 
-													ng-model="empEditObjective.metricTwoDef">
-												</div>
-											</div>
-											<label  class="col-sm-1 col-sm-offset-2"></label>
-											<div class="form-group">
-												<label  class="col-sm-2 control-label">Target Met : 3</label>
-												<div class="col-sm-5">
-													<input class="form-control" id="targetPerfField" placeholder="Expected goal..." type="text" 
-													ng-model="empEditObjective.metricThreeDef">
-												</div>
-											</div>
-											<label  class="col-sm-1 col-sm-offset-2"></label>
-											<div class="form-group">
-												<label  class="col-sm-2 control-label">Exceeding : 4</label>
-												<div class="col-sm-5">
-													<input class="form-control" id="exceedPerfField" placeholder="More than expected..." type="text" 
-												 	ng-model="empEditObjective.metricFourDef">
-												</div>
-											</div> 							
-											<label  class="col-sm-1 col-sm-offset-2"></label>
-											<div class="form-group">
-												<label  class="col-sm-2 control-label">Outstanding : 5</label>
-												<div class="col-sm-5">
-													<input class="form-control" id="outstandPerfField" placeholder="Way more than expected..." type="text" 
-													ng-model="empEditObjective.metricFiveDef">
-												</div>
-											</div>
-										</div>
-
-										<div ng-if="showEditTimeMatrix" class="form-group">
-											<label class="col-sm-1 col-sm-offset-2"><h5><strong>Performace Rating</strong></h5></label>
-											<div class="form-group">
-												<label class="col-sm-2 control-label">Poor : 1</label>
-												<div class="col-sm-2">
-													<label for="dateFrom">From:</label>
-				                                    <datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empEditObjective.metricOneFrom" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-												<div class="col-sm-2">
-													<label for="dateTo">To:</label>
-													<datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empEditObjective.metricOneTo" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-											</div>
-											<label class="col-sm-1 col-sm-offset-2"></label>
-											<div class="form-group">
-												<label class="col-sm-2 control-label">Unsatisfactory : 2</label>
-												<div class="col-sm-2">
-													<label for="dateFrom">From:</label>
-													<datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empEditObjective.metricTwoFrom" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-												<div class="col-sm-2">
-													<label for="dateTo">To:</label>
-													<datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empEditObjective.metricTwoTo" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-											</div>
-											<label class="col-sm-1 col-sm-offset-2"></label>
-											<div class="form-group">
-												<label class="col-sm-2 control-label">Target Met : 3</label>
-												<div class="col-sm-2">
-													<label for="dateFrom">From:</label>
-													<datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empEditObjective.metricThreeFrom" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-												<div class="col-sm-2">
-													<label for="dateTo">To:</label>
-													<datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empEditObjective.metricThreeTo" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-											</div>
-											<label class="col-sm-1 col-sm-offset-2"></label>
-											<div class="form-group">
-												<label class="col-sm-2 control-label">Exceeding : 4</label>
-												<div class="col-sm-2">
-													<label for="dateFrom">From:</label>
-													<datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empEditObjective.metricFourFrom" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-												<div class="col-sm-2">
-													<label for="dateFrom">To:</label>
-													<datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empEditObjective.metricFourTo" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-											</div>
-											<label class="col-sm-1 col-sm-offset-2"></label>
-											<div class="form-group">
-												<label class="col-sm-2 control-label">Outstanding : 5</label>
-												<div class="col-sm-2">
-													<label for="dateFrom">From:</label>
-													<datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empEditObjective.metricFiveFrom" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-												<div class="col-sm-2">
-													<label for="dateFrom">To:</label>
-													<datepicker date-format="yyyy-MM-dd">
-				                                       <input ng-model="empEditObjective.metricFiveTo" class="form-control" type="text"/>
-				                                    </datepicker>
-												</div>
-											</div>
-										</div>
-
 										<div class="form-group">
 											<div class="col-sm-10 col-sm-offset-1">
-												<button id="updateObjButton" class="btn btn-success" style="float:right;" ng-click="editRejObjective(empEditObjective)"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Save</button>		
+												<button id="updateObjButton" class="btn btn-success" style="float:right;" ng-click="editRejObjective(empEditObjective)"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Close</button>		
 											</div>
 										</div>
-								</form> <!-- end edit objective form-->
-			              	</div>
-			            </div>
-		            </div>
-		        </div>
-            </div>
-
-            <!-- submit objectives objectives : By Brian-->
-            <div class="tab-pane fade" id="submitObjectives">
-            	<div class="row">
-					<div class="col-sm-12">
-						<div class="panel panel-default">
-			              	<div class="panel-heading">
-			                 	<div class="panel-title">
-						  			<h5 class="panel-title">List Of Created Objectives</h5>
-			                	 </div>
-			              	</div>
-
-			              	<div class="panel-body container-fluid">
-
-			              		<div class="alert alert-success alert-dismissable" ng-if="submitObjSuccess">
-					  				<button type="button" class="close" data-dismiss="alert">&times;</button><strong>Success :</strong>&nbsp;
-				        			<span>{{submitObjSuccessMsg}}<br></span>
-			   		 	 	 	</div> <!--end success alert -->
-
-			   		 	 	 	<div class="alert alert-info alert-dismissable" ng-if="hasSubmitObjInfo">
-					  				<button type="button" class="close" data-dismiss="alert">&times;</button>
-					  				<strong>Info!:</strong>&nbsp;<span>{{submitObjInfo}}<br></span>
-			   		 	 	 	</div> <!--end info alert -->
-			              		
-				              	<div class="alert alert-danger alert-dismissable col-sm-12" ng-if="hasSubmitObjErrors">
-									<button type="button" class="close" data-dismiss="alert">X</button>
-									<strong>Error!:</strong>&nbsp;<span ng-model='showSubMsg'>{{submitObjError}}<br></span>
-								</div> 
-							</div>
-			              	<div class="panel-body container-fluid">   
-
-			              		<div class="row">
-				              		<form class="form-horizontal">
-					              		<div class="col-sm-6">
-							  				<div class="form-group">
-												<label class="col-sm-2 control-label" for="period">Period</label>
-												<div class="col-sm-8">
-													<select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="submitObjPeriod">
-														<option ng-selected="[Select]">--Select--</option>
-														<option ng-repeat="objPeriod in allObjPeriods" value="{{objPeriod._id}}">{{objPeriod.name}}</option>
-													</select>
-												</div>
-												<div class="col-sm-2"><button class="btn btn-primary" ng-click="getUnactndObjectives()"><span class="glyphicon glyphicon-download"></span>&nbsp;Retrieve</button></div>
-											</div>
-										</div>
-									</form>
-								</div>
-
-								<div class="col-sm-12" ng-if="!noUnactionedObj;showSubmit" ultimate-datatable="unactionedKPADT">
-                                </div>
-
-                                <div class="col-sm-12" ng-if="!noUnactionedObj;showSubmit">	
-                                	<span ng-if="!submitObjSuccess;"><input type="checkbox" name="select" ng-model="master" ng-click="selectAllObjsForSubmission()"/> Mark all </span>
-									<br><br>
-
-									<button ng-if="!submitObjSuccess;" class="btn btn-success" ng-click="submitObjectives()"><span class="glyphicon glyphicon-send"></span>&nbsp;Submit</button>
-                                </div>
-			              	</div>
-			            </div>
-			        </div>
-			    </div>
-            </div>
-
-            <!-- confirm delete objective modal : By Brian-->
-            <div class="modal fade" id="delObjectiveModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-		    	<div class="modal-dialog">
-		    		<div class="modal-content">
-          				<div class="modal-header">
-				        	<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-				        	<h4 class="modal-title custom_align" id="Heading">Delete this objective</h4>
-				      	</div>
-          				<div class="modal-body">
-       						<div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Objective?</div>
-      					</div>
-        				<div class="modal-footer">
-					        <button  type="button" ng-click="delObjective(toDelObjective);clearSubmitModal();" class="btn btn-success" data-dismiss="modal" ><span class="glyphicon glyphicon-ok-sign" ></span> Yes</button>
-					        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
-     					</div>
-        			</div> 
-  				</div>
-      		<!-- /.modal-dialog --> 
-    		</div>
-
-    		<!-- confirm delete objective modal : By Brian-->
-            <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-		    	<div class="modal-dialog">
-		    		<div class="modal-content">
-          				<div class="modal-header">
-				        	<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-				        	<h4 class="modal-title custom_align" id="Heading">Delete this objective</h4>
-				      	</div>
-          				<div class="modal-body">
-       						<div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Objective?</div>
-      					</div>
-        				<div class="modal-footer">
-					        <button  type="button" ng-click="delObjective(toDelObjective);clearSubmitModal();" class="btn btn-success" data-dismiss="modal" ><span class="glyphicon glyphicon-ok-sign" ></span> Yes</button>
-					        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
-     					</div>
-        			</div> 
-  				</div>
-      		<!-- /.modal-dialog --> 
-    		</div>
-
-    		<!-- unapproved objectives : By Brian-->
-            <div class="tab-pane fade" id="unapprovedObjectives">
-            	<div class="row">
-					<div class="col-sm-12">
-						<div class="panel panel-default">
-			              	<div class="panel-heading">
-			                 	<div class="panel-title">
-						  			<h5 class="panel-title">List Of Rejected Objectives (By Supervisor)</h5>
-			                	 </div> 
-			              	</div>
-			              	<div class="panel-body container-fluid">
-
-						  		<div class="alert alert-danger alert-dismissable" ng-if="hasRejectedObjsErrors">
-					  				<button type="button" class="close" data-dismiss="alert">&times;</button>
-					  				<strong>Error!:</strong>&nbsp;<span>{{rejectedObjError}}<br></span>
-			   		 	 	 	</div> <!--end danger alert -->
-
-			   		 	 	 	<div class="alert alert-info alert-dismissable" ng-if="hasRejectedObjInfo">
-					  				<button type="button" class="close" data-dismiss="alert">&times;</button>
-					  				<strong>Info!:</strong>&nbsp;<span>{{rejectedObjInfo}}<br></span>
-			   		 	 	 	</div> <!--end info alert -->
-
-			   		 	 	 	<form class="form-horizontal" ng-if="!hasRejectedObjInfo">
-				              		<div class="col-sm-6">
-						  				<div class="form-group">
-											<label class="col-sm-3 control-label" for="period">Period</label>
-											<div class="col-sm-8">
-												<select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="rejectedObjPeriod" ng-change="changeShowRejected()">
-													<option ng-selected="[Select]">--Select--</option>
-													<option ng-repeat="objPeriod in allObjPeriods" value="{{objPeriod._id}}">{{objPeriod.name}}</option>
-												</select>
-											</div>
-										</div>
-									</div>
-								</form>
-								
-								<div class="col-sm-12" ultimate-datatable="rejectedKPADT">
-                                </div>
-			              	</div>
-			            </div>
-			        </div>
-			    </div>
-            </div>
-
-            <!-- all state objectives : By Brian-->
-            <div class="tab-pane fade" id="allStateObjectives">
-            	<div class="row">
-					<div class="col-sm-12">
-						<div class="panel panel-default">
-			              	<div class="panel-heading">
-			                 	<div class="panel-title">
-						  			<h5 class="panel-title">List Of All Employee Objectives</h5>
-			                	 </div> 
-			              	</div>
-			              	<div class="panel-body container-fluid">
-						  		
-			   		 	 	 	<div class="alert alert-danger alert-dismissable" ng-if="hasAllStateObjsErrors">
-					  				<button type="button" class="close" data-dismiss="alert">&times;</button>
-					  				<strong>Error!:</strong>&nbsp;<span>{{AllStateObjsError}}<br></span>
-			   		 	 	 	</div>
-
-			   		 	 	 	<div class="alert alert-info alert-dismissable" ng-if="hasAllStateObjInfo">
-					  				<button type="button" class="close" data-dismiss="alert">&times;</button>
-					  				<strong>Info!:</strong>&nbsp;<span>{{allStateObjInfo}}<br></span>
-			   		 	 	 	</div> <!--end info alert -->
-								
-								<div class="row" ng-if="!hasAllStateObjInfo">
-                                    <div>
-                                        <div class="col-sm-12" ultimate-datatable="allStateObjDT">
-                                        </div>
-                                    </div>
-                                </div>
-			              	</div>
-			            </div>
-			        </div>
-			    </div>
-            </div>
-
-			<div class="tab-pane fade" id="closeObjCreation">
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="panel panel-default">
-			              	<div class="panel-heading">
-			                 	<div class="panel-title">
-						  			<h3 class="panel-title">Close objective creation period</h3>
-			                	 </div>
-			              	</div>
-			              	<div class="panel-body">
-
-					  			<div class="alert alert-danger alert-dismissable" ng-if="hasCloseObjErrors">
-					  				<button type="button" class="close" data-dismiss="alert">&times;</button>
-					  				<strong>Error:</strong><span>{{closeObjError}}<br></span>
-			   		 	 	 	</div>
-
-			   		 	 	 	<div class="alert alert-success alert-dismissable" ng-if="closeObjSuccess">
-					  				<button type="button" class="close" data-dismiss="alert">&times;</button>
-					  				<strong>Success:</strong><span>{{closeObjSuccessMsg}}<br></span>
-			   		 	 	 	</div>
-							
-								<form class="form-horizontal">
-									<div class="form-group">
-										<label class="col-sm-2 control-label" for="period">Period</label>
-										<div class="col-sm-4">
-											<select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="emptocloseobjperiod">
-												<option ng-selected="[Select]">--Select--</option>
-												<option ng-repeat="objPeriod in allObjPeriods" value="{{objPeriod._id}}">{{objPeriod.name}}</option>
-											</select>
-										</div>
-										<div class="col-sm-4">
-											<button id="updateObjButton" class="btn btn-success" style="float:left;" ng-click="closeObjPeriod()"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Close</button>
-										</div>
-									</div>
-								</form> <!-- end edit objective form-->
-			              	</div>
-			            </div>
-		            </div>
-		        </div>
-            </div>
-
-            <!-- By Mlandvo - Dashboard -->
-            <div class="tab-pane fade" id="empDashBoard">
-            	<div class="row">
-	          		<div class="container">
-						<div class="col-sm-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                <div class="panel-title">Current Rating</div>
-                                </div>
-                                <div class="pane-body">
-                                <div id="container-speed" style="width: 300px; height: 200px; margin: 0 auto"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                <div class="panel-title">Overrall Rating</div>
-                                </div>
-                                <div class="pane-body">
-                                <div id="overral" style="width: 300px; height: 200px; margin: 0 auto"></div>
-                                </div>
-                            </div>
-                        </div>
-					</div>
-				</div>
-          	</div>
-
-            <!-- By Mlandvo - Perfomance contract -->
-            <div class="tab-pane fade" id="perfContract">
-            	<div class="row">
-					<div class="col-sm-12">
-						<div class="panel panel-default" >
-			              	<div class="panel-heading">
-			                 	<div class="panel-title">
-						  			<h5>Employee Performance contract</h5>
-			                	 </div>
-			              	</div>
-
-							<div class="panel-body container-fluid" >
-
-								<div class="alert alert-info alert-dismissable" ng-if="hasShowContractErrors">
-					  				<button type="button" class="close" data-dismiss="alert">&times;</button>
-					  				<strong>Info!:</strong>&nbsp;<span>{{showContractInfo}}<br></span>
-			   		 	 	 	</div> <!--end info alert -->
-
-								<form class="form-horizontal">
-						  			<div class="form-group">
-										<label class="col-sm-2 control-label" for="period">Period</label>
-										<div class="col-sm-4">
-											<select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="contractPeriod">
-												<option ng-selected="[Select]">--Select--</option>
-												<option ng-repeat="objPeriod in allObjPeriods" value="{{objPeriod._id}}">{{objPeriod.name}}</option>
-											</select>
-										</div>
-										<div class="col-sm-2">
-											<button class="btn btn-sm btn-primary" ng-click="getPeriodicContractObjs()">Retrieve</button>
-										</div>
-									</div>
-								</form>
-			              		<br>
-
-				              	<div  ng-if="showContract">
-				              		<div class="alert alert-danger alert-dismissable col-sm-12" ng-show="showSCardErr">
-									  	<button type="button" class="close" data-dismiss="alert">X</button>
-									  	<strong>Error!:</strong>&nbsp;<span ng-model='showSCardMsg'>{{showSCardMsg}}<br></span>
-									</div>
-
-								  	<table ng-show="!showSCardErr" class="hlk" id="empContract" style="width: 100%;">
-								  		<thead>
-											<tr>
-												<th class="hlk-wrek2"></th>
-												<th class="hlk-drop"  colspan="10">Employee Perfomance Contract</th>
-											</tr>
-
-											<tr>
-												<td class="hlk-suit">Perspective</td>
-												<td class="hlk-kurasaki">Key Performance Area(KPA)</td>
-												<td class="hlk-kurasaki">Key Performance Indicator(KPI)</td>
-												
-												<td class="hlk-kurasaki">Detailed Weightings (%)</td>
-												<td class="hlk-kurasaki">Poor performance - Rating of 1</td>
-												<td class="hlk-kurasaki">Unsatisfactory - Rating of 2</td>
-												<td class="hlk-kurasaki">Target met - rating of 3</td>
-												<td class="hlk-kurasaki">Exceeding - rating of 4</td>
-												<td class="hlk-kurasaki">Outstanding - Rating of 5</td>
-											</tr>
-										</thead>
-										
-										<tbody ng-repeat="group in allGroupedPerspectives">
-											<tr ng-repeat="objective in group.objs">
-												<td class="hlk-nl5m" rowspan="{{group.objs.length}}" ng:hide="$index != 0">{{objective.perspective}}</td>
-												<td class="hlk-me">{{objective.kpa}} </td>
-												<td class="hlk-me">{{objective.kpi}} </td>
-												
-												<td class="hlk-suit">{{objective.detailedWeighting}}</td>
-												<td class="hlk-truk">{{objective.metricOneDef.label}} </td>
-												<td class="hlk-me">{{objective.metricTwoDef.label}}</td>
-												<td class="hlk-nl5m">{{objective.metricThreeDef.label}}</td>
-												<td class="hlk-me">{{objective.metricFourDef.label}}</td>
-												<td class="hlk-me">{{objective.metricFiveDef.label}}</td>
-											</tr>
-										</tbody>
-									</table>
-				              	</div>
-				              	<div class="panel-footer" ng-if="showContract">
-				              		<a ng-disabled="showSCardErr" href="#" class="btn btn-sm btn-default" onClick ="$('#empContract').tableExport({type:'excel',escape:'false',tableName:'Employee Contract',htmlContent:'true'});">Export to Excel</a>
-				              		<a ng-disabled="showSCardErr" href="#" class="btn btn-sm btn-default" onClick ="$('#empContract').tableExport({type:'pdf',escape:'false',tableName:'Employee Contract'});">Export to PDF</a>
+									</form> <!-- end edit objective form-->
 				              	</div>
 				            </div>
 			            </div>
 			        </div>
-			    </div>
-            </div>
+	            </div>
 
-            <!-- By Mlandvo - Score card -->
-            <div class="tab-pane fade" id="viewBSC">
-            	<div class="row">
-					<div class="col-sm-12">
-						<div class="panel panel-default" >
-			              	<div class="panel-heading">
-			                 	<div class="panel-title">
-						  			<h5 class="panel-title">Employee Balanced Scorecard</h5>
-			                	 </div>
-			              	</div>
-			              	<div class="panel-body container-fluid">
-
-			              		<div class="alert alert-info alert-dismissable" ng-if="hasShowBscInfo">
-					  				<button type="button" class="close" data-dismiss="alert">&times;</button>
-					  				<strong>Info!:</strong>&nbsp;<span>{{showBscInfo}}<br></span>
-			   		 	 	 	</div> <!--end info alert -->
-
-				              	<form class="form-horizontal">
-						  			<div class="form-group">
-										<label class="col-sm-2 control-label" for="period">Period</label>
-										<div class="col-sm-4">
-											<select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="bscPeriod">
-												<option ng-selected="[Select]">--Select--</option>
-												<option ng-repeat="objPeriod in allObjPeriods" value="{{objPeriod._id}}" ng-click="">{{objPeriod.name}}</option>
-											</select>
-										</div>
-										<div class="col-sm-2">
-											<button class="btn btn-sm btn-primary" ng-click="getPeriodicBscObjs()">Retrieve</button>
-										</div>
-									</div>
-								</form>
-								<br>
-
-				              	<div  ng-if="showBalanceScore">
-
-					              	<div class="alert alert-danger alert-dismissable col-sm-12" ng-show="showConErr">
-										<button type="button" class="close" data-dismiss="alert">X</button><strong>Error!:</strong>&nbsp;<span ng-model='showConMsg'>
-											{{showConMsg}}<br></span>
-									</div>
-
-									<table ng-show="!showConErr" class="hlk" id="scorecard" style="width: 100%;">
-								  		<thead>
-											<tr>
-												<th class="hlk-wrek2"></th>
-												<th class="hlk-drop"  colspan="8">Employee Balanced Scorecard</th>
-												<th class="hlk-drop"  colspan="3">Appraisal Report/Outcome</th>
-											</tr>
-
-											<tr>
-												<td class="hlk-suit">Perspective</td>
-												<td class="hlk-kurasaki">Key Performance Area(KPA)</td>
-												<td class="hlk-kurasaki">Key Performance Indicator(KPI)</td>
-												<td class="hlk-kurasaki">Detailed Weightings (%)</td>
-												<td class="hlk-kurasaki">Poor performance - Rating of 1</td>
-												<td class="hlk-kurasaki">Unsatisfactory - Rating of 2</td>
-												<td class="hlk-kurasaki">Target met - rating of 3</td>
-												<td class="hlk-kurasaki">Exceeding - rating of 4</td>
-												<td class="hlk-kurasaki">Outstanding - Rating of 5</td>
-												<td class="hlk-kurasaki">Rating</td>
-												<td class="hlk-kurasaki">Score</td>
-												<td class="hlk-kurasaki">Comment</td>
-											</tr>
-										</thead>
-										
-										<tbody ng-repeat="group in allGroupedPerspectives">
-											<tr ng-repeat="objective in group.objs">
-												<td class="hlk-nl5m" rowspan="{{group.objs.length}}" ng:hide="$index != 0">{{objective.perspective}}</td>
-												<td class="hlk-me">{{objective.kpa}} </td>
-												<td class="hlk-me">{{objective.kpi}} </td>
-												<td class="hlk-suit">{{objective.detailedWeighting}}</td>
-												<td class="hlk-truk">{{objective.metricOneDef.label}} </td>
-												<td class="hlk-me">{{objective.metricTwoDef.label}}</td>
-												<td class="hlk-nl5m">{{objective.metricThreeDef.label}}</td>
-												<td class="hlk-me">{{objective.metricFourDef.label}}</td>
-												<td class="hlk-me">{{objective.metricFiveDef.label}}</td>
-												<td class="hlk-me" >{{objective.supRating}}</td>
-												<td class="hlk-me">{{objective.score}}</td>
-												<td class="hlk-me">{{objective.supComment}}</td>
-											</tr>
-										</tbody>
-										<tfoot>
-											<tr>
-												<td colspan="3">Total Weightings</td>
-												<td>{{empDetailedW}}%</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td colspan="2">Overrall Score</td>
-												<td>{{empTotalScore}}</td>
-												<td></td>
-											</tr>
-										</tfoot>
-									</table>
+	            <div class="tab-pane fade" id="supFeedBack">
+	            	<div class="row">
+						<div class="col-sm-8 col-sm-offset-2">
+							<div class="panel panel-primary">
+				              	<div class="panel-heading">
+				                 	<div class="panel-title">
+							  			<h3 class="modal-title">Supervosor Evaluation Results</h3>
+				                	 </div>
 				              	</div>
-				             </div>
-
-			              	<div class="panel-footer" ng-if="showBalanceScore">
-			              		<a ng-disabled="showConErr" href="#" class="btn btn-sm btn-default" onClick ="$('#scorecard').tableExport({type:'excel',escape:'false',tableName:'Employee Scorecard'});">Export to Excel</a>
-			              		<a ng-disabled="showConErr" href="#" class="btn btn-sm btn-default" onClick ="$('#scorecard').tableExport({type:'pdf',escape:'false',tableName:'Employee Scorecard'});">Export to PDF</a>
-			              	</div>
-			            </div>
-			        </div>
-			    </div>
-            </div>
-
-            <!-- By Mlandvo - Self evaluation -->
-            <div class="tab-pane fade" id="selfEval">
-            	<div class="row">
-					<div class="col-sm-12">
-						<div class="panel panel-default">
-			              	<div class="panel-heading">
-			                 	<div class="panel-title">
-						  			<h5 class="panel-title">Employee Self-Evaluation</h5>
-			                	 </div>
-			              	</div>
-			              	<div class="panel-body container-fluid">
-			              		<form class="form-horizontal">
-						  			<div class="form-group">
-										<label class="col-sm-2 control-label" for="period">Period</label>
-										<div class="col-sm-4">
-											<select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="evalPeriod">
-												<option ng-selected="[Select]">--Select--</option>
-												<option ng-repeat="objPeriod in allObjPeriods" value="{{objPeriod._id}}">{{objPeriod.name}}</option>
-											</select>
-										</div>
-										<div class="col-sm-2">
-											<button class="btn btn-sm btn-primary" ng-click="getPeriodicEvalObjs()">Retrieve</button>
-										</div>
-									</div>
-								</form>
-
-								<div ng-show="showEmpEval" class="panel">
-									<div class="alert alert-info">
-							  			<button type="button" class="close" data-dismiss="alert">X</button>
-										<p>Enter Rating per Perfomance indicator under each objective and Comment or Attach files (Maximum 10 e.g PDF,Spreadsheet,Word Document) to support your Rating
-										</p>
-							  		</div>
-							  		<div class="alert alert-success alert-dismissable" ng-if="submitEvalSuccess">
-						  				<button type="button" class="close" data-dismiss="alert">&times;</button>
-						  				<strong>Success :</strong>&nbsp;<span>{{submitEvalSuccessMsg}}<br>
-					        			</span>
-				   		 	 	 	</div> <!--end success alert -->
-									<div class="alert alert-danger alert-dismissable" ng-show="evalMsgNot">
-									  	<button type="button" class="close" data-dismiss="alert">&times;</button>
-									  	<strong>Error!:</strong>&nbsp;<span ng-model='evalMsg'>{{evalMsg}}<br>
-										</span>
-									</div> 
-									<div>
-										<table ng-if="!evalMsgNot" class="table table-hover table-striped" style="width:100%">
-											<thead>
-												<tr>
-													<th style="width:10%"><h6 style="color: #003366;">Perspective</h6></th>
-												  	<th style="width:10%"><h6 style="color: #003366;">Key Performance Area</h6></th>
-												  	<th style="width:15%"><h6 style="color: #003366;">Key Performance Indicator</h6></th>
-												  	<!--<th style="width:20%"><h6 style="color: #003366;">Attachment(s)(Optional)</h6></th>-->
-												  	<th style="width:20%"><h6 style="color: #003366;">Comment(s)</h6></th>
-												  	<th style="width:20%"><h6 style="color: #003366;">Rating</h6></th>				 	
-												</tr>
-											</thead>
-											<form>	  									
-												<tbody>
-													<tr ng-repeat="objective in approvedEvalKPAs | orderBy: 'perspective' | filter: search | limitTo:10">
-														<td>{{objective.perspective}}</td>
-													  	<td>{{objective.kpa}}</td>
-													  	<td>{{objective.kpi}}</td>
-													  	<!--<td>
-														  	<input id="files" ngf-select  ngf-multiple="true" ng-model="objective.file" ngf-change="captureRating(objective);" type="file" multiple="false">
-													    </td>-->
-													  	<td>
-													  		<textarea class="form-control" type="text" rows="3" ng-model="objective.empComment" id="empComment" placeholder="(Optional)" ng-keyup="captureRating(objective);">
-													  		</textarea>
-													  	</td>
-													  	<td width="100%">									
-													    	<select class="form-control"  ng-model="objective.empRating" ng-change="captureRating(objective)">
-						                                    	<option ng-selected disabled>-- Select Rating --</option>
-						                                    	<option value="{{objective.metricOneDef.value}}">{{objective.metricOneDef.value+" |"+objective.metricOneDef.label}}</option>
-						                                    	<option value="{{objective.metricTwoDef.value}}">{{objective.metricTwoDef.value+" |"+objective.metricTwoDef.label}}</option>
-						                                    	<option value="{{objective.metricThreeDef.value}}">{{objective.metricThreeDef.value+" |"+objective.metricThreeDef.label}}</option>
-						                                    	<option value="{{objective.metricFourDef.value}}">{{objective.metricFourDef.value+" |"+objective.metricFourDef.label}}</option>
-						                                    	<option value="{{objective.metricFiveDef.value}}">{{objective.metricFiveDef.value+" |"+objective.metricFiveDef.label}}</option>
-						                                  	</select>
-					      								</td>
-													</tr>
-												</tbody>
-											</form>	
-										</table> 
-									</div>
-									<button ng-if="!evalMsgNot || submitEvalSuccess" class="btn btn-success" ng-click="selfEvaluate();"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Submit Evaluation</button>
-								</div>
-							</div>
-						</div>
-					</div>				       
-			    </div>
-			</div>
-
-			<div class="tab-pane fade" id="closeSelfEval">
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="panel panel-default">
-			              	<div class="panel-heading">
-			                 	<div class="panel-title">
-						  			<h3 class="panel-title">Close evaluation period</h3>
-			                	 </div>
-			              	</div>
-			              	<div class="panel-body">
-
-					  			<div class="alert alert-danger alert-dismissable" ng-if="hasEditObjErrors">
-					  				<button type="button" class="close" data-dismiss="alert">&times;</button>
-					  				<strong>Error:</strong><span>{{editObjError}}<br></span>
-			   		 	 	 	</div>
-
-			   		 	 	 	<div class="alert alert-success alert-dismissable" ng-if="editObjSuccess">
-					  				<button type="button" class="close" data-dismiss="alert">&times;</button>
-					  				<strong>Success:</strong><span>{{editObjSuccessMsg}}<br></span>
-			   		 	 	 	</div>
-							
-								<form class="form-horizontal">
-									<div class="form-group">
-										<label class="col-sm-3 control-label" for="period">Period</label>
-										<div class="col-sm-8">
-											<select id="objPeriodsDropdownMenu" class="form-control" role="menu" ng-model="empObjective.objPeriod" ng-change="changeShowBCT()">
-												<option ng-selected="[Select]">--Select--</option>
-												<option ng-repeat="objPeriod in allObjPeriods" value="{{objPeriod._id}}">{{objPeriod.name}}</option>
-											</select>
-										</div>
-									</div>
-
-									<div class="form-group">
-										<div class="col-sm-10 col-sm-offset-1">
-											<button id="updateObjButton" class="btn btn-success" style="float:right;" ng-click="editRejObjective(empEditObjective)"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Close</button>		
-										</div>
-									</div>
-								</form> <!-- end edit objective form-->
-			              	</div>
-			            </div>
-		            </div>
-		        </div>
-            </div>
-
-            <div class="tab-pane fade" id="supFeedBack">
-            	<div class="row">
-					<div class="col-sm-8 col-sm-offset-2">
-						<div class="panel panel-primary">
-			              	<div class="panel-heading">
-			                 	<div class="panel-title">
-						  			<h3 class="modal-title">Supervosor Evaluation Results</h3>
-			                	 </div>
-			              	</div>
-			              	<div class="panel-body container-fluid">
-			              	</div>
-			            </div>
-			        </div>
-			    </div>
-            </div>
-
-            <div class="tab-pane fade" id="viewCGoals">
-            	<div class="row">
-				    <div class="col-sm-10 col-sm-offset-1">
-				        <div class="panel panel-default">
-				            <div class="panel-heading">
-				                <div class="panel-title"><h4>COMPANY WIDE GOALS</h4></div>
-				            </div>
-				            <div class="panel-body container-fluid">
-				            	<div class="col-sm-12" ultimate-datatable="companyGoalsDT">
-                        		</div>
+				              	<div class="panel-body container-fluid">
+				              	</div>
 				            </div>
 				        </div>
 				    </div>
-				</div>
-			</div>
+	            </div>
 
-        </div>
+	            <div class="tab-pane fade" id="viewCGoals">
+	            	<div class="row">
+					    <div class="col-sm-10 col-sm-offset-1">
+					        <div class="panel panel-default">
+					            <div class="panel-heading">
+					                <div class="panel-title"><h4>COMPANY WIDE GOALS</h4></div>
+					            </div>
+					            <div class="panel-body container-fluid">
+					            	<div class="col-sm-12" ultimate-datatable="companyGoalsDT">
+	                        		</div>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+				</div>
+
+	        </div>
+	    </div>
 	</div>
 
 	<div class="accordion">

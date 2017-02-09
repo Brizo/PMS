@@ -1244,6 +1244,61 @@ app.post('/dtEditPersp', function(req, res) {
     });
 });
 
+app.post('/dtEditCGoal', function(req, res) {
+    myVals = req.body;
+    myVals._id = ObjectId(myVals._id);
+    db.strategy.save(myVals, function(err, saved) {
+        if (err) res.send('Error!');
+        else {
+            res.send(saved);
+        }
+    });
+});
+
+app.post('/dtEditCVision', function(req, res) {
+    myVals = req.body;
+    myVals._id = ObjectId(myVals._id);
+    db.strategy.save(myVals, function(err, saved) {
+        if (err) res.send('Error!');
+        else {
+            res.send(saved);
+        }
+    });
+});
+
+app.post('/dtEditCMission', function(req, res) {
+    myVals = req.body;
+    myVals._id = ObjectId(myVals._id);
+    db.strategy.save(myVals, function(err, saved) {
+        if (err) res.send('Error!');
+        else {
+            res.send(saved);
+        }
+    });
+});
+
+app.post('/dtEditCValue', function(req, res) {
+    myVals = req.body;
+    myVals._id = ObjectId(myVals._id);
+    db.strategy.save(myVals, function(err, saved) {
+        if (err) res.send('Error!');
+        else {
+            res.send(saved);
+        }
+    });
+});
+
+app.post('/dtEditCObjective', function(req, res) {
+    myVals = req.body;
+    myVals._id = ObjectId(myVals._id);
+    db.strategy.save(myVals, function(err, saved) {
+        if (err) res.send('Error!');
+        else {
+            res.send(saved);
+        }
+    });
+});
+
 app.delete('/dtRemoveStruct/:id', function(req, res) {
     myVals = req.params.id;
     myValsId = ObjectId(myVals.substring(1));
@@ -1263,6 +1318,71 @@ app.delete('/dtRemoveEmp/:id', function(req, res) {
     myValsId = ObjectId(myVals.substring(1));
 
     db.Employees.remove({
+        "_id": myValsId
+    }, function(err, removed) {
+        if (err) res.send('Error!');
+        else {
+            res.send(removed);
+        }
+    });
+});
+
+app.delete('/dtRemoveCGoal/:id', function(req, res) {
+    myVals = req.params.id;
+    myValsId = ObjectId(myVals.substring(1));
+    db.strategy.remove({
+        "_id": myValsId
+    }, function(err, removed) {
+        if (err) res.send('Error!');
+        else {
+            res.send(removed);
+        }
+    });
+});
+
+app.delete('/dtRemoveCVision/:id', function(req, res) {
+    myVals = req.params.id;
+    myValsId = ObjectId(myVals.substring(1));
+    db.strategy.remove({
+        "_id": myValsId
+    }, function(err, removed) {
+        if (err) res.send('Error!');
+        else {
+            res.send(removed);
+        }
+    });
+});
+
+app.delete('/dtRemoveCMission/:id', function(req, res) {
+    myVals = req.params.id;
+    myValsId = ObjectId(myVals.substring(1));
+    db.strategy.remove({
+        "_id": myValsId
+    }, function(err, removed) {
+        if (err) res.send('Error!');
+        else {
+            res.send(removed);
+        }
+    });
+});
+
+app.delete('/dtRemoveCValue/:id', function(req, res) {
+    myVals = req.params.id;
+    myValsId = ObjectId(myVals.substring(1));
+    db.strategy.remove({
+        "_id": myValsId
+    }, function(err, removed) {
+        if (err) res.send('Error!');
+        else {
+            res.send(removed);
+        }
+    });
+});
+
+app.delete('/dtRemoveCObjective/:id', function(req, res) {
+    myVals = req.params.id;
+    myValsId = ObjectId(myVals.substring(1));
+    db.strategy.remove({
         "_id": myValsId
     }, function(err, removed) {
         if (err) res.send('Error!');

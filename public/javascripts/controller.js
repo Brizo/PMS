@@ -1582,14 +1582,14 @@ bsc.service('allObjectives', ['$http', function($http) {
                         "active": true,
                         "mode": 'remote',
                         "url": function(value) {
-                            return "/dtRemoveCGoal/:" + value._id
+                            return "/dtRemoveCVision/:" + value._id
                         },
                         "method": "delete"
                     },
                     "save": {
                         "active": true,
                         "mode": 'remote',
-                        "url": "/dtEditCGoal",
+                        "url": "/dtEditCVision",
                         "method": "post"
                     },
                     "hide": {
