@@ -140,13 +140,13 @@
                                             </a>
                                         </li>
                                         <li ng-if="isAdmin"> 
-                                            <a href="#adminTab" data-toggle="tab" ng-click="getDivisions()" > 
+                                            <a href="#adminTab" data-toggle="tab"> 
                                                 <span class = "glyphicon glyphicon-wrench"></span>&nbsp; 
                                                 Administrator
                                             </a>
                                         </li>
-                                        <li ng-controller="hrRolesController" ng-if="isHR">
-                                            <a href="#HRTab" data-toggle="tab" ng-click="getDivisions()"> 
+                                        <li ng-if="isHR">
+                                            <a href="#HRTab" data-toggle="tab"> 
                                                 <span class = "glyphicon glyphicon-folder-open"></span> &nbsp;
                                                 Human Resources
                                             </a>

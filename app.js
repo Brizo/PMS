@@ -22,8 +22,6 @@ function hash(password) {
     return crypto.createHash('sha256').update(password).digest('hex');
 }
 
-var boolStruct = require('./routes/boolstruct');
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -943,7 +941,7 @@ app.post('/getKPA/:id', function(req, res) {
 
 /*HR Module Routes*/
 
-app.post('/route560d000d14d04f84393069550', function(req, res) {
+app.post('/initializeComp', function(req, res) {
     query = req.body;
 
     db.structure.insert(query, function(err, saved) {
@@ -955,7 +953,7 @@ app.post('/route560d000d14d04f84393069550', function(req, res) {
 
 })
 
-app.post('/route55df0ed0b2bc8bc76c51da16', function(req, res) {
+app.post('/getAllStructComps', function(req, res) {
     query = req.body;
 
     db.structure.find(function(err, data) {
@@ -966,7 +964,7 @@ app.post('/route55df0ed0b2bc8bc76c51da16', function(req, res) {
     });
 })
 
-app.post('/route55df11e094e05079749e0a04', function(req, res) {
+app.post('/addStructElement', function(req, res) {
     query = req.body;
 
     db.structure.insert(query, function(err, saved) {
@@ -1195,17 +1193,50 @@ app.post('/getAllPersps', function(req, res) {
 });
 
 app.post('/getStructure', function(req, res) {
-    var myTree = new boolStruct();
-    myTree.init();
+    
+    var depth = 0;
+    var allStructure = [];
 
-    setTimeout(function() {
-        myTree.render();
-    }, 300);
+    db.structure.find({},function(err, data) {
+        if (err) {
+            res.send('Error!');
+        } else {
+            allStructure = toTree(data);
+            res.send(allStructure);
+        }
+    });
 
-    setTimeout(function() {
-        res.send(myTree.showStruct());
-        //console.log(myTree.showStruct());
-    }, 600);
+    function toTree(data) {
+       var childrenById = {}; 
+       var allNodes = {};
+       var i, row;
+
+       // first pass: build child arrays and initial node array
+       for (i=0; i<data.length; i++) {
+           row = data[i];
+           allNodes[row._id] = {text: row.name, icon: row.icon, nodes: []};
+           if (row.parentObjid == "0") {
+              root = row._id; 
+           } else if (childrenById[row.parentObjid] === undefined) {
+              childrenById[row.parentObjid] = [row._id];
+           } else {
+              childrenById[row.parentObjid].push(row._id);
+           }
+       }
+       
+       // second pass: build tree, using the awesome power of recursion!
+       function expand(id) {
+           if (childrenById[id] !== undefined) {
+               for (var i=0; i < childrenById[id].length; i ++) {
+                   var childId = childrenById[id][i];
+                   allNodes[id].nodes.push(expand(childId));
+               }
+           }
+           return allNodes[id];
+       }
+       return expand(root);
+    }
+
 });
 
 app.post('/dtEditStruct', function(req, res) {

@@ -229,9 +229,7 @@ function boolTree() {
             sibsData.push(node.nodeData);
         });
 
-        if (sibsData.length > 0) {return sibsData};
-
-        
+        if (sibsData.length > 0) {return sibsData};        
     }
 
     this.attrSet = function(nodeIsn) {
