@@ -267,6 +267,31 @@ app.post("/getAllObjectives", function(req, res) {
     });
 })
 
+app.post("/getInitCompany", function(req, res) {
+    db.structure.findOne({
+        parentObjid: "0"
+    }, function(err, docs) {
+        if (err) {
+            console.log("There is an error");
+        } else {
+            res.json(docs);
+        }
+    });
+})
+
+app.post("/modifyInitCompany", function(req, res) {
+    var obj = req.body;
+    obj['_id'] = ObjectId(obj._id);
+
+    db.structure.save(obj, function(err, docs) {
+        if (err) {
+            console.log("There is an error");
+        } else {
+            res.send("Success!");
+        }
+    });
+})
+
 app.post("/getAllPerspectives", function(req, res) {
     db.perspective.find({}, {
         perspName: 1,

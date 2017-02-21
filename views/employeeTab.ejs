@@ -1,4 +1,4 @@
-<div class="tab-pane fade in" id="employeeTab" ng-controller="empRoleController">	 
+<div class="tab-pane fade in {{setEActive}}" id="employeeTab" ng-controller="empRoleController">	 
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<ul class="nav nav-pills nav-normal">
@@ -36,8 +36,9 @@
 		</div>
 		<div class="panel-body">
 	      	<div class="tab-content">
+                                        
 				<!-- create objective : By Brian-->
-				<div class="tab-pane fade" id="createEmpObjective">
+				<div class="tab-pane fade in {{setEActive}}" id="createEmpObjective">
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="panel panel-default">
@@ -47,7 +48,6 @@
 				                	 </div>
 				              	</div>
 				              	<div class="panel-body container-fluid">
-
 						  			<div class="alert alert-danger alert-dismissable" ng-if="hasCreateObjErrors">
 						  				<button type="button" class="close" data-dismiss="alert">&times;</button>
 						  				<strong>Error:</strong><span>{{createObjError}}<br></span>
@@ -265,7 +265,7 @@
 	            </div>
 
 	            <!-- edit objective : By Brian-->
-				<div class="tab-pane fade" id="editObjective">
+				<div class="tab-pane fade in" id="editObjective">
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="panel panel-default">
@@ -468,7 +468,7 @@
 	            </div>
 
 	            <!-- submit objectives objectives : By Brian-->
-	            <div class="tab-pane fade" id="submitObjectives">
+	            <div class="tab-pane fade in" id="submitObjectives">
 	            	<div class="row">
 						<div class="col-sm-12">
 							<div class="panel panel-default">
@@ -530,7 +530,7 @@
 	            </div>
 
 	            <!-- confirm delete objective modal : By Brian-->
-	            <div class="modal fade" id="delObjectiveModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+	            <div class="modal fade in" id="delObjectiveModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
 			    	<div class="modal-dialog">
 			    		<div class="modal-content">
 	          				<div class="modal-header">
@@ -550,7 +550,7 @@
 	    		</div>
 
 	    		<!-- confirm delete objective modal : By Brian-->
-	            <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+	            <div class="modal fade in" id="testModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
 			    	<div class="modal-dialog">
 			    		<div class="modal-content">
 	          				<div class="modal-header">

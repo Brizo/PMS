@@ -97,12 +97,19 @@ bsc.service('allObjectives', ['$http', function($http) {
 
             if (resp.currentRoles.indexOf('employee') !== -1) {
                 $scope.isEmp = true;
+                $scope.setEActive = 'active';
             }
             if (resp.currentRoles.indexOf('supervisor') !== -1) {
                 $scope.isSup = true;
+                if (!$scope.isEmp) {
+                    $scope.setSActive = 'active';
+                }
             }
             if (resp.currentRoles.indexOf('HR') !== -1) {
                 $scope.isHR = true;
+                if (!$scope.isEmp && !$scope.isSup) {
+                    $scope.setHActive = 'active';
+                }
             }
         }).error(function(resp) {
             console.log("Problem getting logged in user");
@@ -1382,6 +1389,21 @@ bsc.service('allObjectives', ['$http', function($http) {
     }
 
     $scope.getPerspectives();
+    $scope.hideSaveInitCompany = false;
+
+    $scope.getInitCompany = function() {
+        $http.post('/getInitCompany').success(function(resp) {
+            $scope.initCompStructure = resp;
+            if ($scope.initCompStructure = null) {
+                $scope.hideSaveInitCompany = true;
+            }
+            $scope.structInitCompName = resp.name;
+            $scope.userNamePref = resp.unamePref;
+
+        });
+    }
+
+    $scope.getInitCompany();
 
     // get ObjPeriods : 
     $scope.getObjPeriods = function() {
@@ -2223,11 +2245,11 @@ bsc.service('allObjectives', ['$http', function($http) {
     $scope.hrInitCompMsg = "";
     $scope.initCompany = function() {
         $http.post('/initializeComp', {
-            name: $scope.structInitCompName,
+            name: $scope.initCompStructure.structInitCompName,
             icon: $scope.initCompIcon,
             parentObjid: $scope.initCompParObjId,
             structType: $scope.initCompStructType,
-            unamePref: $scope.userNamePref,
+            unamePref: $scope.initCompStructure.userNamePref,
             level: 0
 
         }).success(function(resp) {
@@ -2241,12 +2263,24 @@ bsc.service('allObjectives', ['$http', function($http) {
                 });
             }, 1000);*/
 
-            $scope.userNamePref = null;
-            $scope.structInitCompName = null;
-
+            $scope.getInitCompany();
 
             if (resp = "Success!") {
                 $scope.hrInitCompMsg = "<div class='alert alert-success alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Company Initialised!</strong></div>";
+            } else {
+                $scope.hrInitCompMsg = "<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>An Error Occured!</strong></div>";
+            }
+        });
+
+    }
+
+    $scope.modifyInitCompany = function() {
+        $scope.initCompStructure['name'] = $scope.structInitCompName;
+        $scope.initCompStructure['unamePref'] = $scope.userNamePref;
+
+        $http.post('/modifyInitCompany', $scope.initCompStructure).success(function(resp) {
+            if (resp = "Success!") {
+                $scope.hrInitCompMsg = "<div class='alert alert-success alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Company Modified!</strong></div>";
             } else {
                 $scope.hrInitCompMsg = "<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>An Error Occured!</strong></div>";
             }
@@ -2392,19 +2426,17 @@ bsc.service('allObjectives', ['$http', function($http) {
             structIcon = "glyphicon glyphicon-user"
         };
 
-        var parentObj = JSON.parse($scope.parentObjid);
-
         $http.post('/addStructElement', {
-            parentObjid: parentObj._id,
+            parentObjid: $scope.parentObjid,
             name: $scope.name,
             structType: $scope.structureType,
             structCompoAddBtn: $scope.structCompoAddBtn,
-            icon: structIcon,
-            level: parseInt(parentObj.level) + 1
+            icon: structIcon
         }).success(function(resp) {
             $scope.name = '';
             $scope.getStructComponents();
             $scope.getPositions();
+            $scope.getStructureF();
            /* setTimeout(function() {
                 $('#tree').treeview({
                     data: $scope.myTree //$scope.getTree()
