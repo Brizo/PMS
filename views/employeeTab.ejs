@@ -27,11 +27,14 @@
 	            	<ul class="dropdown-menu">
 	               		<li><a ng-click="clearApproved();getEvalObjectives()" href="#selfEval" data-toggle="tab" >Self evaluation</a></li>
 	               		<li><a ng-click="getObjPeriods()" href="#closeSelfEval" data-toggle="tab" >Close evaluation</a></li>
+	               		<li><a ng-click="retrieveAllEmployees()" href="#empBehevaluation" data-toggle="tab" >Employee behavoral evaluation</a></li>
+	               		<li><a ng-click="" href="#viewBehEvaluation" data-toggle="tab" >View own behavoral evaluation</a></li>
+
 	            	</ul>
 	         	</li>
-	         	<li>
+	         	<!--<li>
 	            	<a data-toggle="tab" href="#empDashBoard" data-toggle="tooltip" data-placement="top" title="Click to view Employee Dashboard">Mini Dashboard</a>
-	         	</li>
+	         	</li>-->
 	      	</ul>
 		</div>
 		<div class="panel-body">
@@ -687,6 +690,245 @@
 			            </div>
 			        </div>
 	            </div>
+
+	            <div id="empBehevaluation" class="tab-pane fade">
+		          <div class="panel panel-default">
+		            <div class="panel-heading">
+		              <div class="panel-title">
+		                <img class="img-responsive" style="float:left;"  src="images/sebentile.png" width="40" height="40"  alt="Logo">&nbsp;
+		                <h5 class="panel-title">Select an employee from the list to evaluate ...</h5>
+		              </div>
+		            </div>&nbsp;
+		            <div class="panel-body">
+		              <table class="table table-striped table-bordered">
+		                <thead>
+		                  <tr>
+		                    <th>Employee Name</th>
+		                    <th>PF Number</th>
+		                    <th>Position</th>
+		                  </tr>
+		                </thead>
+		                <tbody>
+		                  <tr ng-repeat="emp in employees">
+		                    <td><a href="#evalBEmployee" data-toggle="tab" role="button" ng-click="getToEvalBObjs(emp._id, emp.empName)" >
+		                      {{emp.empName}}</a></td>
+		                    <td>{{emp.PFNum}}</td>
+		                    <td>{{emp.position}}</td>
+		                  </tr>
+		                </tbody>
+		              </table>
+		            </div>
+		          </div> 
+		        </div>
+
+		        <div id="viewBehEvaluation" class="tab-pane fade">
+		          <div class="panel panel-default">
+		            <div class="panel-heading">
+		              <div class="panel-title">
+		                <img class="img-responsive" style="float:left;"  src="images/sebentile.png" width="40" height="40"  alt="Logo">&nbsp;
+		                <h5 class="panel-title">Behavoural responses</h5>
+		              </div>
+		            </div>&nbsp;
+		            <div class="panel-body">
+		            	<div class="alert alert-info alert-dismissable">
+						  	<button type="button" class="close" data-dismiss="alert">&times;</button>
+						  			<strong>Info!:</strong>&nbsp;<span> You donot have responses yet<br></span>
+				   		 	 	 	</div> <!--end info alert -->
+		            </div>
+		          </div> 
+		        </div>
+
+		        <div id="evalBEmployee" class="tab-pane fade">
+		          	<div style="width:100%;">
+		            	<div class="panel panel-default"> 
+			              	<div class="panel-heading">
+			                	<div class="panel-title">
+				                  <img class="img-responsive" style="float:left;"  src="images/sebentile.png" width="40" height="40"  alt="Logo">&nbsp;
+				                  <h4 class="panel-title" ng-model="empAlias">Evaluate {{empAlias.Name}}'s Corporate Behaviour</h4>
+			                	</div>
+			              	</div>
+
+			              	<div class="panel-body">
+			                	<div class="panel panel-default">
+		                        	<div class="panel-body">
+		                          		<div class="form-group">
+				                            <label for="passkey" class="col-sm-12">1. How do I respond on the phone?</label> 
+						                	<div class='col-lg-12'>
+					                            <div class="form-group">
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="ExtremelyImportant" />Rude</label>
+					                                  </div>
+					                                </div>
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="SomewhatImportant" />Bad</label>
+					                                  </div>
+					                                </div>
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="ImportantAtAll">Ok</label>
+					                                  </div>
+					                                </div>
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="ExtremelyImportant">Good</label>
+					                                  </div>
+					                                </div>
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="NotImportAtAll">Excellent</label>
+					                                  </div>
+					                                </div>
+					                              
+					                            </div>
+					                        </div>
+					                    </div>                      
+		                        	</div>
+		                      	</div>
+
+		                      	<div class="panel panel-default">
+		                        	<div class="panel-body">
+			                          	<div class="form-group">
+				                            <label for="passkey" class="col-sm-12">2. Do I respect other people's openions</label>
+
+				                            <div class='col-lg-12'>
+					                            <div class="form-group">
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="ExtremelyImportant" />Not sure</label>
+					                                  </div>
+					                                </div>
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="SomewhatImportant" />Not al all</label>
+					                                  </div>
+					                                </div>
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="ImportantAtAll">Sometimes</label>
+					                                  </div>
+					                                </div>
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="ExtremelyImportant">Yes</label>
+					                                  </div>
+					                                </div>
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="NotImportAtAll">Always</label>
+					                                  </div>
+					                                </div>
+					                              
+					                            </div>
+					                        </div> 
+			                          	</div>                      
+		                        	</div>
+		                      	</div>
+
+		                      	<div class="panel panel-default">
+		                        	<div class="panel-body">
+			                          	<div class="form-group">
+				                            <label for="passkey" class="col-sm-12">3. How are my listening skills? </label>
+
+				                            <div class='col-lg-12'>
+					                            <div class="form-group">
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="ExtremelyImportant" />Terrible</label>
+					                                  </div>
+					                                </div>
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="SomewhatImportant" />Bad</label>
+					                                  </div>
+					                                </div>
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="ImportantAtAll">Ok</label>
+					                                  </div>
+					                                </div>
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="ExtremelyImportant">Good</label>
+					                                  </div>
+					                                </div>
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="NotImportAtAll">Excellent</label>
+					                                  </div>
+					                                </div>
+					                              
+					                            </div>
+					                        </div> 
+		                          		</div>                      
+		                        	</div>
+		                      	</div>
+
+		                      	<div class="panel panel-default">
+		                        	<div class="panel-body">
+			                          	<div class="form-group">
+				                            <label for="passkey" class="col-sm-12">4. I am I a good team player </label>
+				                            
+				                            <div class='col-lg-12'>
+					                            <div class="form-group">
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="ExtremelyImportant" />Not at all</label>
+					                                  </div>
+					                                </div>
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="SomewhatImportant" />Not sure</label>
+					                                  </div>
+					                                </div>
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="ImportantAtAll">Somehow</label>
+					                                  </div>
+					                                </div>
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="ExtremelyImportant">Yes</label>
+					                                  </div>
+					                                </div>
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <label><input type="radio" name="q1Answer" value="NotImportAtAll">Excellent</label>
+					                                  </div>
+					                                </div>
+					                              
+					                            </div>
+					                        </div> 
+			                          	</div>                      
+		                        	</div>
+		                      	</div>
+
+		                      	<div class="panel panel-default">
+		                        	<div class="panel-body">
+			                          	<div class="form-group">
+				                            <label for="passkey" class="col-sm-12">5. Do you have any other comments</label>
+
+				                            <div class='col-lg-12'>
+				                              	<div class="form-group">
+					                                <div class="col-sm-4">
+					                                  <div class="radio">
+					                                    <textarea class="form-control" rows="7" width="20" name="q5Answer"></textarea>
+					                                  </div>
+					                                </div>
+				                              	</div>
+				                            </div>
+			                          	</div>                      
+		                        	</div>
+		                      	</div>
+	                  		</div><!-- panel-body -->
+
+	                  		<div class="panel-footer">
+			                  	<button type="submit" class="btn btn-success" name="submitAnswers">Submit evaluation</button>
+			                </div>
+			            </div>
+                  	</div>  
+                </div>
 
 	            <!-- By Mlandvo - Dashboard -->
 	            <div class="tab-pane fade" id="empDashBoard">

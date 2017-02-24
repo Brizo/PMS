@@ -1485,6 +1485,46 @@ app.post('/route560d4856d00d941c304c7254', function(req, res) {
     });
 });
 
+app.post('/getAllEmployees', function(req, res) {
+    db.Employees.find({},function(err, docs) {
+        if (err) {
+            res.send("An Error Occured" + err);
+        } else {
+            res.json(docs);
+        }
+    })
+});
+
+app.post('/getAllSections', function(req, res) {
+    db.structure.find({structType:"subsection"},function(err, docs) {
+        if (err) {
+            res.send("An Error Occured" + err);
+        } else {
+            res.json(docs);
+        }
+    })
+});
+
+app.post('/getAllDepartments', function(req, res) {
+    db.structure.find({structType:"department"},function(err, docs) {
+        if (err) {
+            res.send("An Error Occured" + err);
+        } else {
+            res.json(docs);
+        }
+    })
+});
+
+app.post('/getAllDivisions', function(req, res) {
+    db.structure.find({structType:"division"},function(err, docs) {
+        if (err) {
+            res.send("An Error Occured" + err);
+        } else {
+            res.json(docs);
+        }
+    })
+});
+
 /*Supervisor Module Routes*/
 
 app.post('/getEmpsPendingObjs', function(req, res) {

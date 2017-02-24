@@ -256,6 +256,16 @@ bsc.service('allObjectives', ['$http', function($http) {
         });
     };
 
+    $scope.retrieveAllEmployees = function () {
+        $http.post('/getAllEmployees').success( function (response) {
+            $scope.employees = response;
+        })
+    }
+
+    $scope.getToEvalBObjs = function (id, name) {
+        $scope.empAlias = {Name : name, Id : id};
+    }
+
     $scope.fetchCompanyGoals = function() {
         $scope.fetchCGoalInfo = null;
         $scope.hsFetchCGoalInfo = false;
@@ -1375,6 +1385,30 @@ bsc.service('allObjectives', ['$http', function($http) {
         }
     ];
 
+    $scope.searchIndPerfomance = function () {
+        $scope.hsFetchIndScore = true;
+        $scope.fetchIndScore = "Score not ready yet";
+    }
+
+    $scope.searchSecPerfomance = function () {
+        $scope.hsFetchSectionScore = true;
+        $scope.fetchSectionScore = "Score not ready yet";
+    }
+
+    $scope.searchDeptPerfomance = function () {
+        $scope.hsFetchDeptScore = true;
+        $scope.fetchDeptScore = "Score not ready yet";
+    }
+
+    $scope.searchDeptPerfomance = function () {
+        $scope.hsFetchDeptScore = true;
+        $scope.fetchDeptScore = "Score not ready yet";
+    }
+
+    $scope.searchDivPerfomance = function () {
+        $scope.hsFetchDivScore = true;
+        $scope.fetchDivScore = "Score not ready yet";
+    }
 
     $scope.func560d4856d00d941c304c7254 = function() {
         $http.post('/route560d4856d00d941c304c7254').success(function(resp) {
@@ -1386,6 +1420,30 @@ bsc.service('allObjectives', ['$http', function($http) {
         $http.post('/getPerspectives').success(function(resp) {
             $scope.listOfPersp = resp;
         });
+    }
+
+    $scope.getAllEmployees = function () {
+        $http.post('/getAllEmployees').success( function (response) {
+            $scope.employees = response;
+        })
+    }
+
+    $scope.getAllSections = function () {
+        $http.post('/getAllSections').success( function (response) {
+            $scope.sections = response;
+        })
+    }
+
+    $scope.getAllDepartments = function () {
+        $http.post('/getAllDepartments').success( function (response) {
+            $scope.departments = response;
+        })
+    }
+
+    $scope.getAllDivisions = function () {
+        $http.post('/getAllDivisions').success( function (response) {
+            $scope.divisions = response;
+        })
     }
 
     $scope.getPerspectives();
@@ -1435,7 +1493,7 @@ bsc.service('allObjectives', ['$http', function($http) {
         });
     };
 
-    //$scope.getFinYears();
+    $scope.getFinYears();
 
     $scope.evalPeriod = {};
 
