@@ -1463,7 +1463,7 @@ bsc.service('allObjectives', ['$http', function($http) {
         $scope.assignEError = null;
         $scope.assignESuccessMsg = null;
 
-        var newPos = {emp:$scope.toAssignUname, pos:$scope.empNewPosition1};
+        var newPos = {emp:$scope.toAssignUname, pos:$scope.toAssignEmp.newPos};
         console.log(newPos);
 
         $http.post('/updateEmpPos', newPos).success( function (resp) {
@@ -1472,7 +1472,7 @@ bsc.service('allObjectives', ['$http', function($http) {
             $scope.showToAssignE = false;
             $scope.toAssignUname = null;
             $scope.empNewPosition = null;
-            $scope.toAssignEmp = null;
+            $scope.toAssignEmp = {};
         })
     }
 

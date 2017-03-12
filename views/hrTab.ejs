@@ -310,7 +310,7 @@
                                             <div class="form-group" ng-if="showToAssignE">
                                                 <label for="perspDescr" class="col-sm-4 control-label">New Position:</label>
                                                 <div class="col-sm-6">
-                                                    <select class="form-control" ng-model="empNewPosition1">
+                                                    <select class="form-control" ng-model="toAssignEmp.newPos">
                                                         <option ng-selected="[Select]" ng-disabled>[Select]</option>
                                                         <option ng-repeat="item in listOfPos" value="{{item.name}}">{{item.name}}</option>
                                                     </select>
