@@ -929,6 +929,23 @@ app.post("/submitEmpObjectives", function(req, res) {
     res.json("Objectives Successfuly submitted");
 })
 
+
+
+app.post("/updateEmpPos", function(req, res) {
+    var query = req.body;
+    var user = query.emp;
+    var position = query.pos;
+
+    db.Employees.update({userName:user},{$set:{position:position}}, function (err, doc) {
+        if (err) {
+            res.send("Error : "+err);
+        } else {
+            res.send ("Employee position successfuly changed");
+        }
+    })
+
+})
+
 app.post("/empSelfEvaluate", function(req, res) {
     var objectives = req.body;
     var length = objectives.length;
@@ -1149,6 +1166,19 @@ app.post('/getAllEvalPeriods', function(req, res) {
         }
     });
 });
+
+
+
+app.post('/getToAssignEmp', function(req, res) {
+    var user = req.body.userName;
+    db.Employees.findOne({userName:user},function(err, resp) {
+        if (err) res.send('Error!');
+        else {
+            res.send(resp);
+        }
+    });
+});
+
 
 app.post('/getAllFinYears', function(req, res) {
     db.financialYears.find(function(err, resp) {

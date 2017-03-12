@@ -264,7 +264,70 @@
                     </div>
 
                     <!-- ASSIGN EMPLOYEE TO NEW POSITION -->
-                    <div class="tab-pane fade" id="empAssignToPos"> </div>
+                    <div class="tab-pane fade container-fluid" id="empAssignToPos">
+                        <div class="col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="panel-title">
+                                        <h4>Assign Employee to new position</h4>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <br>
+                                    <div class="col-sm-12">
+                                        <div class="alert alert-danger alert-dismissable" ng-if="hasAssignEErrors">
+                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                            <strong>Error : </strong><span>{{assignEError}}<br></span>
+                                        </div>
+
+                                        <div class="alert alert-success alert-dismissable" ng-if="assignESuccess">
+                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                            <strong>Success : </strong><span>{{assignESuccessMsg}}<br></span>
+                                        </div>
+
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <label for="perspName" class="col-sm-4 control-label">Username:</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control" ng-model="toAssignUname" placeholder="Enter employee username">
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <button type="button" class="btn btn-primary" class="form-control" ng-click="searchToAssignEmp()">Search</button>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" ng-if="showToAssignE">
+                                                <label for="perspDescr" class="col-sm-4 control-label">Employee:</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" ng-model="toAssignEmp.empName" placeholder="Enter New Perspective">
+                                                </div>
+                                            </div>
+                                            <div class="form-group" ng-if="showToAssignE" >
+                                                <label for="perspDescr" class="col-sm-4 control-label">Current Position:</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" ng-model="toAssignEmp.position" placeholder="Enter New Perspective">
+                                                </div>
+                                            </div>
+                                            <div class="form-group" ng-if="showToAssignE">
+                                                <label for="perspDescr" class="col-sm-4 control-label">New Position:</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" ng-model="empNewPosition1">
+                                                        <option ng-selected="[Select]" ng-disabled>[Select]</option>
+                                                        <option ng-repeat="item in listOfPos" value="{{item.name}}">{{item.name}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" ng-if="showToAssignE">
+                                                <div class="col-sm-4 col-sm-offset-4">
+                                                    <button type="button" class="btn btn-default btn-sm glyphicon glyphicon-plus btn-success" ng-click="assignNewPos()">&nbsp;Assign</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- ADD NEW PERSPECTIVE -->
                     <div class="tab-pane fade" id="perspNew">

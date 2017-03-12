@@ -1434,6 +1434,48 @@ bsc.service('allObjectives', ['$http', function($http) {
         })
     }
 
+    $scope.toAssignEmp = {};
+    $scope.showToAssignE = false;
+
+    $scope.searchToAssignEmp = function () {
+        var user = {userName : $scope.toAssignUname};
+        $scope.hasAssignEErrors = false;
+        $scope.assignESuccess = false;
+        $scope.assignEError = null;
+        $scope.assignESuccessMsg = null;
+
+        $http.post('/getToAssignEmp', user).success( function (resp) {
+            if (resp) {
+                $scope.toAssignEmp.empName = resp.fname + ' ' + resp.mname + ' ' + resp.lname;
+                $scope.toAssignEmp.position = resp.position;
+                $scope.showToAssignE = true;
+            } else {
+                $scope.hasAssignEErrors = true;
+                $scope.assignEError = "User does not exist";
+            }
+            
+        })
+    }
+
+    $scope.assignNewPos = function () {
+        $scope.hasAssignEErrors = false;
+        $scope.assignESuccess = false;
+        $scope.assignEError = null;
+        $scope.assignESuccessMsg = null;
+
+        var newPos = {emp:$scope.toAssignUname, pos:$scope.empNewPosition1};
+        console.log(newPos);
+
+        $http.post('/updateEmpPos', newPos).success( function (resp) {
+            $scope.assignESuccess = true;
+            $scope.assignESuccessMsg = resp;
+            $scope.showToAssignE = false;
+            $scope.toAssignUname = null;
+            $scope.empNewPosition = null;
+            $scope.toAssignEmp = null;
+        })
+    }
+
     $scope.getAllDepartments = function () {
         $http.post('/getAllDepartments').success( function (response) {
             $scope.departments = response;
