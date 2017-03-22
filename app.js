@@ -8,6 +8,19 @@ var bodyParser = require('body-parser');
 var mongoStore = require('connect-mongo')(session);
 var crypto = require('crypto');
 var app = express();
+var multer  = require('multer')
+//var upload = multer({ dest: 'uploads/' })
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+    filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+
+var upload = multer({ storage: storage })
 
 //var databaseUrl = "147.110.192.71,147.110.192.100,147.110.186.221/sebentiledb?slaveOk=true";
 var databaseUrl = "127.0.0.1/sebentiledb";
@@ -946,7 +959,11 @@ app.post("/updateEmpPos", function(req, res) {
 
 })
 
-app.post("/empSelfEvaluate", function(req, res) {
+app.post("/uploadFile", upload.any(), function (req, res) {
+    res.json(req.files);
+})
+
+app.post("/empSelfEvaluate" , upload.single('file'), function(req, res) {
     var objectives = req.body;
     var length = objectives.length;
 

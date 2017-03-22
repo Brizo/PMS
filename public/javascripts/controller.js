@@ -6,6 +6,34 @@ bsc.service('allObjectives', ['$http', function($http) {
     }
 }])
 
+.directive('fileModel', ['$parse', function($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+
+            element.bind('change', function() {
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                })
+            })
+        }
+    }
+}])
+
+.service('multipartForm', ['$http', function($http) {
+    this.post = function(uploadUrl, data) {
+        var fd = new FormData();
+        for(var key in data)
+            fd.append(key, data[key]);
+        return $http.post(uploadUrl, fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+    }
+}])
+
 .service('pendingObjectives', ['$http', function($http) {
     this.getPending = function() {
         return $http.post('/getPendingObjectives');
@@ -89,6 +117,7 @@ bsc.service('allObjectives', ['$http', function($http) {
     $scope.isEmp = false,
     $scope.isHR = false,
     $scope.isAdmin = false,
+    $scope.formData = {};
 
     // gets logged in information from stored session
     $scope.getLoggedUser = function() {
@@ -138,7 +167,7 @@ bsc.service('allObjectives', ['$http', function($http) {
     }
 }])
 
-.controller('empRoleController', ['allObjectives', 'approvedObjectives', 'unApprovedObjectives', '$rootScope', '$http', '$scope', 'datatable' ,function (approvedObjectives, unApprovedObjectives, $rootScope, allObjectives, $http, $scope, datatable) {
+.controller('empRoleController', ['allObjectives', 'approvedObjectives', 'unApprovedObjectives', '$rootScope', '$http', '$scope', 'datatable','multipartForm' ,function (approvedObjectives, unApprovedObjectives, $rootScope, allObjectives, $http, $scope, datatable, multipartForm) {
     $scope.empObjective = {};
     $scope.gotFinBCW = false;
     $scope.BCWStat = "Lock";
@@ -1005,6 +1034,26 @@ bsc.service('allObjectives', ['$http', function($http) {
         }
     };
 
+    $scope.submit = function() {
+        $scope.fileUploadMsg = null;
+        $scope.uploadedFile = null;
+        $scope.fileUploadSuccess = false;
+
+        var uploadUrl = 'uploadFile';
+        
+        multipartForm.post(uploadUrl, $scope.formData).success(function(resp) {
+            $scope.fileUploadSuccess = true;
+            $scope.fileUploadMsg = "File uploaded successfully";
+            var fileName = resp[0].destination+resp[0].originalname;
+            $scope.toUploadFileObj['proofFile'] = fileName;
+            $scope.captureRating($scope.toUploadFileObj);
+        });
+    }
+
+    $scope.clickAttachProof = function(obj) {
+        $scope.toUploadFileObj = obj;
+    }
+
     //By 
     $scope.selfEvaluate = function() {
         $http.post("/empSelfEvaluate", $scope.capturedRatings).success(function(res) {
@@ -1015,6 +1064,7 @@ bsc.service('allObjectives', ['$http', function($http) {
     };
 
     $scope.captureRating = function(obj) {
+        console.log(obj);
         var elemPos = $scope.capturedRatings.indexOf(obj);
         if (elemPos == -1) {
             $scope.capturedRatings.push(obj);
